@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/04/06 16:08:27 by juhur            ###   ########.fr        #
+#    Updated: 2022/04/08 21:15:19 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,16 @@ CFLAGS = -Wall -Wextra -Werror
 READLINE_DIR = $(shell brew --prefix readline)
 READLINE_AR = $(READLINE_DIR)/lib
 READLINE_INC = $(READLINE_DIR)/include
+READLINE = -lreadline -L$(READLINE_AR) -I$(READLINE_INC)
 
-INC_DIR = ./include
-HEADER = $(INC_DIR)/minishell.h
+MINISHELL_INC_DIR = ./include
+MINISHELL_INC = $(MINISHELL_INC_DIR)/minishell.h
 
 SRC_DIR = ./src
 SRCS = $(addprefix $(SRC_DIR)/, \
 	main.c \
+	prompt.c \
+	echoctl.c \
 )
 
 OBJS = $(SRCS:.c=.o)
@@ -39,10 +42,10 @@ fclean : clean
 
 re : fclean all
 
-%.o : %.c
-	$(CC) $(CFLAGS) -I$(READLINE_INC) -c $< -o $@
+%.o : %.c $(MINISHELL_INC)
+	$(CC) $(CFLAGS) -I$(READLINE_INC) -I$(MINISHELL_INC_DIR) -c $< -o $@
 
-$(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) -lreadline -L$(READLINE_AR) -I$(READLINE_INC) $(OBJS) -o $@
+$(NAME) : $(OBJS) $(MINISHELL_INC)
+	$(CC) $(CFLAGS) $(READLINE) -I$(MINISHELL_INC_DIR) $(OBJS) -o $@
 
 .PHONY : all, clean, fclean, re

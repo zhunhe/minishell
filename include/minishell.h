@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:58:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/08 21:08:02 by juhur            ###   ########.fr       */
+/*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
+/*   Updated: 2022/04/08 21:07:50 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-int	main(void)
-{
-	echoctl_off();
-	print_prompt();
-	return (0);
-}
+# define MINISHELL	"\e[01;32mminishell$ \e[0m"
+
+/*
+** prompt.c
+*/
+void	print_prompt(void);
+
+/*
+** echoctl.c
+*/
+void	echoctl_on(void);
+void	echoctl_off(void);
+#endif
