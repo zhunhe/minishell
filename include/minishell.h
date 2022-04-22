@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/08 21:07:50 by juhur            ###   ########.fr       */
+/*   Updated: 2022/04/22 21:12:23 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,9 @@ void	print_prompt(void);
 */
 void	echoctl_on(void);
 void	echoctl_off(void);
+
+/*
+** split.c
+*/
+char	**_split(const char *s, const char c);
 #endif
