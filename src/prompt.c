@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/22 21:12:39 by juhur            ###   ########.fr       */
+/*   Updated: 2022/04/27 15:28:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void	print_prompt(void)
 		else
 		{
 			add_history(str);
-			_split(str, '|');
-			printf("%s\n", str);
+			parse(str);
 			free(str);
 		}
 	}

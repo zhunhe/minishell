@@ -1,38 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   util.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/27 14:59:09 by juhur            ###   ########.fr       */
+/*   Created: 2022/04/27 14:59:52 by juhur             #+#    #+#             */
+/*   Updated: 2022/04/27 15:00:32 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef UTIL_H
+# define UTIL_H
 
-# define MINISHELL	"\e[01;32mminishell$ \e[0m"
+int		_strlen(char *s);
+int		_strcmp(const char *s1, const char *s2);
 
-/*
-** prompt.c
-*/
-void	print_prompt(void);
-
-/*
-** echoctl.c
-*/
-void	echoctl_on(void);
-void	echoctl_off(void);
-
-/*
-** split.c
-*/
-char	**_split(const char *s, const char c);
-
-/*
-** parse.c
-*/
-void	parse(char *s);
 #endif

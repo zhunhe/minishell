@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/04/22 21:12:29 by juhur            ###   ########.fr        #
+#    Updated: 2022/04/27 14:58:43 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,9 @@ SRCS = $(addprefix $(SRC_DIR)/, \
 	prompt.c \
 	echoctl.c \
 	split.c \
+	parse.c \
+	ast.c \
+	util.c \
 )
 
 OBJS = $(SRCS:.c=.o)
