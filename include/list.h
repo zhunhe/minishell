@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:58:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/29 16:28:59 by juhur            ###   ########.fr       */
+/*   Created: 2022/04/29 15:02:42 by juhur             #+#    #+#             */
+/*   Updated: 2022/04/29 16:26:07 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#ifndef LIST_H
+# define LIST_H
 
-int	main(int argc, char **argv, char **envp)
+typedef struct s_list
 {
-	(void)argc;
-	(void)argv;
-	set_envp(envp);
-	echoctl_off();
-	print_prompt();
-	return (0);
-}
+	struct s_list	*next;
+	void			*data;
+}	t_list;
+
+t_list	*create_list(void *data);
+t_list	*get_last_list(t_list *list);
+void	add_list_back(t_list **list, t_list *new);
+
+#endif

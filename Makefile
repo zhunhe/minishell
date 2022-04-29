@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/04/27 14:58:43 by juhur            ###   ########.fr        #
+#    Updated: 2022/04/29 16:24:13 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRCS = $(addprefix $(SRC_DIR)/, \
 	parse.c \
 	ast.c \
 	util.c \
+	list.c \
+	envp.c \
 )
 
 OBJS = $(SRCS:.c=.o)
