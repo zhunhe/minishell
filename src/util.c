@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:12:30 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/29 23:00:58 by juhur            ###   ########.fr       */
+/*   Updated: 2022/04/30 00:33:18 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	_strlen(char *s)
 	char	*e;
 
 	if (s == NULL)
-		return (NULL);
+		return (0);
 	e = s;
 	while (*e)
 		++e;
