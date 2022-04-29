@@ -6,13 +6,19 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/29 16:29:14 by juhur            ###   ########.fr       */
+/*   Updated: 2022/04/29 22:52:15 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include <list.h>
+
+typedef struct s_envp
+{
+	char	*key;
+	char	*value;
+}	t_envp;
 
 typedef struct s_minishell
 {
@@ -37,6 +43,7 @@ void	echoctl_off(void);
 /*
 ** split.c
 */
+void	_split_free(char **ss);
 char	**_split(const char *s, const char c);
 
 /*
