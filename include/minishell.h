@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/29 22:52:15 by juhur            ###   ########.fr       */
+/*   Updated: 2022/04/30 09:41:33 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,18 @@ typedef struct s_envp
 	char	*value;
 }	t_envp;
 
+typedef enum e_status
+{
+	STATUS_OK,
+	STATUS_ERROR_INVALID_CHAR,
+	STATUS_ERROR_QUOTES_OPENED,
+	STATUS_MAX
+}	t_status;
+
 typedef struct s_minishell
 {
-	t_list	*envp;
+	t_list		*envp;
+	t_status	status;
 }	t_minishell;
 
 t_minishell	g_minishell;
@@ -49,7 +58,7 @@ char	**_split(const char *s, const char c);
 /*
 ** parse.c
 */
-void	parse(char *s);
+t_status	parse(char *s);
 
 /*
 ** envp.c

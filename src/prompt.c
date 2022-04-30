@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/27 15:28:08 by juhur            ###   ########.fr       */
+/*   Updated: 2022/04/30 02:00:01 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ static void	sig_handler(int signal)
 	rl_redisplay();
 }
 
+void	print_error_msg(void)
+{
+	const char	*msg[STATUS_MAX] = {
+		"",
+		"Error! There is invalid char '\' or ';'\n",
+		"Error! Quotes is not closed\n"
+	};
+
+	if (g_minishell.status != STATUS_OK)
+		printf("%s", msg[g_minishell.status]);
+	g_minishell.status = STATUS_OK;
+}
+
 void	print_prompt(void)
 {
 	char	*str;
@@ -46,8 +59,10 @@ void	print_prompt(void)
 			free(str);
 		else
 		{
-			add_history(str);
-			parse(str);
+			if (parse(str) == STATUS_OK)
+				add_history(str);
+			else
+				print_error_msg();
 			free(str);
 		}
 	}
