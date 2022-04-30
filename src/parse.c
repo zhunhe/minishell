@@ -6,24 +6,26 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/30 09:41:52 by juhur            ###   ########.fr       */
+/*   Updated: 2022/04/30 09:51:45 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <minishell.h>
 #include <ast.h>
 
-#define PRINT	1
+#define PRINT	0
 
 #if PRINT
-#include <stdio.h>
-static void	print_ast_from_top(t_ast *ast) {
+static void	print_ast_from_top(t_ast *ast)
+{
 	t_node	*cur;
 
 	cur = ast->root;
-	while (cur) {
+	while (cur)
+	{
 		printf("%d\n", cur->type);
 		if (cur->right)
 			printf("%d\n", cur->right->type);

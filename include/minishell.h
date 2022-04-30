@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/30 09:41:33 by juhur            ###   ########.fr       */
+/*   Updated: 2022/04/30 09:52:34 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,26 @@ typedef struct s_minishell
 	t_status	status;
 }	t_minishell;
 
-t_minishell	g_minishell;
+extern t_minishell	g_minishell;
 
 # define MINISHELL	"\e[01;32mminishell$ \e[0m"
 
 /*
 ** prompt.c
 */
-void	print_prompt(void);
+void		print_prompt(void);
 
 /*
 ** echoctl.c
 */
-void	echoctl_on(void);
-void	echoctl_off(void);
+void		echoctl_on(void);
+void		echoctl_off(void);
 
 /*
 ** split.c
 */
-void	_split_free(char **ss);
-char	**_split(const char *s, const char c);
+void		_split_free(char **ss);
+char		**_split(const char *s, const char c);
 
 /*
 ** parse.c
@@ -63,5 +63,5 @@ t_status	parse(char *s);
 /*
 ** envp.c
 */
-void	set_envp(char **envp);
+void		set_envp(char **envp);
 #endif
