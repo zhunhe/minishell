@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/30 09:52:00 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/01 16:23:40 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_envp	*envp_to_struct(char *s)
 	t_envp	*data;
 	char	**ss;
 
-	data = (t_envp *)malloc(sizeof(t_envp));
+	data = _calloc(sizeof(t_envp), 1);
 	ss = _split(s, '=');
 	data->key = _strdup(ss[0]);
 	data->value = _strdup(ss[1]);

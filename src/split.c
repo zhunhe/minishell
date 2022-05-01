@@ -6,13 +6,14 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:34:12 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/29 22:51:53 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/01 16:24:54 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include <minishell.h>
+#include <util.h>
 
 static int	count_word(const char *s, const char c)
 {
@@ -43,9 +44,7 @@ static void	make_word(int len, char **ret, char *s)
 {
 	char	*arr;
 
-	arr = (char *)malloc(sizeof(char) * (len + 1));
-	if (arr == NULL)
-		exit(1);
+	arr = _calloc(len + 1, sizeof(char));
 	*ret = arr;
 	while (len)
 		*(arr++) = *(s - len--);
@@ -101,9 +100,7 @@ char	**_split(const char *s, const char c)
 	word_cnt = count_word((char *)s, c);
 	if (word_cnt == -1)
 		return (NULL);
-	ret = (char **)malloc(sizeof(char *) * (word_cnt + 1));
-	if (ret == NULL)
-		exit(1);
+	ret = _calloc(word_cnt + 1, sizeof(char *));
 	ret[word_cnt] = NULL;
 	make_array(ret, (char *)s, c, word_cnt);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:12:30 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/01 16:15:02 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/01 16:22:16 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ char	*_strdup(char *s)
 	if (s == NULL)
 		return (NULL);
 	s_len = _strlen(s);
-	new = (char *)malloc(sizeof(char) * (s_len + 1));
-	if (new == NULL)
-		return (NULL);
+	new = _calloc(s_len + 1, sizeof(char));
 	i = -1;
 	while (++i < s_len)
 		new[i] = s[i];
