@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:02:31 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/01 16:25:17 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/01 16:28:20 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_list	*create_list(void *data)
 
 	new = _calloc(sizeof(t_list), 1);
 	new->data = data;
-	new->next = NULL;
 	return (new);
 }
 

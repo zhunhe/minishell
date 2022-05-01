@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:22:10 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/01 16:23:26 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/01 16:28:12 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_node	*create_node(char *data)
 	t_node	*tmp;
 
 	tmp = _calloc(sizeof(t_node), 1);
-	tmp->left = NULL;
-	tmp->right = NULL;
 	tmp->type = get_type(data);
 	return (tmp);
 }
