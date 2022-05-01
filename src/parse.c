@@ -6,12 +6,11 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/30 09:51:45 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/01 16:33:55 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #include <minishell.h>
 #include <ast.h>
@@ -84,11 +83,7 @@ t_status	parse(char *s)
 	if (check_quotes_closed(s) != STATUS_OK)
 		return (g_minishell.status);
 	ss = _split(s, ' ');
-	if (!ss)
-		exit(1);
 	ast = create_ast(ss);
-	if (!ast)
-		exit(1);
 #if PRINT
 	print_ast_from_top(ast);
 #endif
