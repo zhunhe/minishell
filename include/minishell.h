@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/30 09:52:34 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/02 00:06:23 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,9 @@ t_status	parse(char *s);
 ** envp.c
 */
 void		set_envp(char **envp);
+
+/*
+** error.c
+*/
+t_status	check_error(char *s);;
 #endif
