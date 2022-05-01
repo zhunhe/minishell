@@ -6,11 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:12:30 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/01 16:22:16 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/02 02:09:55 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <minishell.h>
 #include <util.h>
 
 int	_strlen(char *s)
@@ -64,7 +65,7 @@ void	*_calloc(size_t count, size_t size)
 	}
 	ret = malloc(size * count);
 	if (ret == NULL)
-		exit(1);
+		malloc_error();
 	i = 0;
 	while (i < count * size)
 	{

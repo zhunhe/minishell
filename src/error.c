@@ -6,10 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 00:00:54 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/02 00:07:08 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/02 02:08:29 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <minishell.h>
 
@@ -55,4 +57,10 @@ t_status	check_error(char *s)
 	if (g_minishell.status == STATUS_OK)
 		check_quotes_closed(s);
 	return (g_minishell.status);
+}
+
+void	malloc_error(void)
+{
+	printf("Failed to allocate! Insufficient memory\n");
+	exit(1);
 }
