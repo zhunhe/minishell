@@ -6,11 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:12:30 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/30 09:50:37 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/01 16:15:02 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <util.h>
 
 int	_strlen(char *s)
 {
@@ -51,4 +52,26 @@ char	*_strdup(char *s)
 		new[i] = s[i];
 	new[i] = '\0';
 	return (new);
+}
+
+void	*_calloc(size_t count, size_t size)
+{
+	void	*ret;
+	size_t	i;
+
+	if (count == 0 || size == 0)
+	{
+		count = 1;
+		size = 1;
+	}
+	ret = malloc(size * count);
+	if (ret == NULL)
+		exit(1);
+	i = 0;
+	while (i < count * size)
+	{
+		*(unsigned char *)(ret + i) = 0;
+		++i;
+	}
+	return (ret);
 }
