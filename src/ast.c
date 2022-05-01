@@ -6,11 +6,10 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:22:10 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/27 15:10:43 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/01 16:34:30 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <ast.h>
 #include <util.h>
 
@@ -31,11 +30,7 @@ t_node	*create_node(char *data)
 {
 	t_node	*tmp;
 
-	tmp = (t_node *)malloc(sizeof(t_node));
-	if (tmp == NULL)
-		exit(1);
-	tmp->left = NULL;
-	tmp->right = NULL;
+	tmp = _calloc(sizeof(t_node), 1);
 	tmp->type = get_type(data);
 	return (tmp);
 }
@@ -58,9 +53,7 @@ t_ast	*create_ast(char **ss)
 	t_node	*tmp;
 	int		i;
 
-	ast = (t_ast *)malloc(sizeof(t_ast));
-	if (ast == NULL)
-		return (NULL);
+	ast = _calloc(sizeof(t_ast), 1);
 	if (ss[1] == NULL)
 	{
 		ast->root = create_node(ss[0]);

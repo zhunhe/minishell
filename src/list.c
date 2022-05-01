@@ -6,23 +6,20 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:02:31 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/29 16:26:08 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/01 16:32:50 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <list.h>
+#include <util.h>
 
 t_list	*create_list(void *data)
 {
 	t_list	*new;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (new == NULL)
-		return (NULL);
+	new = _calloc(sizeof(t_list), 1);
 	new->data = data;
-	new->next = NULL;
 	return (new);
 }
 
