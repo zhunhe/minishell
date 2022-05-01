@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/01 16:32:47 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/02 00:11:01 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <minishell.h>
 #include <util.h>
 
-#define PRINT	1
+#define PRINT	0
 
 #if PRINT
 void	print_envp_list(void)
