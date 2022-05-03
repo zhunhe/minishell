@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:12:30 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/02 02:09:55 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/03 09:20:40 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,4 @@ char	*_strdup(char *s)
 		new[i] = s[i];
 	new[i] = '\0';
 	return (new);
-}
-
-void	*_calloc(size_t count, size_t size)
-{
-	void	*ret;
-	size_t	i;
-
-	if (count == 0 || size == 0)
-	{
-		count = 1;
-		size = 1;
-	}
-	ret = malloc(size * count);
-	if (ret == NULL)
-		malloc_error();
-	i = 0;
-	while (i < count * size)
-	{
-		*(unsigned char *)(ret + i) = 0;
-		++i;
-	}
-	return (ret);
 }
