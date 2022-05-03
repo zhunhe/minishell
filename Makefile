@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/02 00:06:40 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/03 09:18:19 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,36 @@ MINISHELL_INC_DIR = ./include
 MINISHELL_INC = $(MINISHELL_INC_DIR)/minishell.h
 
 SRC_DIR = ./src
-SRCS = $(addprefix $(SRC_DIR)/, \
+ROOT_SRCS = $(addprefix $(SRC_DIR)/, \
 	main.c \
-	prompt.c \
-	echoctl.c \
-	split.c \
-	parse.c \
+)
+
+PARSE_DIR = $(SRC_DIR)/parse
+PARSE_SRCS = $(addprefix $(PARSE_DIR)/, \
 	ast.c \
-	util.c \
-	list.c \
 	envp.c \
 	error.c \
+	parse.c \
 )
+
+PROMPT_DIR = $(SRC_DIR)/prompt
+PROMPT_SRCS = $(addprefix $(PROMPT_DIR)/, \
+	echoctl.c \
+	prompt.c \
+)
+
+UTIL_DIR = $(SRC_DIR)/util
+UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
+	list.c \
+	split.c \
+	util.c \
+)
+
+SRCS = \
+	$(ROOT_SRCS) \
+	$(PARSE_SRCS) \
+	$(PROMPT_SRCS) \
+	$(UTIL_SRCS)
 
 OBJS = $(SRCS:.c=.o)
 
