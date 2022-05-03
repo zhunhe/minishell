@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:02:31 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/01 16:32:50 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/03 10:17:14 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,19 @@ void	add_list_back(t_list **list, t_list *new)
 	}
 	last = get_last_list(*list);
 	last->next = new;
+}
+
+int	count_list_node(t_list *list)
+{
+	int	count;
+
+	if (list == NULL)
+		return (0);
+	count = 1;
+	while (list->next != NULL)
+	{
+		++count;
+		list = list->next;
+	}
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/02 00:11:01 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/03 13:49:40 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,27 @@ void	set_envp(char **envp)
 #if PRINT
 	print_envp_list();
 #endif
+}
+
+char	**get_envp_double_pointer(t_list *list)
+{
+	int		count;
+	char	**ss;
+	int		i;
+	t_envp	*e;
+
+	count = count_list_node(list);
+	ss = _calloc(count + 1, sizeof(char));
+	i = 0;
+	while (i < count)
+	{
+		e = list->data;
+		ss[i] = _calloc(_strlen(e->key) + _strlen(e->value) + 2, sizeof(char));
+		_strlcat(ss[i], e->key, _strlen(ss[i]) + _strlen(e->key) + 1);
+		_strlcat(ss[i], "=", _strlen(ss[i]) + 2);
+		_strlcat(ss[i], e->value, _strlen(ss[i]) + _strlen(e->value) + 1);
+		list = list->next;
+		++i;
+	}
+	return (ss);
 }
