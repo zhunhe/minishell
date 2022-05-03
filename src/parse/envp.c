@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/03 13:49:40 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/03 17:33:20 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,26 @@ void	print_envp_list(void)
 }
 #endif
 
-t_envp	*envp_to_struct(char *s)
+t_envp	*s_to_key_value(char *s)
 {
-	t_envp	*data;
+	t_envp	*envp;
 	char	**ss;
 
-	data = _calloc(sizeof(t_envp), 1);
+	envp = _calloc(sizeof(t_envp), 1);
 	ss = _split(s, '=');
-	data->key = _strdup(ss[0]);
-	data->value = _strdup(ss[1]);
+	envp->key = _strdup(ss[KEY]);
+	envp->value = _strdup(ss[VALUE]);
 	_split_free(ss);
-	return (data);
+	return (envp);
 }
 
-void	set_envp(char **envp)
+void	set_envp(char **ss)
 {
 	int		i;
 
 	i = -1;
-	while (envp[++i])
-		add_list_back(&g_minishell.envp, create_list(envp_to_struct(envp[i])));
+	while (ss[++i] != NULL)
+		add_list_back(&g_minishell.envp, create_list(s_to_key_value(ss[i])));
 #if PRINT
 	print_envp_list();
 #endif
