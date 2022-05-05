@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:12:30 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/06 00:39:04 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/06 03:39:32 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <minishell.h>
 #include <util.h>
 
-size_t	_strlen(char *s)
+int	_strlen(char *s)
 {
 	char	*e;
 
@@ -24,16 +24,6 @@ size_t	_strlen(char *s)
 	while (*e)
 		++e;
 	return (e - s);
-}
-
-int	_strcmp(const char *s1, const char *s2)
-{
-	while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2)
-	{
-		++s1;
-		++s2;
-	}
-	return (*s1 - *s2);
 }
 
 char	*_strdup(char *s)
@@ -72,4 +62,18 @@ size_t	_strlcat(char *dst, const char *src, size_t dstsize)
 	}
 	dst[dst_len + idx] = 0;
 	return (dst_len + src_len);
+}
+
+int	_strncmp(const char *s1, const char *s2, size_t n)
+{
+	if (n == 0)
+		return (0);
+	while ((n-- > 1)
+		&& (*s1 == *s2)
+		&& (*s1 && *s2))
+	{
+		++s1;
+		++s2;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
