@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/03 17:33:20 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/06 02:38:37 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ void	set_envp(char **ss)
 #endif
 }
 
-char	**get_envp_double_pointer(t_list *list)
+char	**get_envp_double_pointer(void)
 {
 	int		count;
 	char	**ss;
 	int		i;
 	t_envp	*e;
+	t_list	*list;
 
+	list = g_minishell.envp;
 	count = count_list_node(list);
 	ss = _calloc(count + 1, sizeof(char));
 	i = 0;
