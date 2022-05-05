@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:12:30 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/03 10:40:16 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/06 00:39:04 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <minishell.h>
 #include <util.h>
 
-int	_strlen(char *s)
+size_t	_strlen(char *s)
 {
 	char	*e;
 
