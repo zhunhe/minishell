@@ -6,13 +6,14 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/02 00:36:54 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/05 16:27:31 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <minishell.h>
 #include <ast.h>
+#include <util.h>
 
 #define PRINT	1
 
