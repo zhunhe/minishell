@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:22:10 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/01 16:34:30 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/06 15:44:37 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 t_node_type	get_type(char *str)
 {
-	if (!_strcmp(str, "<"))
+	if (!_strncmp(str, "<", 1))
 		return (NODE_IN_OVERWRITE);
-	if (!_strcmp(str, ">"))
+	if (!_strncmp(str, ">", 1))
 		return (NODE_OUT_OVERWRITE);
-	if (!_strcmp(str, "<<"))
+	if (!_strncmp(str, "<<", 2))
 		return (NODE_HEREDOC);
-	if (!_strcmp(str, ">>"))
+	if (!_strncmp(str, ">>", 2))
 		return (NODE_OUT_APPEND);
 	return (NODE_ETC);
 }
