@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:19:41 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/08 13:27:25 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/09 18:27:37 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 typedef enum e_node_type
 {
-	NODE_IN_OVERWRITE,
-	NODE_OUT_OVERWRITE,
-	NODE_HEREDOC,
-	NODE_OUT_APPEND,
-	NODE_CMD,
-	NODE_ETC
+	TYPE_IN_OVERWRITE,
+	TYPE_OUT_OVERWRITE,
+	TYPE_HEREDOC,
+	TYPE_OUT_APPEND,
+	TYPE_CMD,
+	TYPE_ETC
 }	t_node_type;
 
 typedef struct s_node
@@ -39,5 +39,4 @@ t_node_type	get_type(char *str);
 t_node		*create_node(char *data);
 t_node		*get_last_left_node(t_ast *ast);
 t_ast		*create_ast(char **ss);
-
 #endif

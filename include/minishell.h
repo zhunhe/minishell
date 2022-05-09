@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/06 02:38:01 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/09 18:27:48 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,9 @@ char		**get_envp_double_pointer(void);
 */
 t_status	check_error(char *s);
 void		malloc_error(void);
+
+/*
+** tokenize.c
+*/
+t_list		*tokenize(char *s);
 #endif

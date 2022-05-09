@@ -6,14 +6,14 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/09 13:42:28 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/09 18:28:50 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 READLINE_DIR = $(shell brew --prefix readline)
 READLINE_AR = $(READLINE_DIR)/lib
@@ -34,6 +34,7 @@ PARSE_SRCS = $(addprefix $(PARSE_DIR)/, \
 	envp.c \
 	error.c \
 	parse.c \
+	tokenize.c \
 )
 
 PROMPT_DIR = $(SRC_DIR)/prompt
@@ -50,6 +51,8 @@ UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
 	string.c \
 	strchr.c \
 	strskip.c \
+	strcharset.c \
+	strndup.c \
 )
 
 SRCS = \

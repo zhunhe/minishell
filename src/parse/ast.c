@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:22:10 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/06 15:44:37 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/09 18:31:41 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 t_node_type	get_type(char *str)
 {
-	if (!_strncmp(str, "<", 1))
-		return (NODE_IN_OVERWRITE);
-	if (!_strncmp(str, ">", 1))
-		return (NODE_OUT_OVERWRITE);
 	if (!_strncmp(str, "<<", 2))
-		return (NODE_HEREDOC);
+		return (TYPE_HEREDOC);
 	if (!_strncmp(str, ">>", 2))
-		return (NODE_OUT_APPEND);
-	return (NODE_ETC);
+		return (TYPE_OUT_APPEND);
+	if (!_strncmp(str, "<", 1))
+		return (TYPE_IN_OVERWRITE);
+	if (!_strncmp(str, ">", 1))
+		return (TYPE_OUT_OVERWRITE);
+	return (TYPE_ETC);
 }
 
 t_node	*create_node(char *data)
@@ -57,7 +57,7 @@ t_ast	*create_ast(char **ss)
 	if (ss[1] == NULL)
 	{
 		ast->root = create_node(ss[0]);
-		ast->root->type = NODE_CMD;
+		ast->root->type = TYPE_CMD;
 		return (ast);
 	}
 	ast->root = create_node(ss[1]);
@@ -72,6 +72,6 @@ t_ast	*create_ast(char **ss)
 	}
 	tmp = get_last_left_node(ast);
 	tmp->left = create_node(ss[0]);
-	tmp->left->type = NODE_CMD;
+	tmp->left->type = TYPE_CMD;
 	return (ast);
 }

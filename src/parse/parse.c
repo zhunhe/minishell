@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/05 16:27:31 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/09 18:34:40 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,9 @@
 #include <ast.h>
 #include <util.h>
 
-#define PRINT	1
-
-#if PRINT
-static void	print_ast_from_top(t_ast *ast)
-{
-	t_node	*cur;
-
-	cur = ast->root;
-	while (cur)
-	{
-		printf("%d\n", cur->type);
-		if (cur->right)
-			printf("%d\n", cur->right->type);
-		cur = cur->left;
-	}
-}
-#endif
-
 t_status	parse(char *s)
 {
-	t_ast	*ast;
+	t_list	*token;
 	char	**ss;
 	int		i;
 
@@ -45,12 +27,12 @@ t_status	parse(char *s)
 	i = -1;
 	while (ss[++i] != NULL)
 	{
-		ast = create_ast(_split(ss[i], ' '));
-		add_list_back(&g_minishell.exec, create_list(ast));
-#if PRINT
-		print_ast_from_top(ast);
-#endif
-		printf("------\n");
+		token = tokenize(ss[i]);
+		// TODO: 파이프 사이에 ' '만 있다는 뜻 -> 모든 리스트 삭제하고 에러 처리
+		// bash: syntax error near unexpected token `|'
+		if (token == NULL)
+			;
+		// TODO: token_free()
 	}
 	return (STATUS_OK);
 }

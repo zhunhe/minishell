@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:59:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/09 13:48:31 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/09 16:24:16 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@ void	_strskip(char **s, char *charset);
 void	*_calloc(size_t count, size_t size);
 void	_split_free(char **ss);
 char	**_split(const char *s, const char c);
+char	*_strndup(const char *s1, size_t n);
+char	*_strcharset(const char *s1, char *charset);
 #endif
