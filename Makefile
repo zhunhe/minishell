@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/03 09:27:31 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/09 13:42:28 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,8 @@ UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
 	split.c \
 	stdlib.c \
 	string.c \
+	strchr.c \
+	strskip.c \
 )
 
 SRCS = \
