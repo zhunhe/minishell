@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/09 18:34:40 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/10 17:27:23 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ t_status	parse(char *s)
 	t_list	*token;
 	char	**ss;
 	int		i;
+	void	(*func)(void *);
 
+	func = remove_token;
 	if (check_error(s) != STATUS_OK)
 		return (g_minishell.status);
 	ss = _split(s, '|');
@@ -32,7 +34,7 @@ t_status	parse(char *s)
 		// bash: syntax error near unexpected token `|'
 		if (token == NULL)
 			;
-		// TODO: token_free()
+		remove_list(&token, func);
 	}
 	return (STATUS_OK);
 }

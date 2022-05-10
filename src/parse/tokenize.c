@@ -6,19 +6,15 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:02:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/09 18:36:36 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/10 17:00:24 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <list.h>
 #include <util.h>
 #include <ast.h>
-
-typedef struct s_token
-{
-	t_node_type	type;
-	char		*data;
-}	t_token;
+#include <minishell.h>
 
 #define PRINT	1
 
@@ -38,6 +34,15 @@ void	print_token(t_list *head)
 	}
 }
 #endif
+
+void	remove_token(void *arg)
+{
+	t_token	*token;
+
+	token = arg;
+	free(token->data);
+	free(token);
+}
 
 t_list	*tokenize(char *s)
 {

@@ -6,13 +6,20 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/09 18:27:48 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/10 17:27:57 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include <list.h>
+# include <ast.h>
+
+typedef struct s_token
+{
+	t_node_type	type;
+	char		*data;
+}	t_token;
 
 typedef struct s_envp
 {
@@ -74,4 +81,5 @@ void		malloc_error(void);
 ** tokenize.c
 */
 t_list		*tokenize(char *s);
+void		remove_token(void *arg);
 #endif
