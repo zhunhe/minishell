@@ -1,32 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast.h                                              :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/27 14:19:41 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/10 18:45:49 by juhur            ###   ########.fr       */
+/*   Created: 2022/05/10 17:31:28 by juhur             #+#    #+#             */
+/*   Updated: 2022/05/10 17:36:48 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AST_H
-# define AST_H
+#ifndef PARSE_H
+# define PARSE_H
 
-# include "parse.h"
+# include "list.h"
 
-typedef struct s_node
+typedef enum e_node_type
 {
-	struct s_node	*left;
-	struct s_node	*right;
-	t_node_type		type;
-}	t_node;
+	TYPE_IN_OVERWRITE,
+	TYPE_OUT_OVERWRITE,
+	TYPE_HEREDOC,
+	TYPE_OUT_APPEND,
+	TYPE_CMD,
+	TYPE_ETC
+}	t_node_type;
 
-typedef struct s_ast
+typedef struct s_token
 {
-	struct s_node	*root;
-}	t_ast;
+	t_node_type	type;
+	char		*data;
+}	t_token;
 
-t_node		*create_node(char *data);
-t_node		*get_last_left_node(t_ast *ast);
+/*
+** ast.c
+*/
+t_node_type	get_type(char *str);
+
+/*
+** tokenize.c
+*/
+t_list		*tokenize(char *s);
+void		remove_token(void *arg);
+
 #endif
