@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/12 23:14:19 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/13 04:44:37 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,29 @@ static void	sig_handler(int signal)
 	rl_redisplay();
 }
 
-void	print_error_msg(void)
+void	print_error_msg(t_status status)
 {
 	const char	*msg[STATUS_MAX] = {
 		"",
-		"Error! There is invalid char '\' or ';'\n",
+		"Error! There is invalid char '\\' or ';'\n",
 		"Error! Quotes is not closed\n",
 		"minishell: syntax error near unexpected token\n"
 	};
 
-	if (g_minishell.status != STATUS_OK)
-		printf("%s", msg[g_minishell.status]);
-	g_minishell.status = STATUS_OK;
+	if (status != STATUS_OK)
+		printf("%s", msg[status]);
 }
 
 void	print_prompt(void)
 {
-	char	*str;
+	char		*str;
+	t_status	status;
 
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
+		status = STATUS_OK;
 		str = readline(MINISHELL);
 		if (str == NULL)
 		{
@@ -60,10 +61,13 @@ void	print_prompt(void)
 			free(str);
 		else
 		{
-			if (parse(str) == STATUS_OK)
-				add_history(str);
+			if (parse(str, &status) == ERROR)
+				print_error_msg(status);
 			else
-				print_error_msg();
+			{
+				add_history(str);
+				// 실행함수위치
+			}
 			free(str);
 		}
 	}

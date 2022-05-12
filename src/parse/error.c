@@ -6,16 +6,15 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 00:00:54 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/02 02:08:29 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/13 04:44:18 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <minishell.h>
 
-static void	check_invalid_char(char *s)
+static bool	check_invalid_char(char *s, t_status *status)
 {
 	int	i;
 
@@ -24,13 +23,14 @@ static void	check_invalid_char(char *s)
 	{
 		if (s[i] == '\\' || s[i] == ';')
 		{
-			g_minishell.status = STATUS_ERROR_INVALID_CHAR;
-			break ;
+			*status = STATUS_ERROR_INVALID_CHAR;
+			return (ERROR);
 		}
 	}
+	return (OK);
 }
 
-static void	check_quotes_closed(char *s)
+static bool	check_quotes_closed(char *s, t_status *status)
 {
 	int		i;
 	bool	quote;
@@ -47,16 +47,20 @@ static void	check_quotes_closed(char *s)
 			dquote ^= true;
 	}
 	if (quote || dquote)
-		g_minishell.status = STATUS_ERROR_QUOTES_OPENED;
+	{
+		*status = STATUS_ERROR_QUOTES_OPENED;
+		return (ERROR);
+	}
+	return (OK);
 }
 
-t_status	check_error(char *s)
+bool	check_error(char *s, t_status *status)
 {
-	if (g_minishell.status == STATUS_OK)
-		check_invalid_char(s);
-	if (g_minishell.status == STATUS_OK)
-		check_quotes_closed(s);
-	return (g_minishell.status);
+	if (check_invalid_char(s, status))
+		return (ERROR);
+	if (check_quotes_closed(s, status))
+		return (ERROR);
+	return (OK);
 }
 
 void	malloc_error(void)

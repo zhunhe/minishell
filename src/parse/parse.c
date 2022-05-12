@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/13 03:50:57 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/13 04:44:26 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ t_node_type	get_type(char *str)
 	return (TYPE_ETC);
 }
 
-t_status	parse(char *s)
+t_status	parse(char *s, t_status *status)
 {
 	t_list	*token;
 	char	**ss;
 	int		i;
 
-	if (check_error(s) != STATUS_OK)
-		return (g_minishell.status);
+	if (check_error(s, status) == ERROR)
+		return (ERROR);
 	ss = _split(s, '|');
 	i = -1;
 	while (ss[++i] != NULL)
@@ -44,11 +44,13 @@ t_status	parse(char *s)
 		token = tokenize(ss[i]);
 		if (token == NULL)
 		{
-			g_minishell.status = STATUS_SYNTAX_ERROR;
+			*status = STATUS_SYNTAX_ERROR;
 			break ;
 		}
 	}
 	_split_free(ss);
 	remove_all_list(&token, NULL);
-	return (g_minishell.status);
+	if (*status != STATUS_OK)
+		return (ERROR);
+	return (OK);
 }

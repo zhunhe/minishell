@@ -6,12 +6,13 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/12 23:14:10 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/13 04:47:15 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# include <stdbool.h>
 # include "list.h"
 
 typedef struct s_envp
@@ -32,7 +33,6 @@ typedef enum e_status
 typedef struct s_minishell
 {
 	t_list		*envp;
-	t_status	status;
 	t_list		*exec;
 }	t_minishell;
 
@@ -42,6 +42,9 @@ extern t_minishell	g_minishell;
 
 # define KEY		0
 # define VALUE		1
+
+# define OK			0
+# define ERROR		1
 
 /*
 ** prompt.c
@@ -57,7 +60,7 @@ void		echoctl_off(void);
 /*
 ** parse.c
 */
-t_status	parse(char *s);
+t_status	parse(char *s, t_status *status);
 
 /*
 ** envp.c
@@ -68,7 +71,7 @@ char		**get_envp_double_pointer(void);
 /*
 ** error.c
 */
-t_status	check_error(char *s);
+bool		check_error(char *s, t_status *status);
 void		malloc_error(void);
 
 #endif
