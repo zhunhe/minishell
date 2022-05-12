@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/13 04:47:15 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/13 05:07:54 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		echoctl_off(void);
 /*
 ** parse.c
 */
-t_status	parse(char *s, t_status *status);
+bool	parse(char *s, t_status *status);
 
 /*
 ** envp.c

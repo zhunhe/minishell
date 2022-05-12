@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/13 04:44:26 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/13 04:53:24 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_node_type	get_type(char *str)
 	return (TYPE_ETC);
 }
 
-t_status	parse(char *s, t_status *status)
+bool	parse(char *s, t_status *status)
 {
 	t_list	*token;
 	char	**ss;
