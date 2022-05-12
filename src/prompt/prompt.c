@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/13 04:44:37 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/13 05:16:14 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	sig_handler(int signal)
 	rl_redisplay();
 }
 
-void	print_error_msg(t_status status)
+static void	print_error_msg(t_status status)
 {
 	const char	*msg[STATUS_MAX] = {
 		"",
@@ -39,6 +39,12 @@ void	print_error_msg(t_status status)
 
 	if (status != STATUS_OK)
 		printf("%s", msg[status]);
+}
+
+static void	exit_minishell(void)
+{
+	printf("\e[1A\e[10C exit\n");
+	exit(0);
 }
 
 void	print_prompt(void)
@@ -53,13 +59,8 @@ void	print_prompt(void)
 		status = STATUS_OK;
 		str = readline(MINISHELL);
 		if (str == NULL)
-		{
-			printf("\e[1A\e[10C exit\n");
-			exit(-1);
-		}
-		else if (*str == '\0')
-			free(str);
-		else
+			exit_minishell();
+		else if (*str != '\0')
 		{
 			if (parse(str, &status) == ERROR)
 				print_error_msg(status);
@@ -68,7 +69,7 @@ void	print_prompt(void)
 				add_history(str);
 				// 실행함수위치
 			}
-			free(str);
 		}
+		free(str);
 	}
 }
