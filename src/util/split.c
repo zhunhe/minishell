@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:34:12 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/01 16:24:54 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/12 23:14:21 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static int	count_word(const char *s, const char c)
 
 	quote = false;
 	dquote = false;
-	count = 0;
+	count = 1;
 	i = -1;
 	while (s[++i] != '\0')
 	{
-		if (s[i] != c && (i == 0 || s[i - 1] == c) && !quote && !dquote)
+		if (s[i] == c && !quote && !dquote)
 			count++;
 		if (s[i] == '\'' && !dquote)
 			quote ^= true;
@@ -61,7 +61,7 @@ static void	make_array(char **ret, char *s, char c, int word_cnt)
 	dquote = false;
 	while (word_cnt--)
 	{
-		while (*s != '\0' && *s == c)
+		if (*s == c)
 			++s;
 		len = 0;
 		while (*s && (c != *s || quote || dquote))
@@ -101,7 +101,6 @@ char	**_split(const char *s, const char c)
 	if (word_cnt == -1)
 		return (NULL);
 	ret = _calloc(word_cnt + 1, sizeof(char *));
-	ret[word_cnt] = NULL;
 	make_array(ret, (char *)s, c, word_cnt);
 	return (ret);
 }

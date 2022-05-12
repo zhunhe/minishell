@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/12 16:22:42 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/13 03:50:57 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ t_status	parse(char *s)
 	while (ss[++i] != NULL)
 	{
 		token = tokenize(ss[i]);
-		// TODO: 파이프 사이에 ' '만 있다는 뜻 -> 모든 리스트 삭제하고 에러 처리
-		// bash: syntax error near unexpected token `|'
 		if (token == NULL)
-			;
-		remove_all_list(&token, NULL);
+		{
+			g_minishell.status = STATUS_SYNTAX_ERROR;
+			break ;
+		}
 	}
-	return (STATUS_OK);
+	_split_free(ss);
+	remove_all_list(&token, NULL);
+	return (g_minishell.status);
 }

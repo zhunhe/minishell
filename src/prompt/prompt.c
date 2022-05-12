@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/04/30 02:00:01 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/12 23:14:19 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	print_error_msg(void)
 	const char	*msg[STATUS_MAX] = {
 		"",
 		"Error! There is invalid char '\' or ';'\n",
-		"Error! Quotes is not closed\n"
+		"Error! Quotes is not closed\n",
+		"minishell: syntax error near unexpected token\n"
 	};
 
 	if (g_minishell.status != STATUS_OK)
