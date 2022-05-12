@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:02:31 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/10 17:29:19 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/12 16:21:46 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	count_list_node(t_list *list)
 	return (count);
 }
 
-void	remove_list(t_list **list, void (*remove)(void *))
+void	remove_all_list(t_list **list, void (*remove)(void *))
 {
 	t_list	*cur;
 	t_list	*next;
@@ -77,7 +77,8 @@ void	remove_list(t_list **list, void (*remove)(void *))
 	while (cur != NULL)
 	{
 		next = cur->next;
-		remove(cur->data);
+		if (remove != NULL)
+			remove(cur->data);
 		free(cur);
 		cur = next;
 	}

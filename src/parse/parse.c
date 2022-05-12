@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/10 17:36:04 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/12 16:22:42 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ t_status	parse(char *s)
 	t_list	*token;
 	char	**ss;
 	int		i;
-	void	(*func)(void *);
 
-	func = remove_token;
 	if (check_error(s) != STATUS_OK)
 		return (g_minishell.status);
 	ss = _split(s, '|');
@@ -48,7 +46,7 @@ t_status	parse(char *s)
 		// bash: syntax error near unexpected token `|'
 		if (token == NULL)
 			;
-		remove_list(&token, func);
+		remove_all_list(&token, NULL);
 	}
 	return (STATUS_OK);
 }
