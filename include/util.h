@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:59:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/09 16:24:16 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/13 04:09:01 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stddef.h>
 
-int		_strlen(char *s);
+size_t	_strlen(char *s);
 char	*_strdup(char *s);
 size_t	_strlcat(char *dst, const char *src, size_t dstsize);
 int		_strncmp(const char *s1, const char *s2, size_t n);
