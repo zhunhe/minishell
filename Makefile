@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/13 04:09:21 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/14 14:49:59 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ ROOT_SRCS = $(addprefix $(SRC_DIR)/, \
 
 PARSE_DIR = $(SRC_DIR)/parse
 PARSE_SRCS = $(addprefix $(PARSE_DIR)/, \
-	ast.c \
 	envp.c \
 	error.c \
 	parse.c \
@@ -45,6 +44,7 @@ PROMPT_SRCS = $(addprefix $(PROMPT_DIR)/, \
 
 UTIL_DIR = $(SRC_DIR)/util
 UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
+	ast.c \
 	calloc.c \
 	list.c \
 	split.c \
