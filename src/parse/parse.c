@@ -6,14 +6,13 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/13 04:53:24 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/14 18:14:24 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <minishell.h>
 #include <parse.h>
-#include <ast.h>
 #include <util.h>
 
 t_node_type	get_type(char *str)
@@ -29,16 +28,22 @@ t_node_type	get_type(char *str)
 	return (TYPE_ETC);
 }
 
-bool	parse(char *s, t_status *status)
+t_list	*parse(char *s, int *status)
 {
 	t_list	*token;
+	t_list	*result;
+	t_exec	*exec;
 	char	**ss;
 	int		i;
+	int		heredoc_idx;
 
 	if (check_error(s, status) == ERROR)
-		return (ERROR);
+		return (NULL);
 	ss = _split(s, '|');
 	i = -1;
+	token = NULL;
+	result = NULL;
+	heredoc_idx = 0;
 	while (ss[++i] != NULL)
 	{
 		token = tokenize(ss[i]);
@@ -47,10 +52,10 @@ bool	parse(char *s, t_status *status)
 			*status = STATUS_SYNTAX_ERROR;
 			break ;
 		}
+		exec = make_exec(token, status, &heredoc_idx);
+		add_list_back(&result, create_list(exec));
+		remove_all_list(&token, NULL);
 	}
 	_split_free(ss);
-	remove_all_list(&token, NULL);
-	if (*status != STATUS_OK)
-		return (ERROR);
-	return (OK);
+	return (result);
 }

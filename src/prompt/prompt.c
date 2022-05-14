@@ -6,16 +6,18 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/13 05:16:14 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/14 17:19:40 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
 #include <minishell.h>
+#include <util.h>
 
 static void	sig_handler(int signal)
 {
@@ -50,7 +52,8 @@ static void	exit_minishell(void)
 void	print_prompt(void)
 {
 	char		*str;
-	t_status	status;
+	int			status;
+	t_list		*exec;
 
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
@@ -62,13 +65,15 @@ void	print_prompt(void)
 			exit_minishell();
 		else if (*str != '\0')
 		{
-			if (parse(str, &status) == ERROR)
-				print_error_msg(status);
-			else
+			exec = parse(str, &status);
+			if (status == STATUS_OK)
 			{
 				add_history(str);
-				// 실행함수위치
+				// exec_cmd(exec);
+				// remove_all_list(exec, func);
 			}
+			else
+				print_error_msg(status);
 		}
 		free(str);
 	}

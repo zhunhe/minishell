@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 00:00:54 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/13 04:44:18 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/14 17:09:58 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <minishell.h>
 
-static bool	check_invalid_char(char *s, t_status *status)
+static bool	check_invalid_char(char *s, int *status)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ static bool	check_invalid_char(char *s, t_status *status)
 	return (OK);
 }
 
-static bool	check_quotes_closed(char *s, t_status *status)
+static bool	check_quotes_closed(char *s, int *status)
 {
 	int		i;
 	bool	quote;
@@ -54,7 +54,7 @@ static bool	check_quotes_closed(char *s, t_status *status)
 	return (OK);
 }
 
-bool	check_error(char *s, t_status *status)
+bool	check_error(char *s, int *status)
 {
 	if (check_invalid_char(s, status))
 		return (ERROR);

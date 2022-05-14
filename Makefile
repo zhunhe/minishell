@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/14 14:49:59 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/14 17:13:11 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ PARSE_DIR = $(SRC_DIR)/parse
 PARSE_SRCS = $(addprefix $(PARSE_DIR)/, \
 	envp.c \
 	error.c \
+	exec.c \
 	parse.c \
 	tokenize.c \
 )
