@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:34:12 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/13 04:37:36 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/15 20:12:34 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static int	count_word(const char *s, const char c)
 
 	quote = false;
 	dquote = false;
-	count = 1;
+	count = 0;
 	i = -1;
 	while (s[++i] != '\0')
 	{
-		if (s[i] == c && !quote && !dquote)
+		if (s[i] != c && (i == 0 || s[i - 1] == c) && !quote && !dquote)
 			count++;
 		if (s[i] == '\'' && !dquote)
 			quote ^= true;
