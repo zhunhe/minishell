@@ -10,24 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 
+static void	print_error(char *filename)
+{
+	char	*err_message;
 
-//TODO:: open말고 다른 방법 확인
+	err_message = strerror(errno);
+	write(2, "bash: ", 6);
+	write(2, filename, strlen(filename)); //TODO:: strlen -> ft_strlen 넣어야 함
+	write(2, ": ", 2);
+	write(2, err_message, strlen(err_message));
+	write(2, "\n", 1);
+}
+
 void	input(char *filename, int dup_fd)
 {
 	int	fd;
-#if 0	// COMPILE ERROR
-	int	ret;
-#endif
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		write(2, "bash: permission denied\n", 24);
+		print_error(filename);
 		exit(1);
 	}
 	dup2(fd, dup_fd);
