@@ -1,27 +1,10 @@
+/*
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../includehena/test.h"
-
-#if 0
-typedef struct s_list
-{
-	struct s_list  *next;
-	void           *data;
-} t_list;
-
-int status;
-typedef struct link
-{
-	int     pid;          // 0
-	int    fd;           // 0
-	char   *cmd;         // "echo"
-	char    *cmd_address; // "/bin/ls"
-	char    **argv;       // {"echo", ("option"), ("arg"), ("arg"), NULL}
-	//tree 필요
-}				t_exec;
-#endif
+#include "minishell.h"
+#include "parse.h"
 
 extern t_minishell g_minishell;
 
@@ -54,15 +37,9 @@ void	change_connection_pipe_child(t_list *cmd, int *p)
 	}
 }
 
-/*
- * 다시 생각해야할 듯
- */
 void	wait_all_child(t_list *head, int last_pid)
 {
 	int	pid;
-#if 0	// COMPILE ERROR
-	int tmp;
-#endif
 	int state;
 
 	while (head)
@@ -107,62 +84,4 @@ void	fork_pipe(t_list *link, char **envp)
 	close(3);
 	wait_all_child(head, last_pid);
 }
-
-#if 0 // test용도 코드
-t_list *init_link()
-{
-	t_list *cmd;
-	
-	cmd = (t_list *)malloc(sizeof(t_list));
-	cmd->next = NULL;
-	cmd->data = NULL;
-	return cmd;
-}
-
-t_exec *init_exec()
-{
-	t_exec *cmd;
-	
-	cmd = (t_exec *)malloc(sizeof(t_exec));
-	cmd->cmd = NULL;
-	cmd->cmd_address = NULL;
-	cmd->fd = 0;
-	cmd->pid = 0;
-	return cmd;
-}
-
-
-int main(int argc, char **argv, char **envp)
-{
-	t_list *new;
-	t_list *head;
-	t_exec *data;
-
-	new = init_link();
-	head = new;
-	data = init_exec();
-	// printf("%s %s", head->data, head->next);
-	new->data = (void *)data;
-	data->cmd = strdup("cat");
-	data->cmd_address = strdup("/bin/cat");
-	data->argv = (char **)malloc(sizeof(char *) * 3);
-	data->argv[0] = strdup("cat");
-	data->argv[1] = NULL;
-
-	
-	
-	new = init_link();
-	
-	data = init_exec();
-	new->data = (void *)data;
-	data->cmd = strdup("ls");
-	data->cmd_address = strdup("/bin/ls");
-
-	data->argv = (char **)malloc(sizeof(char *) * 3);
-	data->argv[0] = strdup("ls");
-	data->argv[1] = NULL;
-	head->next = new;	
-
-	fork_pipe(head, envp); // g_minishell envp가져와야 할듯? 2차원 배열
-}
-#endif
+*/

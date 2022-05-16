@@ -1,8 +1,6 @@
 #ifndef BUILT_IN_H
 # define BUILT_IN_H
 
-// 지워야 할듯
-#include "./test.h"
 /*
  *  ft_pwd.c file
  */

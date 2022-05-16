@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h> //// TODO:: 헤더 삭제 해야함.
-#include "../includehena/test.h"
+#include "minishell.h"
+#include "parse.h"
 #include "../includehena/built_in.h"
 #include "../includehena/redirect.h"
 
 extern t_minishell g_minishell;
-
-#if 0	// COMPILE ERROR
+/*
+// COMPILE ERROR
 static void	excute_alone_cmd(t_exec *data)
 {
 	int	pid;
@@ -25,9 +26,9 @@ static void	excute_alone_cmd(t_exec *data)
 		g_minishell.state = state;
 	}
 }
-#endif
 
-#if 0	// COMPILE ERROR
+
+// COMPILE ERROR
 //TODO:: 나중에 strcmp를 ft_strcmp로 고치고 헤더 추가해야 함
 static void	select_cmd(t_exec *data)
 {
@@ -48,9 +49,8 @@ static void	select_cmd(t_exec *data)
 	else
 		excute_alone_cmd(data);
 }
-#endif
 
-#if 0	// COMPILE ERROR
+// COMPILE ERROR
 //TODO:: 나중에 strcmp를 ft_strcmp로 고치고 헤더 추가해야 함
 static void	select_multiple_cmd(t_exec *data)
 {
@@ -71,7 +71,6 @@ static void	select_multiple_cmd(t_exec *data)
 	else
 		execve(data->cmd_address, data->argv, g_minishell.envp);//g_minishell.envp이 아닌 2차원 배열 필요
 }
-#endif
 
 void	tree_traversal_alone(t_node *tree, t_exec *data, int type)
 {
@@ -87,12 +86,13 @@ void	tree_traversal_alone(t_node *tree, t_exec *data, int type)
 		output_append(tree->right->file_name, 1);
 	else if (tree->type == TYPE_CMD)
 	{
-#if 0	// COMPILE ERROR
+// COMPILE ERROR
 		if (!type)
 			select_cmd(data);
 		else
 			select_multiple_cmd(data);
-#endif
+
 	}
 	tree_traversal_alone(tree->left, data, type);
 }
+*/

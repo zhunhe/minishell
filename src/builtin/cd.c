@@ -1,8 +1,9 @@
-#include <stdio.h>
+/*
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../includehena/test.h"
+#include "minishell.h"
+#include "parse.h"
 #include "../includehena/built_in.h"
 
 #define TRUE 1
@@ -92,14 +93,12 @@ int home_check(char *argv, char *now)
 void	ft_cd(t_exec *data, int pipe_flag)
 {
 	int state;
-/*	COMPILE ERROR
-	char *prev;
-*/
+
 	char **argv;
 	char	*now; 
 
 	now = getcwd(NULL, 256);
-	argv = data->argv;
+	argv = data->cmd_argv;
 	argv++;
 	if (home_check(*argv, now))	
 		return ;
@@ -111,44 +110,17 @@ void	ft_cd(t_exec *data, int pipe_flag)
 		return ;
 	}
 	state = chdir(*argv);
-/*	COMPILE ERROR
-	if (state == -1 && *argv != "")
-	{
-		write(2, "bash: cd: ", 10);
-		write(2, *argv, strlen(*argv));
-		write(2, ": No such file or directory\n", 28);
-		exit(1); // pipe플레그랑 같이 봐야할 듯
-	}
-*/
+	// COMPILE ERROR
+	// if (state == -1 && *argv != "")
+	// {
+	// 	write(2, "bash: cd: ", 10);
+	// 	write(2, *argv, strlen(*argv));
+	// 	write(2, ": No such file or directory\n", 28);
+	// 	exit(1); // pipe플레그랑 같이 봐야할 듯
+	// }
+
 	if (pipe_flag)
 		exit(0);
 }
 
-#if 0 // test용도 코드
-t_exec *init_exec()
-{
-	t_exec *cmd;
-	
-	cmd = (t_exec *)malloc(sizeof(t_exec));
-	cmd->cmd = NULL;
-	cmd->cmd_address = NULL;
-	cmd->fd = 0;
-	cmd->pid = 0;
-	return cmd;
-}
-
-int main(int argc, char **argv, char **envp)
-{
-	t_exec *data;
-
-	data = init_exec();
-	data->cmd = strdup("cd");
-	data->cmd_address = strdup("/bin/cd");
-	data->argv = (char **)malloc(sizeof(char *) * 4);
-	data->argv[0] = strdup("cd");
-	data->argv[1] = strdup("~");
-	data->argv[2] = NULL;
-	ft_cd(data, 0);
-	
-}
-#endif
+*/

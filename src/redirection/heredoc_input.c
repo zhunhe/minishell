@@ -1,3 +1,4 @@
+/*
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -7,13 +8,14 @@
 #include <termios.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../includehena/test.h"
+#include "minishell.h"
+#include "parse.h"
 #include "../includehena/pipe_signal.h"
 // #include <minishell.h>
 #define TRUE 1
 #define FALSE 0
 
-/*ft_strlen,  ft_strcmp 있어야함 */
+ft_strlen,  ft_strcmp 있어야함 
 extern t_minishell g_minishell;
 
 static void	heredoc_prompt(int fd, char *end)
@@ -44,11 +46,11 @@ static void	heredoc_prompt(int fd, char *end)
 	}
 }
 
-/*
-*	heredoc 하나씩 실행할 예정
-*	히어독 안에 환경변수 보류하기
-*	signal 처리 및 echoctl_off처리 후 heredoc시작
-*/
+
+// heredoc 하나씩 실행할 예정
+// 히어독 안에 환경변수 보류하기
+// signal 처리 및 echoctl_off처리 후 heredoc시작
+
 
 static void	change_prompt_option()
 {
@@ -77,3 +79,4 @@ int	run_heredoc(t_list *heredoc)
 	}
 	return (TRUE);
 }
+*/

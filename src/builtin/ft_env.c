@@ -1,7 +1,9 @@
+/*
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../includehena/test.h"
+#include "minishell.h"
+#include "parse.h"
 
 extern t_minishell g_minishell;
 
@@ -13,15 +15,9 @@ static void	ft_print_env(char *key, char *value)
 	write(1, "\n", 1);
 }
 
-/*
- * flag 및 다른게 들어오면 어떻게 처리할지 고민하기
- */
 
 void	ft_env(t_exec *data, int pipe_flag)
 {
-/*	COMPILE ERROR
-	int	i;
-*/
 	t_list	*envpl;
 	t_envp	*envp;
 	char	**argv;
@@ -46,3 +42,4 @@ void	ft_env(t_exec *data, int pipe_flag)
 	if (pipe_flag)
 		exit(0);
 }
+*/

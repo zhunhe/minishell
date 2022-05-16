@@ -1,7 +1,9 @@
+/*
 #include <stdio.h> // test
 #include <stdlib.h>
 #include <string.h>
-#include "../includehena/test.h"
+#include "minishell.h"
+#include "parse.h"
 // strcmp함수 만들어야 함
 #ifndef BOOL
 #define BOOL
@@ -42,7 +44,7 @@ void	ft_echo(t_exec *data, int pipe_flag)
 	int		opt_flag;
 	char	**argv;
 
-	argv = data->argv;
+	argv = data->cmd_argv;
 	// init
 	init_valuable(&check_flag, &opt_flag);
 	// echo 건너뛰기
@@ -64,3 +66,4 @@ void	ft_echo(t_exec *data, int pipe_flag)
 	if (pipe_flag)
 		exit(0);
 }
+*/

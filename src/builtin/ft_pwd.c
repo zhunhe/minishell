@@ -1,16 +1,18 @@
+/*
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../includehena/test.h"
+#include "minishell.h"
+#include "parse.h"
 // #include "../libft/libft.h"
 #define TRUE 1
 #define FALSE 0
 
-/*
- *	option 무시이므로 뒤에 와도 무시할 예정
- *	pipe_flag : pipe exist
- */
+// 
+//  *	option 무시이므로 뒤에 와도 무시할 예정
+//  *	pipe_flag : pipe exist
+// 
 
 extern t_minishell g_minishell;
 
@@ -25,9 +27,6 @@ static int	check_option(char *str)
 void	ft_pwd(t_exec *data, int pipe_flag)
 {
 	char	*now_path;
-#if 0	// COMPILE ERROR
-	int		ret;
-#endif
 	char	**argv;
 
 	argv = data->argv;
@@ -54,3 +53,4 @@ void	ft_pwd(t_exec *data, int pipe_flag)
 	if (pipe_flag)
 		exit(0);
 }
+*/

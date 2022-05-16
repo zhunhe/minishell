@@ -1,7 +1,9 @@
-#include "../includehena/test.h"
+/*
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "minishell.h"
+#include "parse.h"
 
 extern t_minishell g_minishell;
 
@@ -76,4 +78,4 @@ void	change_to_old_path(char *now)
 		chdir(g_minishell.oldpwd);
 	}
 	change_values(now);
-}
+}*/

@@ -1,6 +1,8 @@
+/*
 #include <stdio.h>
 #include <unistd.h>
-#include "../includehena/test.h"
+#include "minishell.h"
+#include "parse.h"
 #ifndef BOOL
 # define BOOL
 
@@ -10,23 +12,23 @@
 
 extern t_minishell g_minishell;
 
-#if 0	// COMPILE ERROR
-static void	ft_print_export(char *key, char *value)
-{
-	write(1, "declare -x ", 11);
-#if 0	// COMPILE ERROR
-	write(1, key, ft_strlen(key));
-#endif
-	if (value)
-	{
-		write(1, "=\"", 2);
-#if 0	// COMPILE ERROR
-		write(1, value, ft_strlen(value));
-#endif
-		write(1, "\"\n", 2);
-	}
-}
-#endif
+// // COMPILE ERROR
+// static void	ft_print_export(char *key, char *value)
+// {
+// 	write(1, "declare -x ", 11);
+// #if 0	// COMPILE ERROR
+// 	write(1, key, ft_strlen(key));
+// #endif
+// 	if (value)
+// 	{
+// 		write(1, "=\"", 2);
+// #if 0	// COMPILE ERROR
+// 		write(1, value, ft_strlen(value));
+// #endif
+// 		write(1, "\"\n", 2);
+// 	}
+// }
+
 
 static void	show_export_list(void)
 {
@@ -181,3 +183,4 @@ void	export(t_exec *data)
 	// else						TODO:: 다시 만들어야 할 듯.
 	// 	divide_argv(argv);
 }
+*/

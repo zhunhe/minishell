@@ -12,7 +12,6 @@
 
 #ifndef REDIRECT_H
 # define REDIRECT_H
-#include "../includehena/test.h"
 /*
  *input.c
  */

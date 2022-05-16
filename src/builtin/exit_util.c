@@ -9,7 +9,7 @@
 /*   Updated: 2022/04/27 17:43:48 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
@@ -31,9 +31,7 @@
 
 #endif
 
-/*
- * ex) 256 -> 0, -1 -> 255
- */
+
 
 unsigned char	calculate_exit_number(int exit_num)
 {
@@ -93,3 +91,4 @@ int	ft_atoi(char *str)
 	}
 	return (sum);
 }
+*/

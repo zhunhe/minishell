@@ -1,9 +1,11 @@
+/*
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include "../includehena/test.h"
+#include "minishell.h"
+#include "parse.h"
 
 extern t_minishell g_minishell;
 
@@ -23,3 +25,4 @@ void	here_doc(int index, int dup_fd)
 	dup2(fd, dup_fd);
 	close(fd);
 }
+*/

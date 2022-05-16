@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
+#include "parse.h"
+#include "../../includehena/redirect.h"
+#include "../../includehena/excute_cmd.h"
+#include <unistd.h>
 #define TRUE 1
 #define FALSE 0
-#include "../includehena/test.h"
-#include "../includehena/redirect.h"
-#include "../includehena/excute_cmd.h"
-#include <unistd.h>
-
 // t_minishell g_minishell;
 extern t_minishell g_minishell;
 
@@ -42,7 +42,7 @@ static void	pipe_logic(t_list *parse)
 	if (!parse->next)
 	{
 		start_setting();
-		tree_traversal_alone(execl->root, execl);
+		// tree_traversal_alone(execl->root, execl);
 		end_setting();
 	}
 	// else ()	//파이프가 있을 때
@@ -51,10 +51,10 @@ static void	pipe_logic(t_list *parse)
 
 int	main_logic()
 {
-	t_list	*heredoc;
+	// t_list	*heredoc;
 	t_list	*exec;
 
-	heredoc = g_minishell.heredoc;
+	// heredoc = g_minishell.heredoc;
 	exec = g_minishell.exec;
 	start_setting();
 	
