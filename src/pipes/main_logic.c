@@ -13,7 +13,6 @@
 #include "minishell.h"
 #include "parse.h"
 #include "redirect.h"
-#include "excute_cmd.h"
 #include <unistd.h>
 #include "main_logic.h"
 #define TRUE 1
@@ -43,7 +42,7 @@ static void	pipe_logic(t_list *parse)
 	if (!parse->next)
 	{
 		start_setting();
-		tree_traversal_alone(execl->root, execl);
+		tree_traversal_alone(execl->root, execl, 0);
 		end_setting();
 	}
 	else	//파이프가 있을 때

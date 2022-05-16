@@ -4,6 +4,7 @@
 #include <string.h>
 #include "minishell.h"
 #include "parse.h"
+#include "main_logic.h"
 
 extern t_minishell g_minishell;
 
@@ -69,7 +70,7 @@ void	fork_pipe(t_list *link)
 		else
 		{
 			change_connection_pipe_child(link, p);
-			// TODO:: execve 대신 트리 순회로 바꿔야 함.
+			tree_traversal_alone(exec->root, exec, 1);
 		}
 		if (link->next)
 			((t_exec *)link->next->data)->fd = 3;

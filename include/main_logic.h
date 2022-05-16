@@ -4,4 +4,6 @@
 int		main_logic(t_list *parse);
 void	fork_pipe(t_list *link);
 
+
+void	tree_traversal_alone(t_node *tree, t_exec *data, int type);
 #endif
