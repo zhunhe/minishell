@@ -7,17 +7,6 @@
 void	ft_pwd(t_exec *data, int pipe_flag);
 
 /*
- *  ft_unset.c file
- */
-
-void	ft_unset(t_exec	*data, int pipe_flag);
-
-/*
- *  ft_env.c file
- */
-void	ft_env(t_exec *data, int pipe_flag);
-
-/*
  *  ft_exit.c file
  */
 void	ft_exit(t_exec *data, int pipe_flag);
@@ -29,6 +18,26 @@ int	ft_atoi(char *str);
 int	check_all_integer(char *str);
 void	print_exit_error(char *str, int type, int pipe_flag);
 unsigned char	calculate_exit_number(int exit_num);
+
+
+/*
+ *  ft_echo.c file
+ */
+void    ft_echo(t_exec *data, int pipe_flag);
+
+
+/*
+ *  ft_unset.c file
+ */
+
+void	ft_unset(t_exec	*data, int pipe_flag);
+
+/*
+ *  ft_env.c file
+ */
+void	ft_env(t_exec *data, int pipe_flag);
+
+
 
 /*
  *  ft_cd.c file
