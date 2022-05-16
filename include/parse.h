@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:31:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/14 21:27:30 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/15 21:00:12 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct s_exec
 	int		pid;
 	int		fd;
 	char	*cmd;
-	char	*cmd_address;
-	char	**argv;
+	char	*cmd_path;
+	char	**cmd_argv;
 	bool	heredoc;
 	bool	pipe_exist;
 	t_node	*root;
