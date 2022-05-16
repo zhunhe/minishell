@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/16 17:06:12 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/17 07:41:05 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ REDIRECTION_SRCS = $(addprefix $(REDIRECTION_DIR)/, \
 
 PARSE_DIR = $(SRC_DIR)/parse
 PARSE_SRCS = $(addprefix $(PARSE_DIR)/, \
+	cmd.c \
 	envp.c \
 	error.c \
 	exec.c \

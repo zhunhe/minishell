@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:31:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/15 21:00:12 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/17 07:48:56 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_node_type	get_type(char *str);
 /*
 ** exec.c
 */
-t_exec		*make_exec(t_list *token, int *status, int *heredoc_idx);
+t_exec		*make_exec(t_list *token, int *heredoc_idx);
 
 /*
 ** tokenize.c
@@ -68,4 +68,10 @@ t_list		*tokenize(char *s);
 t_node		*create_node(char *data);
 void		add_node_root(t_node **root, t_node *new);
 void		add_node_right(t_node **parent, t_node *child);
+t_node		*get_last_left_node(t_node *root);
+
+/*
+** cmd.c
+*/
+void		set_cmd(t_exec *result, char **ss);
 #endif

@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:22:10 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/14 18:04:51 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/17 07:27:36 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_node	*create_node(char *data)
 	t_node	*new;
 
 	new = _calloc(sizeof(t_node), 1);
+	new->file_name = data;
 	new->type = get_type(data);
 	return (new);
 }
@@ -48,4 +49,16 @@ void	add_node_right(t_node **parent, t_node *child)
 		return ;
 	}
 	(*parent)->right = child;
+}
+
+t_node	*get_last_left_node(t_node *root)
+{
+	t_node	*last;
+
+	if (root == NULL)
+		return (NULL);
+	last = root;
+	while (last->left != NULL)
+		last = last->left;
+	return (last);
 }
