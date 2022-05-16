@@ -4,8 +4,8 @@
 #include <string.h> //// TODO:: 헤더 삭제 해야함.
 #include "minishell.h"
 #include "parse.h"
-#include "../includehena/built_in.h"
-#include "../includehena/redirect.h"
+#include "built_in.h"
+#include "redirect.h"
 
 extern t_minishell g_minishell;
 /*

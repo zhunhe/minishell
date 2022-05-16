@@ -12,8 +12,8 @@
 
 #include "minishell.h"
 #include "parse.h"
-#include "../../includehena/redirect.h"
-#include "../../includehena/excute_cmd.h"
+#include "redirect.h"
+#include "excute_cmd.h"
 #include <unistd.h>
 #define TRUE 1
 #define FALSE 0
