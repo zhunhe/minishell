@@ -34,6 +34,7 @@ typedef struct s_minishell
 {
 	t_list		*envp;
 	t_list		*exec;
+	int			state;
 }	t_minishell;
 
 t_minishell	g_minishell;
