@@ -41,14 +41,15 @@ static void	select_cmd(t_exec *data)
 		ft_echo(data, 0);
 	else if (!strcmp(data->cmd, "env"))
 		ft_env(data, 0);
+	else if (!strcmp(data->cmd, "unset"))
+		ft_unset(data, 0);
 	// else if (!ft_strcmp(data->argv[0], "cd"))
 	// 	ft_cd(data, 0);
 	
 	
 	// else if (!strcmp(data->cmd, "pwd"))
 	// 	ft_pwd(data, 0);
-	// else if (!strcmp(data->cmd, "unset"))
-	// 	ft_unset(data, 0);
+	
 	// else
 		excute_alone_cmd(data);
 }
@@ -65,14 +66,15 @@ static void	select_multiple_cmd(t_exec *data)
 		ft_echo(data, 1);
 	else if (!strcmp(data->cmd, "env"))
 		ft_env(data, 1);
+	else if (!strcmp(data->cmd, "unset"))
+		ft_unset(data, 1);
 	// else if (!ft_strcmp(data->cmd, "cd"))
 	// 	ft_cd(data, 0);
 	
 	
 	// else if (!strcmp(data->cmd, "pwd"))
 	// 	ft_pwd(data, 1);
-	// else if (!strcmp(data->cmd, "unset"))
-	// 	ft_unset(data, 1);
+	
 	// else
 		execve(data->cmd_path, data->cmd_argv, 
 			get_envp_double_pointer());//g_minishell.envp이 아닌 2차원 배열 필요
