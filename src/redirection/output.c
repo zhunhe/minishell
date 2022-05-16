@@ -10,24 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
 
-#ifndef FD_OPTION
-# define FD_OPTION
-# define READ 0
-# define WRITE 1
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
-#endif
-
 /*
- * 찾아봐야 할 점 WROnly처리 일까 RDWR처리 일까
+ * strerror(); input.c output.c leaks check
  */
 
 /*
@@ -54,7 +44,7 @@ void	output(char *filename, int dup_fd)
 	if (file_descriptor < 0)
 	{
 		print_error(filename);
-		exit(1); // TODO:: exit 값 확인하기
+		exit(1);
 	}
 	dup2(file_descriptor, dup_fd);
 	close(file_descriptor);
@@ -72,7 +62,7 @@ void	output_append(char *filename, int dup_fd)
 	if (file_descriptor < 0)
 	{
 		print_error(filename);
-		exit(1); // TODO:: exit 값 확인하기
+		exit(1);
 	}
 	dup2(file_descriptor, dup_fd);
 	close(file_descriptor);
