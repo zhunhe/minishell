@@ -9,7 +9,7 @@
 /*   Updated: 2022/04/27 17:43:48 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
+
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
@@ -91,4 +91,3 @@ int	ft_atoi(char *str)
 	}
 	return (sum);
 }
-*/

@@ -32,8 +32,8 @@ static void	excute_alone_cmd(t_exec *data)
 //TODO:: 나중에 strcmp를 ft_strcmp로 고치고 헤더 추가해야 함
 static void	select_cmd(t_exec *data)
 {
-	// if (!ft_strcmp(data->argv[0], "cd"))
-	// 	ft_cd(data);
+	if (strcmp(data->cmd, "exit"))
+		ft_exit(data, 0);
 	// else if (!ft_strcmp(data->argv[0], "cd"))
 	// 	ft_cd(data);
 	// else if (!ft_strcmp(data->argv[0], "cd"))
@@ -54,8 +54,8 @@ static void	select_cmd(t_exec *data)
 //TODO:: 나중에 strcmp를 ft_strcmp로 고치고 헤더 추가해야 함
 static void	select_multiple_cmd(t_exec *data)
 {
-	// if (!ft_strcmp(data->cmd, "cd"))
-	// 	ft_cd(data);
+	if (!strcmp(data->cmd, "exit"))				//TODO strcmp
+		ft_exit(data, 1);
 	// else if (!ft_strcmp(data->cmd, "cd"))
 	// 	ft_cd(data);
 	// else if (!ft_strcmp(data->cmd, "cd"))

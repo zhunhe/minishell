@@ -23,17 +23,17 @@ void	ft_env(t_exec *data, int pipe_flag);
 void	ft_exit(t_exec *data, int pipe_flag);
 
 /*
- *  ft_cd.c file
- */
-void	ft_cd(t_exec *data, int pipe_flag);
-
-/*
  *  ft_exit_util.c file
  */
 int	ft_atoi(char *str);
 int	check_all_integer(char *str);
 void	print_exit_error(char *str, int type);
 unsigned char	calculate_exit_number(int exit_num);
+
+/*
+ *  ft_cd.c file
+ */
+void	ft_cd(t_exec *data, int pipe_flag);
 
 /*
  *  cd_util.c
