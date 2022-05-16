@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include "minishell.h"
 #ifndef BOOL
 #define BOOL
 
@@ -31,31 +32,33 @@
 
 #endif
 
-
+extern t_minishell	g_minishell;
 
 unsigned char	calculate_exit_number(int exit_num)
 {
 	return exit_num;
 }
 
-void	print_exit_error(char *str, int type)
+void	print_exit_error(char *str, int type, int pipe_flag)
 {
 	write(2, "bash: ", 6);
 	write(2, "exit: ", 6);
-	
-	
-	if (type == NUMBER)
+	if (type == MANYARGU)
+	{
+		write(2, "too many arguments exit\n", MANYARGUSIZE);
+		g_minishell.state = 1;
+		if (pipe_flag)
+			exit(1);
+	}
+	else if (type == NUMBER)
 	{
 		write(2, str, strlen(str));
 		write(2, ": ", 2);
 		write(2, "numeric argument required\n", NUMBERSIZE);
-		exit(255);
+		g_minishell.state = 255;
+		exit(255);		
 	}
-	else if (type == MANYARGU)
-	{
-		write(2, "too many arguments exit\n", MANYARGUSIZE);
-		exit(1);
-	}
+	
 }
 
 int	check_all_integer(char *str)
