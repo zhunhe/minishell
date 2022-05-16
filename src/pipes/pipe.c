@@ -1,4 +1,3 @@
-/*
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -49,15 +48,13 @@ void	wait_all_child(t_list *head, int last_pid)
 			g_minishell.state = state; //TODO 전역변수랑 연결, 값 확인 필요
 		head = head->next;
 	}
-	// printf("%d %d %d\n", pid, wpid, status);
 }
 
-void	fork_pipe(t_list *link, char **envp)
+void	fork_pipe(t_list *link)
 {
 	int	p[2];
 	t_list	*head;
 	t_exec	*exec;
-	int		last_pid;
 
 	head = link;
 	while (link)
@@ -65,23 +62,19 @@ void	fork_pipe(t_list *link, char **envp)
 		pipe(p);
 		exec = (t_exec *)link->data;
 		exec->pid = fork();
-		// printf("pid[%d]\n", exec->pid);				//각 노드별로 pid체크 용도 test 
 		if (exec->pid < 0)
-			exit(0);
+			exit(1);
 		else if (exec->pid > 0)
 			change_connection_pipe_parent(link, p);
 		else
 		{
 			change_connection_pipe_child(link, p);
 			// TODO:: execve 대신 트리 순회로 바꿔야 함.
-			execve(exec->cmd_address, exec->argv, envp);// TODO:: 트리 순회 필요할 듯
 		}
 		if (link->next)
 			((t_exec *)link->next->data)->fd = 3;
 		link = link->next;
-		last_pid = exec->pid;
 	}
 	close(3);
-	wait_all_child(head, last_pid);
+	wait_all_child(head, exec->pid);
 }
-*/
