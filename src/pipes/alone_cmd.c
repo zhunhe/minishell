@@ -39,11 +39,12 @@ static void	select_cmd(t_exec *data)
 		ft_exit(data, 0);
 	else if (!strcmp(data->cmd, "echo"))
 		ft_echo(data, 0);
+	else if (!strcmp(data->cmd, "env"))
+		ft_env(data, 0);
 	// else if (!ft_strcmp(data->argv[0], "cd"))
 	// 	ft_cd(data, 0);
 	
-	// else if (!strcmp(data->cmd, "env"))
-	// 	ft_env(data, 0);
+	
 	// else if (!strcmp(data->cmd, "pwd"))
 	// 	ft_pwd(data, 0);
 	// else if (!strcmp(data->cmd, "unset"))
@@ -62,11 +63,12 @@ static void	select_multiple_cmd(t_exec *data)
 		ft_exit(data, 1);
 	else if (!strcmp(data->cmd, "echo"))
 		ft_echo(data, 1);
+	else if (!strcmp(data->cmd, "env"))
+		ft_env(data, 1);
 	// else if (!ft_strcmp(data->cmd, "cd"))
 	// 	ft_cd(data, 0);
 	
-	// else if (!strcmp(data->cmd, "env"))
-	// 	ft_env(data, 1);
+	
 	// else if (!strcmp(data->cmd, "pwd"))
 	// 	ft_pwd(data, 1);
 	// else if (!strcmp(data->cmd, "unset"))
