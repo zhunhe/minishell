@@ -1,10 +1,9 @@
-/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "minishell.h"
 #include "parse.h"
-#include "../includehena/built_in.h"
+#include "built_in.h"
 #include <string.h>
 
 // *	exit 1 2 3 exit: too many arguments exit 출력
@@ -51,4 +50,3 @@ void	ft_exit(t_exec *data, int pipe_flag)
 	else
 		ft_exit_execute(argv, pipe_flag);
 }
-*/
