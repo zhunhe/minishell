@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/16 13:42:10 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/16 17:06:12 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,6 @@ UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
 SRCS = \
 	$(ROOT_SRCS) \
 	$(BUILTIN_SRCS) \
-	$(MAIN_SRCS) \
 	$(PIPE_SIGNAL_SRCS) \
 	$(PIPES_SRCS) \
 	$(REDIRECTION_SRCS) \
