@@ -15,9 +15,10 @@
 #include "redirect.h"
 #include "excute_cmd.h"
 #include <unistd.h>
+#include "main_logic.h"
 #define TRUE 1
 #define FALSE 0
-// t_minishell g_minishell;
+
 extern t_minishell g_minishell;
 
 static void	start_setting()
@@ -42,11 +43,11 @@ static void	pipe_logic(t_list *parse)
 	if (!parse->next)
 	{
 		start_setting();
-		// tree_traversal_alone(execl->root, execl);
+		tree_traversal_alone(execl->root, execl);
 		end_setting();
 	}
-	// else ()	//파이프가 있을 때
-	// 	fork_pipe(parse);
+	else	//파이프가 있을 때
+		fork_pipe(parse);
 }
 
 int	main_logic()
