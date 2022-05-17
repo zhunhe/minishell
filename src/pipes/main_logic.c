@@ -13,8 +13,10 @@
 #include "minishell.h"
 #include "parse.h"
 #include "redirect.h"
+#include <signal.h>
 #include <unistd.h>
 #include "main_logic.h"
+#include "pipe_signal.h"
 #define TRUE 1
 #define FALSE 0
 
@@ -22,6 +24,8 @@ extern t_minishell g_minishell;
 
 static void	start_setting()
 {
+	sig_cmd_int_handler(SIGQUIT);
+	sig_cmd_quit_handler(SIGQUIT);
 	dup2(0, 254);
 	dup2(0, 255);
 }
@@ -54,6 +58,7 @@ int	main_logic()
 	// t_list	*heredoc;
 	t_list	*exec;
 
+	sig_heredoc_handler(SIGINT);
 	// heredoc = g_minishell.heredoc;
 	exec = g_minishell.exec;
 	start_setting();
