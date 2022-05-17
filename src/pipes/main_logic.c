@@ -20,9 +20,9 @@
 #define TRUE 1
 #define FALSE 0
 
-extern t_minishell g_minishell;
+extern t_minishell	g_minishell;
 
-static void	start_setting()
+static void	start_setting(void)
 {
 	sig_cmd_int_handler(SIGQUIT);
 	sig_cmd_quit_handler(SIGQUIT);
@@ -30,7 +30,7 @@ static void	start_setting()
 	dup2(0, 255);
 }
 
-static void	end_setting()
+static void	end_setting(void)
 {
 	dup2(254, 0);
 	dup2(255, 1);
@@ -49,7 +49,7 @@ static void	pipe_logic(t_list *parse)
 		tree_traversal_alone(execl->root, execl, 0);
 		end_setting();
 	}
-	else	//파이프가 있을 때
+	else
 		fork_pipe(parse);
 }
 
@@ -60,13 +60,11 @@ int	main_logic()
 
 	sig_heredoc_handler(SIGINT);
 	// heredoc = g_minishell.heredoc;
-	exec = g_minishell.exec;
-	start_setting();
-	
 	// readline 인클루드 못해서 확인 불가	TODO:: 확인해야 함
 	// if (!run_heredoc(heredoc)) 		// heredoc 실패 시 종료임 아니면 내가 말고?. free해줄지 체크
 	// 	return (FALSE);
-	// 헤더 있는지 확인해야할듯
+	start_setting();
+	exec = g_minishell.exec;
 	pipe_logic(exec);
 	end_setting();
 	return (TRUE);
