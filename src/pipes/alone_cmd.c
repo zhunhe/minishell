@@ -70,19 +70,19 @@ static void	select_cmd(t_exec *data)
 
 static void	select_multiple_cmd(t_exec *data)
 {
-	if (!strcmp(data->cmd, "pwd"))
+	if (!_strcmp(data->cmd, "pwd"))
 		ft_pwd(data, 1);
-	else if (!strcmp(data->cmd, "exit"))
+	else if (!_strcmp(data->cmd, "exit"))
 		ft_exit(data, 1);
-	else if (!strcmp(data->cmd, "echo"))
+	else if (!_strcmp(data->cmd, "echo"))
 		ft_echo(data, 1);
-	else if (!strcmp(data->cmd, "env"))
+	else if (!_strcmp(data->cmd, "env"))
 		ft_env(data, 1);
-	else if (!strcmp(data->cmd, "unset"))
+	else if (!_strcmp(data->cmd, "unset"))
 		ft_unset(data, 1);
-	else if (!strcmp(data->cmd, "export"))
+	else if (!_strcmp(data->cmd, "export"))
 		ft_export(data, 1);
-	else if (!strcmp(data->cmd, "cd"))
+	else if (!_strcmp(data->cmd, "cd"))
 		ft_cd(data, 1);
 	else
 		execve(data->cmd_path, data->cmd_argv,
