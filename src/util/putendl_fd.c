@@ -15,6 +15,6 @@
 
 void	_putendl_fd(char const *s, int fd)
 {
-	_putstr_fd(s);
+	_putstr_fd(s, fd);
 	write(fd, "\n", 1);
 }
