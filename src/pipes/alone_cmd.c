@@ -46,19 +46,19 @@ static void	excute_alone_cmd(t_exec *data)
 
 static void	select_cmd(t_exec *data)
 {
-	if (!_strcmp(data->cmd, "pwd"))
+	if (!strcmp(data->cmd, "pwd"))
 		ft_pwd(data, 0);
-	else if (!_strcmp(data->cmd, "exit"))
+	else if (!strcmp(data->cmd, "exit"))
 		ft_exit(data, 0);
-	else if (!_strcmp(data->cmd, "echo"))
+	else if (!strcmp(data->cmd, "echo"))
 		ft_echo(data, 0);
-	else if (!_strcmp(data->cmd, "env"))
+	else if (!strcmp(data->cmd, "env"))
 		ft_env(data, 0);
-	else if (!_strcmp(data->cmd, "unset"))
+	else if (!strcmp(data->cmd, "unset"))
 		ft_unset(data, 0);
-	else if (!_strcmp(data->cmd, "export"))
+	else if (!strcmp(data->cmd, "export"))
 		ft_export(data, 0);
-	else if (!_strcmp(data->cmd, "cd"))
+	else if (!strcmp(data->cmd, "cd"))
 		ft_cd(data, 0);
 	else
 		excute_alone_cmd(data);
@@ -70,19 +70,19 @@ static void	select_cmd(t_exec *data)
 
 static void	select_multiple_cmd(t_exec *data)
 {
-	if (!_strcmp(data->cmd, "pwd"))
+	if (!strcmp(data->cmd, "pwd"))
 		ft_pwd(data, 1);
-	else if (!_strcmp(data->cmd, "exit"))
+	else if (!strcmp(data->cmd, "exit"))
 		ft_exit(data, 1);
-	else if (!_strcmp(data->cmd, "echo"))
+	else if (!strcmp(data->cmd, "echo"))
 		ft_echo(data, 1);
-	else if (!_strcmp(data->cmd, "env"))
+	else if (!strcmp(data->cmd, "env"))
 		ft_env(data, 1);
-	else if (!_strcmp(data->cmd, "unset"))
+	else if (!strcmp(data->cmd, "unset"))
 		ft_unset(data, 1);
-	else if (!_strcmp(data->cmd, "export"))
+	else if (!strcmp(data->cmd, "export"))
 		ft_export(data, 1);
-	else if (!_strcmp(data->cmd, "cd"))
+	else if (!strcmp(data->cmd, "cd"))
 		ft_cd(data, 1);
 	else
 		execve(data->cmd_path, data->cmd_argv,
