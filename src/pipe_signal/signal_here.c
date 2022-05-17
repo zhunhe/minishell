@@ -9,32 +9,25 @@
 /*   Updated: 2022/05/16 16:02:50 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
+
+#include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
 #include "minishell.h"
 #include "parse.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
-extern t_minishell g_minishell;
+extern t_minishell	g_minishell;
 
 void	sig_heredoc_handler(int signal)
 {
 	if (signal != SIGINT)
 		return ;
-#if 0	// COMPILE ERROR
 	printf(">");
-#endif
-#if 0	// COMPILE ERROR
 	if (rl_on_new_line() == -1)
 		exit(1);
-#endif
-#if 0	// COMPILE ERROR
 	rl_replace_line("", 1);
-#endif
-#if 0	// COMPILE ERROR
 	rl_redisplay();
-#endif
-	g_minishell.is_ended = 1;
 	g_minishell.state = 1;
 }
-*/

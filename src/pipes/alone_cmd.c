@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   alone_cmd.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/18 04:39:49 by hena              #+#    #+#             */
+/*   Updated: 2022/05/18 04:39:52 by hena             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -6,21 +18,21 @@
 #include "parse.h"
 #include "built_in.h"
 #include "redirect.h"
+#include "util.h"
 
-extern t_minishell g_minishell;
+extern t_minishell	g_minishell;
 
-// COMPILE ERROR
 static void	excute_alone_cmd(t_exec *data)
 {
 	int	pid;
-	int state;
+	int	state;
 
 	pid = fork();
 	if (pid < 0)
 		exit(1);
 	else if (pid == 0)
-		execve(data->cmd_path, data->cmd_argv, 
-			get_envp_double_pointer()); // TODO:: envp 2차원 배열로 넣어줘야하므로 NULL로 일단 대체
+		execve(data->cmd_path, data->cmd_argv,
+			get_envp_double_pointer());
 	else
 	{
 		wait(&state);
@@ -28,14 +40,15 @@ static void	excute_alone_cmd(t_exec *data)
 	}
 }
 
+/*
+ *	no pipe, built-in [pwd exit echo env unset export cd], execve
+ */
 
-// COMPILE ERROR
-//TODO:: 나중에 strcmp를 ft_strcmp로 고치고 헤더 추가해야 함
 static void	select_cmd(t_exec *data)
 {
 	if (!strcmp(data->cmd, "pwd"))
 		ft_pwd(data, 0);
-	else if (strcmp(data->cmd, "exit"))
+	else if (!strcmp(data->cmd, "exit"))
 		ft_exit(data, 0);
 	else if (!strcmp(data->cmd, "echo"))
 		ft_echo(data, 0);
@@ -43,19 +56,18 @@ static void	select_cmd(t_exec *data)
 		ft_env(data, 0);
 	else if (!strcmp(data->cmd, "unset"))
 		ft_unset(data, 0);
-	// else if (!ft_strcmp(data->argv[0], "cd"))
-	// 	ft_cd(data, 0);
-	
-	
-	// else if (!strcmp(data->cmd, "pwd"))
-	// 	ft_pwd(data, 0);
-	
-	// else
+	else if (!strcmp(data->cmd, "export"))
+		ft_export(data, 0);
+	else if (!strcmp(data->cmd, "cd"))
+		ft_cd(data, 0);
+	else
 		excute_alone_cmd(data);
 }
 
-// COMPILE ERROR
-//TODO:: 나중에 strcmp를 ft_strcmp로 고치고 헤더 추가해야 함
+/*
+ *	pipes exist, built-in [pwd exit echo env unset export cd]
+ */
+
 static void	select_multiple_cmd(t_exec *data)
 {
 	if (!strcmp(data->cmd, "pwd"))
@@ -68,29 +80,26 @@ static void	select_multiple_cmd(t_exec *data)
 		ft_env(data, 1);
 	else if (!strcmp(data->cmd, "unset"))
 		ft_unset(data, 1);
-	// else if (!ft_strcmp(data->cmd, "cd"))
-	// 	ft_cd(data, 0);
-	
-	
-	// else if (!strcmp(data->cmd, "pwd"))
-	// 	ft_pwd(data, 1);
-	
-	// else
-		execve(data->cmd_path, data->cmd_argv, 
-			get_envp_double_pointer());//g_minishell.envp이 아닌 2차원 배열 필요
+	else if (!strcmp(data->cmd, "export"))
+		ft_export(data, 1);
+	else if (!strcmp(data->cmd, "cd"))
+		ft_cd(data, 1);
+	else
+		execve(data->cmd_path, data->cmd_argv,
+			get_envp_double_pointer());
 }
 
 void	tree_traversal_alone(t_node *tree, t_exec *data, int type)
 {
 	if (!tree)
 		return ;
-	if (tree->type == TYPE_IN_OVERWRITE) //  <
+	if (tree->type == TYPE_IN_OVERWRITE)
 		input(tree->right->file_name, 0);
-	else if (tree->type == TYPE_OUT_OVERWRITE) // >
+	else if (tree->type == TYPE_OUT_OVERWRITE)
 		output(tree->right->file_name, 1);
-	// else if (tree->type == TYPE_HEREDOC) // <<
+	// else if (tree->type == TYPE_HEREDOC)
 	// 	here_doc(tree->right->heredoc_idx, 0);
-	else if (tree->type == TYPE_OUT_APPEND) // >>
+	else if (tree->type == TYPE_OUT_APPEND)
 		output_append(tree->right->file_name, 1);
 	else if (tree->type == TYPE_CMD)
 	{

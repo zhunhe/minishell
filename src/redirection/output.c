@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include "util.h"
 
 /*
  * strerror(); input.c output.c leaks check
@@ -32,7 +33,7 @@ static void	print_error(char *filename)
 	write(2, "bash: ", 6);
 	write(2, filename, strlen(filename)); //TODO:: strlen -> ft_strlen 넣어야 함
 	write(2, ": ", 2);
-	write(2, err_message, strlen(err_message));
+	write(2, err_message, _strlen(err_message));
 	write(2, "\n", 1);
 }
 
