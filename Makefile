@@ -95,7 +95,7 @@ UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
 	strskip.c \
 	strcmp.c \
 	putstr_fd.c \
-	putendl_fd.c
+	putendl_fd.c \
 )
 
 SRCS = \

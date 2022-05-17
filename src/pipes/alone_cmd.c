@@ -13,7 +13,6 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h> //// TODO:: 헤더 삭제 해야함.
 #include "minishell.h"
 #include "parse.h"
 #include "built_in.h"
@@ -46,19 +45,19 @@ static void	excute_alone_cmd(t_exec *data)
 
 static void	select_cmd(t_exec *data)
 {
-	if (!strcmp(data->cmd, "pwd"))
+	if (!_strcmp(data->cmd, "pwd"))
 		ft_pwd(data, 0);
-	else if (!strcmp(data->cmd, "exit"))
+	else if (!_strcmp(data->cmd, "exit"))
 		ft_exit(data, 0);
-	else if (!strcmp(data->cmd, "echo"))
+	else if (!_strcmp(data->cmd, "echo"))
 		ft_echo(data, 0);
-	else if (!strcmp(data->cmd, "env"))
+	else if (!_strcmp(data->cmd, "env"))
 		ft_env(data, 0);
-	else if (!strcmp(data->cmd, "unset"))
+	else if (!_strcmp(data->cmd, "unset"))
 		ft_unset(data, 0);
-	else if (!strcmp(data->cmd, "export"))
+	else if (!_strcmp(data->cmd, "export"))
 		ft_export(data, 0);
-	else if (!strcmp(data->cmd, "cd"))
+	else if (!_strcmp(data->cmd, "cd"))
 		ft_cd(data, 0);
 	else
 		excute_alone_cmd(data);
@@ -70,19 +69,19 @@ static void	select_cmd(t_exec *data)
 
 static void	select_multiple_cmd(t_exec *data)
 {
-	if (!strcmp(data->cmd, "pwd"))
+	if (!_strcmp(data->cmd, "pwd"))
 		ft_pwd(data, 1);
-	else if (!strcmp(data->cmd, "exit"))
+	else if (!_strcmp(data->cmd, "exit"))
 		ft_exit(data, 1);
-	else if (!strcmp(data->cmd, "echo"))
+	else if (!_strcmp(data->cmd, "echo"))
 		ft_echo(data, 1);
-	else if (!strcmp(data->cmd, "env"))
+	else if (!_strcmp(data->cmd, "env"))
 		ft_env(data, 1);
-	else if (!strcmp(data->cmd, "unset"))
+	else if (!_strcmp(data->cmd, "unset"))
 		ft_unset(data, 1);
-	else if (!strcmp(data->cmd, "export"))
+	else if (!_strcmp(data->cmd, "export"))
 		ft_export(data, 1);
-	else if (!strcmp(data->cmd, "cd"))
+	else if (!_strcmp(data->cmd, "cd"))
 		ft_cd(data, 1);
 	else
 		execve(data->cmd_path, data->cmd_argv,
