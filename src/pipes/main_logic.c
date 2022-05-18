@@ -27,6 +27,7 @@ static void	start_setting(void)
 {
 	sig_cmd_int_handler(SIGQUIT);
 	sig_cmd_quit_handler(SIGQUIT);
+	echoctl_on();
 	dup2(0, 254);
 	dup2(0, 255);
 }
@@ -45,11 +46,7 @@ static void	pipe_logic(t_list *parse)
 
 	execl = (t_exec *)parse->data;
 	if (!parse->next)
-	{
-		start_setting();
 		tree_traversal_alone(execl->root, execl, 0);
-		end_setting();
-	}
 	else
 		fork_pipe(parse);
 }
