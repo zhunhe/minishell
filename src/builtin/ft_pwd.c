@@ -12,9 +12,9 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "../../include/minishell.h"
-#include "../../include/parse.h"
-#include "../../include/util.h"
+#include "minishell.h"
+#include "parse.h"
+#include "util.h"
 #define TRUE 1
 #define FALSE 0
 

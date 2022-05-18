@@ -10,11 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BOOL
-#define BOOL
 #define TRUE 1
 #define FALSE 0
-#endif
 
 int	is_small_alpha(char ch)
 {
