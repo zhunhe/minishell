@@ -81,7 +81,7 @@ void	fork_pipe(t_list *link)
 		else
 		{
 			change_connection_pipe_child(link, p);
-			tree_traversal_alone(exec->root, exec, 1);
+			tree_traversal(exec->root, exec, 1);
 		}
 		if (link->next)
 			((t_exec *)link->next->data)->fd = 3;
