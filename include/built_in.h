@@ -37,6 +37,11 @@ void ft_env(t_exec *data, int pipe_flag);
 void ft_unset(t_exec *data, int pipe_flag);
 
 /*
+ *  ft_export.c file
+ */
+void    ft_export(t_exec *data, int pipe_flag);
+
+/*
  *  ft_cd.c file
  */
 

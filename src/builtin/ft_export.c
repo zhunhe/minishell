@@ -2,9 +2,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "minishell.h"
-#include "parse.h"
-#include "check_string_util.h"
+#include "../../include/minishell.h"
+#include "../../include/parse.h"
+#include "../../include/check_string_util.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -21,6 +21,8 @@ static void	ft_print_export(char *key, char *value)
 		write(1, value, strlen(value));
 		write(1, "\"\n", 2);
 	}
+	else
+		write(1, "\n", 1);
 }
 
 
@@ -112,15 +114,21 @@ void	find_or_change_envp(char *key, char *value)
 	t_envp	*envp;
 	int		exist_flag;
 
+	// printf("%s %s\n", key, value);
 	exist_flag = 0;
 	envpl = g_minishell.envp;
 	while (envpl)
 	{
 		envp = (t_envp *)envpl->data;
+		// printf("[%s %s]\n", envp->key, key);
 		if (!strcmp(envp->key, key))
 		{
-			free(envp->value);
-			envp->value = strdup(value);
+			printf("[%s %s]\n", key, value);
+			if (value)
+			{
+				free(envp->value);
+				envp->value = strdup(value);
+			}
 			exist_flag = 1;
 			break;
 		}
@@ -128,8 +136,8 @@ void	find_or_change_envp(char *key, char *value)
 	}
 	
 	last = g_minishell.envp;
-	while (last->next)
-		last = last->next;
+	while ((last)->next)
+		last = (last)->next;
 
 	if (!exist_flag)
 	{
@@ -138,7 +146,8 @@ void	find_or_change_envp(char *key, char *value)
 		envp->key = key;
 		envp->value = value;
 		envpl->data = envp;
-		last = envpl;
+		(last)->next = envpl;
+		// printf("hi");
 	}
 }
 
@@ -159,6 +168,7 @@ int	divide_argv(char **argv)
 		if (!is_valid_idenfier(key))
 		{
 			free(key);
+			free(value);
 			write(2, "export: `", 9);
 			write(2, *argv, strlen(*argv));
 			write(2, "': not a valid identifier\n", 26);
@@ -171,7 +181,7 @@ int	divide_argv(char **argv)
 	return (err_flag);
 }
 
-void	export(t_exec *data, int pipe_flag)
+void	ft_export(t_exec *data, int pipe_flag)
 {
 	char	**argv;
 	int		ret;
@@ -182,5 +192,80 @@ void	export(t_exec *data, int pipe_flag)
 	if (!*argv)
 		show_export_list(pipe_flag);
 	else						//TODO:: 다시 만들어야 할 듯.
-		divide_argv(argv);
+		ret = divide_argv(argv);
+	g_minishell.state = ret;
+	if (pipe_flag)
+		exit(ret);
 }
+
+#if 0
+t_list *create_l()
+{
+	t_list	*new;
+
+	new = (t_list *)malloc(sizeof(t_list));
+	new->data = 0;
+	new->next = 0;
+	return (new);
+}
+
+t_envp *create_e(char *key, char *value)
+{
+	t_envp	*new;
+
+	new = (t_envp *)malloc(sizeof(t_envp));
+	if (key)
+		new->key = strdup(key);
+	else
+		new->key = NULL;
+	if (value)
+		new->value = strdup(value);
+	else
+		new->value = NULL;
+	return (new);
+}
+#include <stdio.h>
+int	main(void)
+{
+	g_minishell.envp = NULL;
+
+	t_list	*envpl;
+	t_envp	*envp;
+	t_exec	*data;
+	envpl = create_l();
+	envp = create_e("a", "1");
+	g_minishell.envp = envpl;
+	envpl->data = (void *)envp;
+
+	envpl = create_l();
+	envp = create_e("b", "test");
+	g_minishell.envp->next = envpl;
+	envpl->data = envp;
+
+	envpl = create_l();
+	envp = create_e("d", "hi");
+	g_minishell.envp->next->next = envpl;
+	envpl->data = envp;
+
+	data = (t_exec*)malloc(sizeof(t_exec));
+	data->cmd = strdup("export");
+	data->cmd_path = strdup("/bin/export");
+	data->cmd_argv = (char **)malloc(sizeof(char *) * 7);
+	data->cmd_argv[0] = strdup("export");
+	data->cmd_argv[1] =strdup("a=");
+	data->cmd_argv[2] =strdup("e=a");
+	data->cmd_argv[3] =strdup("f=1");
+	data->cmd_argv[4] = NULL;
+	// data->cmd_argv[1] =strdup("1=a");
+	
+	
+	// data->cmd_argv[4] =strdup("b=2");
+	// data->cmd_argv[5] =strdup("c=3");
+	// data->cmd_argv[6] = NULL;
+	ft_export(data, 0); 
+	data->cmd_argv[1] = NULL;
+	ft_export(data, 0);
+	// while (1)
+	// 	;	
+}
+#endif
