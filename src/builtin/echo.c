@@ -1,14 +1,23 @@
-#include <stdio.h> // test
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/18 19:35:46 by hena              #+#    #+#             */
+/*   Updated: 2022/05/18 19:35:47 by hena             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include "minishell.h"
 #include "parse.h"
-// strcmp함수 만들어야 함
-#ifndef BOOL
-#define BOOL
+#include "util.h"
 #define TRUE 1
 #define FALSE 0
-#endif
 
 static int	check_option(char *str, int *opt)
 {
@@ -40,9 +49,12 @@ static void	print_echo(char **argv)
 	while (*argv)
 	{
 		if (!(*(argv + 1)))
-			printf("%s", *argv);
+			_putstr_fd(*argv, 1);
 		else
-			printf("%s ", *argv);
+		{
+			_putstr_fd(*argv, 1);
+			_putstr_fd(" ", 1);
+		}
 		argv++;
 	}
 }
@@ -60,33 +72,12 @@ void	ft_echo(t_exec *data, int pipe_flag)
 	{
 		check_flag = check_option(*argv, &opt_flag);
 		if (!check_flag)
-			break;
+			break ;
 		argv++;
 	}
 	print_echo(argv);
 	if (!opt_flag)
-		printf("\n");
+		_putendl_fd("", 1);
 	if (pipe_flag)
 		exit(0);
 }
-
-#if 0
-// 확인 완료---------------- strlen이나 ft_putendl_fd만 처리
-int	main(void)
-{
-	t_exec	*data;
-
-	data = (t_exec *)malloc(sizeof(t_exec));
-	data->cmd = strdup("echo");
-	data->cmd_path = strdup("/bin/echo");
-	data->cmd_argv = (char **)malloc(sizeof(char *) * 5);
-	data->cmd_argv[0] = strdup("echo");
-	// data->cmd_argv[1] = strdup("-na");
-	// data->cmd_argv[2] = strdup("-ns");
-	// data->cmd_argv[3] = strdup("-na");
-	data->cmd_argv[1] = NULL;
-	// data->cmd_argv[3] = strdup("-");
-	
-	ft_echo(data, 0);
-}
-#endif
