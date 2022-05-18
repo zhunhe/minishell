@@ -1,4 +1,15 @@
-/*
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc_input.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/18 20:54:20 by hena              #+#    #+#             */
+/*   Updated: 2022/05/18 20:55:50 by hena             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -10,13 +21,19 @@
 #include <string.h>
 #include "minishell.h"
 #include "parse.h"
-#include "../includehena/pipe_signal.h"
-// #include <minishell.h>
+#include "pipe_signal.h"
+#include "util.h"
+
 #define TRUE 1
 #define FALSE 0
 
-ft_strlen,  ft_strcmp 있어야함 
-extern t_minishell g_minishell;
+extern t_minishell	g_minishell;
+
+// TODO:: 지워야 함
+typedef struct s_heredoc {
+	char			*end_string;
+	char			*file_name;
+}				t_heredoc;
 
 static void	heredoc_prompt(int fd, char *end)
 {
@@ -31,52 +48,42 @@ static void	heredoc_prompt(int fd, char *end)
 			break ;
 		}
 		else if (*str == '\0')
-			write(fd, "\n", 1);
-		else if (!strcmp(str, end)) // ft_strcmp로 고쳐야함
+			_putendl_fd("", fd);
+		else if (!_strcmp(str, end))
 		{
 			free(str);
 			break ;
 		}
 		else
-		{
-			write(fd, str, strlen(str)); // < ft_strlen으로 고치기
-			write(fd, "\n", 1);
-		}
+			_putendl_fd(str, fd);
 		free(str);
 	}
 }
 
-
-// heredoc 하나씩 실행할 예정
-// 히어독 안에 환경변수 보류하기
-// signal 처리 및 echoctl_off처리 후 heredoc시작
-
-
-static void	change_prompt_option()
+static void	change_prompt_to_heredoc_option(void)
 {
 	signal(SIGINT, sig_heredoc_handler);
 	signal(SIGQUIT, SIG_IGN);
 	echoctl_off();
 }
 
-int	run_heredoc(t_list *heredoc)
+int	run_heredoc(t_list *iter)
 {
-	t_heredoc	*iter;
+	t_heredoc	*h_iter;
 	int			fd;
 
-	iter = (t_heredoc *)heredoc;
-	change_prompt_option();
-	while (iter->next)
+	change_prompt_to_heredoc_option();
+	while (iter)
 	{
-		iter = iter->next;
-		fd = open(iter->file_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
+		h_iter = (t_heredoc *)iter->data;
+		fd = open(h_iter->file_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
 		if (fd < 0)
 		{
-			g_minishell.is_ended = 1;
+			_putendl_fd("can't open file", 2);
 			return (FALSE);
 		}
-		heredoc_prompt(fd, iter->end_string);
+		heredoc_prompt(fd, h_iter->end_string);
+		iter = iter->next;
 	}
 	return (TRUE);
 }
-*/
