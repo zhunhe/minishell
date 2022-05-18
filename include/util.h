@@ -26,4 +26,8 @@ void	_split_free(char **ss);
 char	**_split(const char *s, const char c);
 char	*_strndup(const char *s1, size_t n);
 char	*_strcharset(const char *s1, char *charset);
+
+void	_putstr_fd(char const *s, int fd);
+void	_putendl_fd(char const *s, int fd);
+int		_strcmp(char *s1, char *s2);
 #endif
