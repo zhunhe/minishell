@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:12:33 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/17 07:58:36 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/18 14:37:32 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,15 @@ void	print_ast(t_node *root) {
 void	set_ast(t_exec *result, char *s)
 {
 	if (get_type(s) == TYPE_ETC)
-		add_node_right(&result->root, create_node(_strdup(s)));
+		add_left_leaf_to_child(&result->root, create_node(_strdup(s)), true);
 	else
-		add_node_root(&result->root, create_node(_strdup(s)));
+		add_left_leaf_to_child(&result->root, create_node(_strdup(s)), false);
 
 }
 
-void	set_data(t_exec *exec, int *heredoc_idx)
+void	set_data(t_exec *exec, int *heredoc_idx, t_node *cmd_node)
 {
 	t_node	*cur;
-	t_node	*last;
 
 	cur = exec->root;
 	while (cur != NULL)
@@ -57,27 +56,27 @@ void	set_data(t_exec *exec, int *heredoc_idx)
 		}
 		cur = cur->left;
 	}
-	last = get_last_left_node(exec->root);
-	last->type = TYPE_CMD;
+	add_left_leaf_to_child(&exec->root, cmd_node, true);
 }
 
 t_exec	*make_exec(t_list *token, int *heredoc_idx)
 {
 	t_exec	*result;
+	t_node	*cmd_node;
 	char	**ss;
 
 	result = _calloc(1, sizeof(t_exec));
 	result->pipe_exist = true;
+	cmd_node = set_cmd(result, (char *)token->data);
+	token = token->next;
 	while (token != NULL)
 	{
 		ss = _split((char *)token->data, ' ');
-		if (result->cmd == NULL)
-			set_cmd(result, ss);
 		set_ast(result, ss[0]);
 		token = token->next;
 		_split_free(ss);
 	}
-	set_data(result, heredoc_idx);
+	set_data(result, heredoc_idx, cmd_node);
 #if PRINT
 	print_ast(result->root);
 	printf("*************************\n");
