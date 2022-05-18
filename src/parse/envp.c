@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/06 02:38:37 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/18 16:40:05 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,20 @@ char	**get_envp_double_pointer(void)
 		++i;
 	}
 	return (ss);
+}
+
+char	*get_envp_value(char *key)
+{
+	t_list	*list;
+	t_envp	*envp;
+
+	list = g_minishell.envp;
+	while (list != NULL)
+	{
+		envp = list->data;
+		if (!_strcmp(key, envp->key))
+			return (envp->value);
+		list = list->next;
+	}
+	return (NULL);
 }

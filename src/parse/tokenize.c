@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:02:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/12 16:20:56 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/17 07:25:26 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <parse.h>
 #include <minishell.h>
 
-#define PRINT	1
+#define PRINT	0
 
 #if PRINT
 #include <stdio.h>
