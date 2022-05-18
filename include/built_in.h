@@ -60,9 +60,19 @@ void			ft_export(t_exec *data, int pipe_flag);
 void			ft_cd(t_exec *data, int pipe_flag);
 
 /*
- *  cd_util.c
+ *  ft_cd_home.c
  */
 
+char	*find_home_path(int *flag);
+void	using_environment_value(char *now);
+void	non_using_environment_value(char *now);
+int	home_check(char *argv, char *now);
+
+/*
+ *  ft_cd_util.c
+ */
+
+void	        print_error_cd(char *path);
 void			change_global_oldpwd(char **prev);
 void			change_envp_pwd(void);
 void			change_envp_oldpwd(void);

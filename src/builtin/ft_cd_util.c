@@ -3,8 +3,16 @@
 #include <unistd.h>
 #include "minishell.h"
 #include "parse.h"
+#include "util.h"
 
 extern t_minishell g_minishell;
+
+void	print_error_cd(char *path)
+{
+	_putstr_fd("bash: cd: ", 2);
+	_putstr_fd(path, 2);
+	_putendl_fd(": No such file or directory", 2);
+}
 
 void    change_global_oldpwd(char *prev)
 {

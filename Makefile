@@ -30,8 +30,9 @@ ROOT_SRCS = $(addprefix $(SRC_DIR)/, \
 
 BUILTIN_DIR = $(SRC_DIR)/builtin
 BUILTIN_SRCS = $(addprefix $(BUILTIN_DIR)/, \
-	cd_util1.c \
-	cd.c \
+	ft_cd_util.c \
+	ft_cd_home.c \
+	ft_cd.c \
 	check_string_util.c \
 	echo.c \
 	exit_util.c \
