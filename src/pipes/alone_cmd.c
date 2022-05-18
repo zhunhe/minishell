@@ -96,8 +96,8 @@ void	tree_traversal_alone(t_node *tree, t_exec *data, int type)
 		input(tree->right->file_name, 0);
 	else if (tree->type == TYPE_OUT_OVERWRITE)
 		output(tree->right->file_name, 1);
-	// else if (tree->type == TYPE_HEREDOC)
-	// 	here_doc(tree->right->heredoc_idx, 0);
+	else if (tree->type == TYPE_HEREDOC)
+		here_doc(tree->right->heredoc_idx, 0);
 	else if (tree->type == TYPE_OUT_APPEND)
 		output_append(tree->right->file_name, 1);
 	else if (tree->type == TYPE_CMD)
