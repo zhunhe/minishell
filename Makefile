@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/17 07:41:05 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/18 17:04:43 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
 	strcharset.c \
 	strchr.c \
 	strdup.c \
+	strjoin_free.c \
 	strlcat.c \
 	strlen.c \
 	strncmp.c \
