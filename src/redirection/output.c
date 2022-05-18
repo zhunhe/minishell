@@ -18,10 +18,6 @@
 #include "util.h"
 
 /*
- * strerror(); input.c output.c leaks check
- */
-
-/*
  * redirect > 
  */
 
@@ -30,11 +26,10 @@ static void	print_error(char *filename)
 	char	*err_message;
 
 	err_message = strerror(errno);
-	write(2, "bash: ", 6);
-	write(2, filename, strlen(filename)); //TODO:: strlen -> ft_strlen 넣어야 함
-	write(2, ": ", 2);
-	write(2, err_message, _strlen(err_message));
-	write(2, "\n", 1);
+	_putstr_fd("bash: ", 2);
+	_putstr_fd(filename, 2);
+	_putstr_fd(": ", 2);
+	_putendl_fd(err_message, 2);
 }
 
 void	output(char *filename, int dup_fd)

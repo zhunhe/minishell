@@ -22,11 +22,10 @@ static void	print_error(char *filename)
 	char	*err_message;
 
 	err_message = strerror(errno);
-	write(2, "bash: ", 6);
-	write(2, filename, _strlen(filename));
-	write(2, ": ", 2);
-	write(2, err_message, _strlen(err_message));
-	write(2, "\n", 1);
+	_putstr_fd("bash: ", 2);
+	_putstr_fd(filename, 2);
+	_putstr_fd(": ", 2);
+	_putendl_fd(err_message, 2);
 }
 
 void	input(char *filename, int dup_fd)

@@ -13,20 +13,20 @@
 #ifndef REDIRECT_H
 # define REDIRECT_H
 /*
- *input.c
+ *  input.c		<
  */
 
 void	input(char *filename, int dup_fd);
 
 /*
- *output.c
+ *  output.c	>, >>
  */
 
 void	output(char *filename, int dup_fd);
 void	output_append(char *filename, int dup_fd);
 
 /*
- *  heredoc.c
+ *  heredoc.c	<<
  */
 
 void	here_doc(int index, int dup_fd);
