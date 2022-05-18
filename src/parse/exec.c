@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:12:33 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/18 14:37:32 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/18 14:56:13 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	print_ast(t_node *root) {
 void	set_ast(t_exec *result, char *s)
 {
 	if (get_type(s) == TYPE_ETC)
-		add_left_leaf_to_child(&result->root, create_node(_strdup(s)), true);
-	else
 		add_left_leaf_to_child(&result->root, create_node(_strdup(s)), false);
+	else
+		add_left_leaf_to_child(&result->root, create_node(_strdup(s)), true);
 
 }
 
