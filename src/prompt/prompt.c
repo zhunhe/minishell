@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/14 17:19:40 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/19 20:21:09 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,22 @@ static void	exit_minishell(void)
 	exit(0);
 }
 
+static void	init_prompt(int *status)
+{
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, SIG_IGN);
+	*status = STATUS_OK;
+}
+
 void	print_prompt(void)
 {
 	char		*str;
 	int			status;
 	t_list		*exec;
 
-	signal(SIGINT, sig_handler);
-	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
-		status = STATUS_OK;
+		init_prompt(&status);
 		str = readline(MINISHELL);
 		if (str == NULL)
 			exit_minishell();
