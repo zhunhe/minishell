@@ -18,6 +18,7 @@
 #include <signal.h>
 #include <minishell.h>
 #include <util.h>
+#include "main_logic.h"
 
 static void	sig_handler(int signal)
 {
@@ -74,8 +75,7 @@ void	print_prompt(void)
 			if (status == STATUS_OK)
 			{
 				add_history(str);
-				// exec_cmd(exec);
-				// remove_all_list(exec, func);
+				main_logic();
 			}
 			else
 				print_error_msg(status);
