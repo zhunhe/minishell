@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:59:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/18 17:07:03 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 00:14:11 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 
 void	*_calloc(size_t count, size_t size);
+char	*_itoa(int n);
 void	_putendl_fd(char const *s, int fd);
 void	_putstr_fd(char const *s, int fd);
 char	**_split(const char *s, const char c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 20:47:18 by hena              #+#    #+#             */
-/*   Updated: 2022/05/18 20:47:19 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/20 00:26:25 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 #include "parse.h"
 
 extern t_minishell	g_minishell;
-
-typedef struct s_heredoc {
-	char		*end_string;
-	char		*file_name;
-}				t_heredoc;
 
 void	here_doc(int index, int dup_fd)
 {

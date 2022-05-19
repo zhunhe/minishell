@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 20:54:20 by hena              #+#    #+#             */
-/*   Updated: 2022/05/18 20:55:50 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/20 00:26:16 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@
 #define FALSE 0
 
 extern t_minishell	g_minishell;
-
-// TODO:: 지워야 함
-typedef struct s_heredoc {
-	char			*end_string;
-	char			*file_name;
-}				t_heredoc;
 
 static void	heredoc_prompt(int fd, char *end)
 {

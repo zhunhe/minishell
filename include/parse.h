@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:31:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/18 14:38:07 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 00:24:15 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_exec
 	t_node	*root;
 }	t_exec;
 
+typedef struct s_heredoc
+{
+	char	*end_string;
+	char	*file_name;
+}	t_heredoc;
+
 /*
 ** parse.c
 */
@@ -55,7 +61,7 @@ t_node_type	get_type(char *str);
 /*
 ** exec.c
 */
-t_exec		*make_exec(t_list *token, int *heredoc_idx);
+t_exec		*make_exec(t_list *token, int *heredoc_idx, int *status);
 
 /*
 ** tokenize.c
@@ -72,4 +78,9 @@ void		add_left_leaf_to_child(t_node **root, t_node *child, bool left);
 ** cmd.c
 */
 t_node		*set_cmd(t_exec *result, char *s);
+
+/*
+** heredoc.c
+*/
+t_list		*get_heredoc(t_list *exec);
 #endif
