@@ -28,14 +28,12 @@ static void	start_setting(void)
 	signal(SIGINT, sig_cmd_int_handler);
 	signal(SIGQUIT, sig_cmd_quit_handler);
 	echoctl_on();
-	dup2(0, 254);
-	dup2(0, 255);
+	
 }
 
 static void	end_setting(void)
 {
-	dup2(254, 0);
-	dup2(255, 1);
+	
 	close(254);
 	close(255);
 }
@@ -46,7 +44,13 @@ static void	pipe_logic(t_list *parse)
 
 	execl = (t_exec *)parse->data;
 	if (!parse->next)
+	{
+		dup2(0, 254);
+		dup2(0, 255);
 		tree_traversal(execl->root, execl, 0);
+		dup2(254, 0);
+		dup2(255, 1);
+	}
 	else
 		fork_pipe(parse);
 }
