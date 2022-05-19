@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:59:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 06:41:55 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 08:26:13 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 void	*_calloc(size_t count, size_t size);
 int		_isupper(char c);
 int		_islower(char c);
+int		_isalpha(char c);
 int		_isdigit(char c);
 int		_isalnum(char c);
 char	*_itoa(int n);

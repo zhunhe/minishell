@@ -2,9 +2,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <util.h>
 #include "../../include/minishell.h"
 #include "../../include/parse.h"
-#include "../../include/check_string_util.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -44,15 +44,13 @@ static void	show_export_list(int pipe_flag)
 }
 
 
-
 static int	is_valid_idenfier(char *str)
 {
-	if (!((is_small_alpha(*str) || is_big_alpha(*str) || *str == '_')))
+	if (!(_isalpha(*str) || *str == '_'))
 		return (FALSE);
 	while (*str)
 	{
-		if (!((is_small_alpha(*str) || is_big_alpha(*str) || \
-		is_digit(*str) || *str == '_')))
+		if (!(_isalnum(*str) || *str == '_'))
 			return (FALSE);
 		str++;
 	}

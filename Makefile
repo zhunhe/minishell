@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/20 05:05:03 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/20 08:23:21 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ BUILTIN_SRCS = $(addprefix $(BUILTIN_DIR)/, \
 	ft_cd_util.c \
 	ft_cd_home.c \
 	ft_cd.c \
-	check_string_util.c \
 	ft_echo.c \
 	ft_exit_util.c \
 	ft_exit.c \
