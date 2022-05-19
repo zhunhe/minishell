@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/17 07:49:07 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/19 23:25:34 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,28 @@ t_node_type	get_type(char *str)
 	if (!_strncmp(str, ">", 1))
 		return (TYPE_OUT_OVERWRITE);
 	return (TYPE_ETC);
+}
+
+static bool	check_syntax_error(t_list *result)
+{
+	t_list	*list;
+	t_node	*ast;
+
+	list = result;
+	while (list != NULL)
+	{
+		ast = ((t_exec *)list->data)->root;
+		while (ast != NULL)
+		{
+			if (ast->type < TYPE_CMD && ast->right == NULL)
+				return (true);
+			if (ast->type == TYPE_HEREDOC && ast->right->heredoc_idx == 0)
+				return (true);
+			ast = ast->left;
+		}
+		list = list->next;
+	}
+	return (false);
 }
 
 t_list	*parse(char *s, int *status)
@@ -56,5 +78,7 @@ t_list	*parse(char *s, int *status)
 	_split_free(ss);
 	token = get_last_list(result);
 	((t_exec *)token->data)->pipe_exist = false;
+	if (*status == STATUS_OK && check_syntax_error(result))
+		*status = STATUS_SYNTAX_ERROR;
 	return (result);
 }

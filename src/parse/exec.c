@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:12:33 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/19 19:45:12 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/19 23:45:03 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	set_data(t_exec *exec, int *heredoc_idx, t_node *cmd_node)
 		}
 		cur = cur->left;
 	}
-	add_left_leaf_to_child(&exec->root, cmd_node, true);
+	if (cmd_node != NULL)
+		add_left_leaf_to_child(&exec->root, cmd_node, true);
 }
 
 t_exec	*make_exec(t_list *token, int *heredoc_idx)
@@ -68,7 +69,8 @@ t_exec	*make_exec(t_list *token, int *heredoc_idx)
 	result = _calloc(1, sizeof(t_exec));
 	result->pipe_exist = true;
 	cmd_node = set_cmd(result, (char *)token->data);
-	token = token->next;
+	if (cmd_node != NULL)
+		token = token->next;
 	while (token != NULL)
 	{
 		ss = _split((char *)token->data, ' ');
