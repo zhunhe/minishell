@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/19 23:25:34 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 00:24:27 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_list	*parse(char *s, int *status)
 			*status = STATUS_SYNTAX_ERROR;
 			break ;
 		}
-		add_list_back(&result, create_list(make_exec(token, &heredoc_idx)));
+		add_list_back(&result, create_list(make_exec(token, &heredoc_idx, status)));
 		remove_all_list(&token, NULL);
 	}
 	_split_free(ss);

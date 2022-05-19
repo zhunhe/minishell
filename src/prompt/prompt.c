@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/19 20:21:09 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 00:34:41 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <readline/history.h>
 #include <signal.h>
 #include <minishell.h>
+#include <parse.h>
+#include <list.h>
 #include <util.h>
 #include "main_logic.h"
 
@@ -37,7 +39,8 @@ static void	print_error_msg(t_status status)
 		"",
 		"Error! There is invalid char '\\' or ';'\n",
 		"Error! Quotes is not closed\n",
-		"minishell: syntax error near unexpected token\n"
+		"minishell: syntax error near unexpected token\n",
+		"minishell: maximum here-document count exceeded\n"
 	};
 
 	if (status != STATUS_OK)
@@ -63,6 +66,7 @@ void	print_prompt(void)
 	char		*str;
 	int			status;
 	t_list		*exec;
+	t_list		*heredoc;
 
 	while (1)
 	{
@@ -73,9 +77,12 @@ void	print_prompt(void)
 		else if (*str != '\0')
 		{
 			exec = parse(str, &status);
-			g_minishell.exec = exec;
+			if (status == STATUS_OK)
+				heredoc = get_heredoc(exec);
 			if (status == STATUS_OK)
 			{
+				g_minishell.exec = exec;
+				g_minishell.heredoc = heredoc;
 				add_history(str);
 				main_logic();
 			}

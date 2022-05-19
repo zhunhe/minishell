@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/18 19:54:37 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 00:25:46 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef enum e_status
 	STATUS_ERROR_INVALID_CHAR,
 	STATUS_ERROR_QUOTES_OPENED,
 	STATUS_SYNTAX_ERROR,
+	STATUS_HEREDOC_COUNT_ERROR,
 	STATUS_MAX
 }	t_status;
 

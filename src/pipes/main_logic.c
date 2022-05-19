@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_logic.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 02:42:51 by hena              #+#    #+#             */
-/*   Updated: 2022/05/12 02:42:53 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/20 00:35:39 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ static void	pipe_logic(t_list *parse)
 
 int	main_logic(void)
 {
-	// t_list	*heredoc;
+	t_list	*heredoc;
 	t_list	*exec;
 
-	// heredoc = g_minishell.heredoc;
-	// if (!run_heredoc(heredoc))
-	// 	return (FALSE);
+	heredoc = g_minishell.heredoc;
+	if (!run_heredoc(heredoc))
+		return (FALSE);
 	start_setting();
 	exec = g_minishell.exec;
 	pipe_logic(exec);

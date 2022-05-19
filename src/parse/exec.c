@@ -6,11 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:12:33 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/19 23:45:03 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 00:26:38 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <minishell.h>
 #include <list.h>
 #include <parse.h>
 #include <util.h>
@@ -41,7 +42,7 @@ void	set_ast(t_exec *result, char *s)
 
 }
 
-void	set_data(t_exec *exec, int *heredoc_idx, t_node *cmd_node)
+void	set_data(t_exec *exec, int *heredoc_idx, t_node *cmd_node, int *status)
 {
 	t_node	*cur;
 
@@ -53,6 +54,8 @@ void	set_data(t_exec *exec, int *heredoc_idx, t_node *cmd_node)
 			exec->heredoc = true;
 			if (cur->right != NULL)
 				cur->right->heredoc_idx = ++(*heredoc_idx);
+			if (*heredoc_idx > 16)
+				*status = STATUS_HEREDOC_COUNT_ERROR;
 		}
 		cur = cur->left;
 	}
@@ -60,7 +63,7 @@ void	set_data(t_exec *exec, int *heredoc_idx, t_node *cmd_node)
 		add_left_leaf_to_child(&exec->root, cmd_node, true);
 }
 
-t_exec	*make_exec(t_list *token, int *heredoc_idx)
+t_exec	*make_exec(t_list *token, int *heredoc_idx, int *status)
 {
 	t_exec	*result;
 	t_node	*cmd_node;
@@ -78,7 +81,7 @@ t_exec	*make_exec(t_list *token, int *heredoc_idx)
 		token = token->next;
 		_split_free(ss);
 	}
-	set_data(result, heredoc_idx, cmd_node);
+	set_data(result, heredoc_idx, cmd_node, status);
 #if PRINT
 	print_ast(result->root);
 	printf("*************************\n");
