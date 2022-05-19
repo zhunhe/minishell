@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:31:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/17 07:48:56 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/18 14:38:07 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,10 @@ t_list		*tokenize(char *s);
 ** ast.c
 */
 t_node		*create_node(char *data);
-void		add_node_root(t_node **root, t_node *new);
-void		add_node_right(t_node **parent, t_node *child);
-t_node		*get_last_left_node(t_node *root);
+void		add_left_leaf_to_child(t_node **root, t_node *child, bool left);
 
 /*
 ** cmd.c
 */
-void		set_cmd(t_exec *result, char **ss);
+t_node		*set_cmd(t_exec *result, char *s);
 #endif

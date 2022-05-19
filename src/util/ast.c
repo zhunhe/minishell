@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:22:10 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/17 07:27:36 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/18 14:37:12 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,7 @@ t_node	*create_node(char *data)
 	return (new);
 }
 
-void	add_node_root(t_node **root, t_node *new)
-{
-	t_node	*old_root;
-
-	if (root == NULL || new == NULL)
-		return ;
-	if (*root == NULL)
-	{
-		*root = new;
-		return ;
-	}
-	old_root = *root;
-	*root = new;
-	new->left = old_root;
-}
-
-void	add_node_right(t_node **parent, t_node *child)
-{
-	if (parent == NULL || child == NULL)
-		return ;
-	if (*parent == NULL)
-	{
-		*parent = child;
-		return ;
-	}
-	(*parent)->right = child;
-}
-
-t_node	*get_last_left_node(t_node *root)
+t_node	*get_left_leaf_node(t_node *root)
 {
 	t_node	*last;
 
@@ -61,4 +33,22 @@ t_node	*get_last_left_node(t_node *root)
 	while (last->left != NULL)
 		last = last->left;
 	return (last);
+}
+
+void	add_left_leaf_to_child(t_node **root, t_node *child, bool left)
+{
+	t_node	*left_leaf;
+
+	if (root == NULL || child == NULL)
+		return ;
+	if (*root == NULL)
+	{
+		*root = child;
+		return ;
+	}
+	left_leaf = get_left_leaf_node(*root);
+	if (left)
+		left_leaf->left = child;
+	else
+		left_leaf->right = child;
 }

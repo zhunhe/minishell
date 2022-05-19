@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_logic.h                                       :+:      :+:    :+:   */
+/*   strcmp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/18 22:15:49 by hena              #+#    #+#             */
-/*   Updated: 2022/05/18 22:15:51 by hena             ###   ########.fr       */
+/*   Created: 2022/05/18 05:13:48 by hena              #+#    #+#             */
+/*   Updated: 2022/05/18 05:13:59 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_LOGIC_H
-# define MAIN_LOGIC_H
-# include "parse.h"
+#include "util.h"
 
-int		main_logic(void);
-void	fork_pipe(t_list *link);
-void	tree_traversal(t_node *tree, t_exec *data, int type);
+int	_strcmp(char *s1, char *s2)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		++i;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}

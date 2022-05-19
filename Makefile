@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/17 07:41:05 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/18 17:04:43 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,9 @@ ROOT_SRCS = $(addprefix $(SRC_DIR)/, \
 
 BUILTIN_DIR = $(SRC_DIR)/builtin
 BUILTIN_SRCS = $(addprefix $(BUILTIN_DIR)/, \
-	cd_util1.c \
-	cd.c \
+	ft_cd_util.c \
+	ft_cd_home.c \
+	ft_cd.c \
 	check_string_util.c \
 	echo.c \
 	exit_util.c \
@@ -88,11 +89,15 @@ UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
 	strcharset.c \
 	strchr.c \
 	strdup.c \
+	strjoin_free.c \
 	strlcat.c \
 	strlen.c \
 	strncmp.c \
 	strndup.c \
 	strskip.c \
+	strcmp.c \
+	putstr_fd.c \
+	putendl_fd.c \
 )
 
 SRCS = \
@@ -124,3 +129,31 @@ $(NAME) : $(OBJS) $(MINISHELL_INC)
 	$(CC) $(CFLAGS) $(READLINE) -I$(MINISHELL_INC_DIR) $(OBJS) -o $@
 
 .PHONY : all, clean, fclean, re
+
+SRC = \
+	$(BUILTIN_SRCS) \
+	$(PIPE_SIGNAL_SRCS) \
+	$(PIPES_SRCS) \
+	$(REDIRECTION_SRCS) \
+	$(PARSE_SRCS) \
+	$(PROMPT_SRCS) \
+	$(UTIL_SRCS)
+
+TESTOBJS = $(SRC:.c=.o)
+TESTNAME = a.out
+test: $(TESTNAME)
+$(TESTNAME) : $(TESTOBJS) $(MINISHELL_INC)
+	$(CC) $(CFLAGS) $(READLINE) -I$(MINISHELL_INC_DIR) $(TESTOBJS) -o $@
+TESTS = \
+	$(BUILTIN_SRCS) \
+	$(PIPE_SIGNAL_SRCS) \
+	$(PIPES_SRCS) \
+	$(REDIRECTION_SRCS) \
+	$(PARSE_SRCS) \
+	$(PROMPT_SRCS) \
+	$(UTIL_SRCS)
+
+testc:
+	rm -rf $(TESTOBJS)
+testf: clean
+	rm -rf $(TESTNAME)
