@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 07:40:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/19 14:03:54 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/19 16:46:16 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ t_node	*set_cmd(t_exec *result, char *s)
 	cmd_node->type = TYPE_CMD;
 	result->cmd = _strdup(ss[0]);
 	result->cmd_path = get_cmd_path(ss[0]);
-	// TODO: splitted된 char **ss를 _strjoin을 이용해 붙여주는 작업 필요함. {"CMD", "-n(option)", "-n(option)", "string"}
-	// result->cmd_argv =
-	_split_free(ss);
+	result->cmd_argv = ss;
 	return (cmd_node);
 }
