@@ -35,8 +35,8 @@ BUILTIN_SRCS = $(addprefix $(BUILTIN_DIR)/, \
 	ft_cd.c \
 	check_string_util.c \
 	echo.c \
-	exit_util.c \
-	exit.c \
+	ft_exit_util.c \
+	ft_exit.c \
 	ft_env.c \
 	ft_export.c \
 	ft_pwd.c \

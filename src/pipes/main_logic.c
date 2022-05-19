@@ -21,23 +21,19 @@
 #define TRUE 1
 #define FALSE 0
 
-extern t_minishell	g_minishell;
-
 static void	start_setting(void)
 {
 	signal(SIGINT, sig_cmd_int_handler);
 	signal(SIGQUIT, sig_cmd_quit_handler);
 	echoctl_on();
-	
 }
 
 static void	end_setting(void)
 {
-	
 	close(254);
 	close(255);
 }
-#include <stdio.h>
+
 static void	pipe_logic(t_list *parse)
 {
 	t_exec	*execl;

@@ -27,7 +27,7 @@ void			ft_exit(t_exec *data, int pipe_flag);
  *  ft_exit_util.c file
  */
 
-int				ft_atoi(char *str);
+long long		ft_atoi(char *str);
 int				check_all_integer(char *str);
 void			print_exit_error(char *str, int type, int pipe_flag);
 unsigned char	calculate_exit_number(int exit_num);
