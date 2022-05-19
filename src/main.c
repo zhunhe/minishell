@@ -26,7 +26,6 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1)
 		return (error_arg(argv[1]));
 	set_envp(envp);
-	echoctl_off();
 	print_prompt();
 	return (0);
 }

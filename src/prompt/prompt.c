@@ -52,6 +52,7 @@ static void	exit_minishell(void)
 
 static void	init_prompt(int *status)
 {
+	echoctl_off();
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
 	*status = STATUS_OK;
@@ -72,6 +73,7 @@ void	print_prompt(void)
 		else if (*str != '\0')
 		{
 			exec = parse(str, &status);
+			g_minishell.exec = exec;
 			if (status == STATUS_OK)
 			{
 				add_history(str);
