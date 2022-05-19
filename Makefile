@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/20 00:18:39 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/20 05:05:03 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ PARSE_SRCS = $(addprefix $(PARSE_DIR)/, \
 	error.c \
 	exec.c \
 	heredoc.c \
+	interpret.c \
 	parse.c \
 	tokenize.c \
 )
@@ -85,6 +86,7 @@ UTIL_DIR = $(SRC_DIR)/util
 UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
 	ast.c \
 	calloc.c \
+	isalnum.c \
 	itoa.c \
 	list.c \
 	split.c \

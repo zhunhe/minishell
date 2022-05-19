@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:31:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 00:24:15 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 03:15:51 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,9 @@ t_node		*set_cmd(t_exec *result, char *s);
 ** heredoc.c
 */
 t_list		*get_heredoc(t_list *exec);
+
+/*
+** interpret.c
+*/
+char		*interpret(char *line);
 #endif

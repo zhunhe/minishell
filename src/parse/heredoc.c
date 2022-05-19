@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 23:52:49 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 00:51:45 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 06:33:01 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_heredoc	*make_heredoc(t_node *node)
 	heredoc = _calloc(1, sizeof(t_heredoc));
 	heredoc->end_string = _strdup(node->right->file_name);
 	heredoc->file_name = _strdup("/tmp/hena_chan");
-	heredoc->file_name = _strjoin_free(heredoc->file_name, _itoa(node->right->heredoc_idx));
+	heredoc->file_name = _strjoin_free(heredoc->file_name, _itoa(node->right->heredoc_idx), true);
 	return (heredoc);
 }
 
