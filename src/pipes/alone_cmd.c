@@ -101,8 +101,10 @@ static void	select_multiple_cmd(t_exec *data)
 			execve_error_print(data->cmd);
 }
 
-void	tree_traversal(t_node *tree, t_exec *data, int type)
+void	tree_traversal(t_node *tree, t_exec *data, int pipe_exist)
 {
+	if (!tree)
+		return ;
 	if (tree->type == TYPE_IN_OVERWRITE)
 		input(tree->right->file_name, 0);
 	else if (tree->type == TYPE_OUT_OVERWRITE)
@@ -113,14 +115,13 @@ void	tree_traversal(t_node *tree, t_exec *data, int type)
 		output_append(tree->right->file_name, 1);
 	else if (tree->type == TYPE_CMD)
 	{
-		if (!type)
+		if (!pipe_exist)
 		{
-			end_setting();
 			select_cmd(data);
+			end_setting();
 		}
 		else
 			select_multiple_cmd(data);
-		return ;
 	}
-	tree_traversal(tree->left, data, type);
+	tree_traversal(tree->left, data, pipe_exist);
 }

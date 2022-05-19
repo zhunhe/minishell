@@ -84,5 +84,4 @@ void	change_to_old_path(char *now)
 		chdir(g_minishell.oldpwd);
 	}
 	change_values(now);
-	free(now);
 }

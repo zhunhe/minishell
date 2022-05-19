@@ -64,9 +64,9 @@ void			ft_cd(t_exec *data, int pipe_flag);
  */
 
 char	*find_home_path(int *flag);
-void	using_environment_value(char *now);
+void    using_environment_home_value(char *now);
 void	non_using_environment_value(char *now);
-int	home_check(char *argv, char *now);
+int	go_home_dir(char *argv, char *now);
 
 /*
  *  ft_cd_util.c

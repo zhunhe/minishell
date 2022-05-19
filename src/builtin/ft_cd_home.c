@@ -32,7 +32,7 @@ char	*find_home_path(int *flag)
 	return (path);
 }
 
-void	using_environment_value(char *now)
+void	using_environment_home_value(char *now)
 {
 	int		flag;
 	char	*path;
@@ -53,25 +53,14 @@ void	using_environment_value(char *now)
 			change_values(now);
 	}
 }
-
-void	non_using_environment_value(char *now)
+#include <stdio.h>
+int	go_home_dir(char *argv, char *now)
 {
-	chdir("/Users/juhur");
-	change_values(now);
-}
-
-int	home_check(char *argv, char *now)
-{
-	if (!argv)
+	if (!argv || !_strcmp("--", argv))
 	{
-		using_environment_value(now);
+		printf("hello\n");
+		using_environment_home_value(now);
 		return (TRUE);
 	}
-	else if (!_strncmp("~", argv, 1))
-	{
-		non_using_environment_value(now);
-		return (TRUE);
-	}
-	free(now);
 	return (FALSE);
 }

@@ -17,14 +17,12 @@
 #include "parse.h"
 #include "util.h"
 
-extern t_minishell	g_minishell;
-
 static void	ft_print_env(char *key, char *value)
 {
 	_putstr_fd(key, 1);
-	write(1, "=", 1);
+	_putstr_fd("=", 1);
 	_putstr_fd(value, 1);
-	write(1, "\n", 1);
+	_putendl_fd("", 1);
 }
 
 void	ft_env(t_exec *data, int pipe_flag)
@@ -38,7 +36,7 @@ void	ft_env(t_exec *data, int pipe_flag)
 	if (*argv)
 	{
 		_putendl_fd("env must be one argv", 2);
-		exit(1);
+		return ;
 	}
 	envpl = g_minishell.envp;
 	while (envpl)
