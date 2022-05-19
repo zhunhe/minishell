@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:12:33 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/18 14:56:13 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/19 19:45:12 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <parse.h>
 #include <util.h>
 
-#define PRINT		1
+#define PRINT		0
 
 #if PRINT
 void	print_ast(t_node *root) {
