@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 07:40:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/19 14:02:14 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/19 14:03:54 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ static char	*get_cmd_path(char *cmd)
 {
 	char	*path;
 	int		fd;
-	char	**path_value;
+	char	**path_list;
 	int		i;
 
 	if (is_builtin(cmd))
 		return (NULL);
-	path_value = _split(get_envp_value("PATH"), ':');
-	if (path_value == NULL)
+	path_list = _split(get_envp_value("PATH"), ':');
+	if (path_list == NULL)
 		return (NULL);
 	i = -1;
-	while (path_value[++i] != NULL)
+	while (path_list[++i] != NULL)
 	{
-		path = _strdup(path_value[i]);
+		path = _strdup(path_list[i]);
 		path = _strjoin_free(path, "/");
 		path = _strjoin_free(path, cmd);
 		fd = open(path, O_RDONLY);
