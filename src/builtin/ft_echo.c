@@ -29,9 +29,7 @@ static int	check_option(char *str, int *opt)
 	while (str[i])
 	{
 		if (str[i] != 'n')
-		{
 			return (FALSE);
-		}
 		++i;
 	}
 	*opt = 1;
@@ -78,6 +76,7 @@ void	ft_echo(t_exec *data, int pipe_flag)
 	print_echo(argv);
 	if (!opt_flag)
 		_putendl_fd("", 1);
+	g_minishell.state = 0;
 	if (pipe_flag)
 		exit(0);
 }

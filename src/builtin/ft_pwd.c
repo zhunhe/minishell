@@ -22,7 +22,7 @@ extern t_minishell	g_minishell;
 
 static int	check_option(char *str)
 {
-	if (str[0] == '-' && _strlen(str) > 1)
+	if (_strcmp(str, "--") && str[0] == '-' && _strlen(str) > 1)
 		return (TRUE);
 	else
 		return (FALSE);
@@ -38,7 +38,7 @@ void	ft_pwd(t_exec *data, int pipe_flag)
 	if (*argv && check_option(*argv))
 	{
 		_putendl_fd("option T.T", 2);
-		exit(1);
+		return ;
 	}
 	now_path = NULL;
 	now_path = getcwd(NULL, 256);

@@ -14,6 +14,7 @@
 #include <signal.h>
 #include "minishell.h"
 #include "parse.h"
+#include "util.h"
 
 extern t_minishell	g_minishell;
 
@@ -22,12 +23,13 @@ void	sig_cmd_int_handler(int signal)
 	if (signal != SIGINT)
 		return ;
 	g_minishell.state = 130;
+	_putendl_fd("", 2);
 }
 
 void	sig_cmd_quit_handler(int signal)
 {
 	if (signal != SIGQUIT)
 		return ;
-	write(2, "Quit: 3\n", 8);
 	g_minishell.state = 131;
+	_putendl_fd("Quit: 3", 2);
 }
