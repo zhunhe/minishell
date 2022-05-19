@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:34:12 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/15 20:12:34 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/19 13:57:03 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ char	**_split(const char *s, const char c)
 	char	**ret;
 	int		word_cnt;
 
+	if (s == NULL)
+		return (NULL);
 	word_cnt = count_word((char *)s, c);
 	if (word_cnt == -1)
 		return (NULL);
