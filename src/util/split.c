@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:34:12 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/19 13:57:03 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/19 18:56:15 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	make_array(char **ret, char *s, char c, int word_cnt)
 	dquote = false;
 	while (word_cnt--)
 	{
-		if (*s == c)
+		while (*s != '\0' && *s == c)
 			++s;
 		len = 0;
 		while (*s && (c != *s || quote || dquote))
