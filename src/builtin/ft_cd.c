@@ -20,17 +20,15 @@
 
 #define TRUE 1
 #define FALSE 0
-#include <stdio.h>
+
 int	check_option(char *str)
 {
 	if (!_strncmp(str, "-", 1) && _strlen(str) > 1 && _strcmp(str, "--"))
 	{
-		printf("test\n");
 		return (TRUE);
 	}
 	return (FALSE);
 }
-
 
 void	ft_cd(t_exec *data, int pipe_flag)
 {
@@ -40,14 +38,11 @@ void	ft_cd(t_exec *data, int pipe_flag)
 	now = getcwd(NULL, 256);
 	argv = data->cmd_argv;
 	argv++;
-	if (home_check(*argv, now))
-		return ;
-	if (check_option(*argv))
-	{
+	if (go_home_dir(*argv, now))
 		free(now);
-		return ;
-	}
-	if (!_strcmp(*argv, "-"))
+	else if (check_option(*argv))
+		free(now);
+	else if (!_strcmp(*argv, "-"))
 	{
 		change_to_old_path(now);
 		free(now);
@@ -58,7 +53,6 @@ void	ft_cd(t_exec *data, int pipe_flag)
 		print_error_cd(*argv);
 		exit(1);
 	}
-	free(now);
 	if (pipe_flag)
 		exit(0);
 }
