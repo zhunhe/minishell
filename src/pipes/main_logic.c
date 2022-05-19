@@ -47,8 +47,8 @@ static void	pipe_logic(t_list *parse)
 	execl = (t_exec *)parse->data;
 	if (!parse->next)
 		tree_traversal(execl->root, execl, 0);
-	// else
-	// 	fork_pipe(parse);
+	else
+		fork_pipe(parse);
 }
 
 int	main_logic(void)
@@ -59,7 +59,6 @@ int	main_logic(void)
 	// heredoc = g_minishell.heredoc;
 	// if (!run_heredoc(heredoc))
 	// 	return (FALSE);
-
 	start_setting();
 	exec = g_minishell.exec;
 	pipe_logic(exec);
