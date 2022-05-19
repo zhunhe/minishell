@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/18 16:29:38 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/18 19:54:37 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_minishell
 
 t_minishell	g_minishell;
 
-# define MINISHELL	"\e[01;32mminishell$ \e[0m"
+# define MINISHELL	"minishell$ "
 
 # define KEY		0
 # define VALUE		1
