@@ -104,8 +104,6 @@ static void	select_multiple_cmd(t_exec *data)
 
 void	tree_traversal(t_node *tree, t_exec *data, int type)
 {
-	if (!tree)
-		return ;
 	if (tree->type == TYPE_IN_OVERWRITE)
 		input(tree->right->file_name, 0);
 	else if (tree->type == TYPE_OUT_OVERWRITE)
@@ -120,6 +118,7 @@ void	tree_traversal(t_node *tree, t_exec *data, int type)
 			select_cmd(data);
 		else
 			select_multiple_cmd(data);
+		return ;
 	}
 	tree_traversal(tree->left, data, type);
 }
