@@ -17,5 +17,5 @@
 int		main_logic(void);
 void	fork_pipe(t_list *link);
 void	tree_traversal(t_node *tree, t_exec *data, int type);
-
+void	end_setting(void);
 #endif

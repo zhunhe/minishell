@@ -18,17 +18,16 @@
 #include "built_in.h"
 #include "redirect.h"
 #include "util.h"
+#include "main_logic.h"
 
 extern t_minishell	g_minishell;
 
-static void	execve_error_print(char *str, int pipe_flag)
+static void	execve_error_print(char *str)
 {
 	_putstr_fd("bash: ", 2);
 	_putstr_fd(str, 2);
 	_putendl_fd(": command not found", 2);
-	g_minishell.state = 127;
-	if (pipe_flag)
-		exit (127);
+	exit (127);
 }
 
 static void	excute_alone_cmd(t_exec *data)
@@ -43,7 +42,7 @@ static void	excute_alone_cmd(t_exec *data)
 	{
 		if (execve(data->cmd_path, data->cmd_argv, \
 		get_envp_double_pointer()))
-			execve_error_print(data->cmd, 0);
+			execve_error_print(data->cmd);
 	}
 	else
 	{
@@ -99,7 +98,7 @@ static void	select_multiple_cmd(t_exec *data)
 	else
 		if (execve(data->cmd_path, data->cmd_argv, \
 		get_envp_double_pointer()))
-			execve_error_print(data->cmd, 1);
+			execve_error_print(data->cmd);
 }
 
 void	tree_traversal(t_node *tree, t_exec *data, int type)
@@ -115,7 +114,10 @@ void	tree_traversal(t_node *tree, t_exec *data, int type)
 	else if (tree->type == TYPE_CMD)
 	{
 		if (!type)
+		{
+			end_setting();
 			select_cmd(data);
+		}
 		else
 			select_multiple_cmd(data);
 		return ;
