@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/14 18:14:24 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/17 07:49:07 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_list	*parse(char *s, int *status)
 {
 	t_list	*token;
 	t_list	*result;
-	t_exec	*exec;
 	char	**ss;
 	int		i;
 	int		heredoc_idx;
@@ -40,10 +39,9 @@ t_list	*parse(char *s, int *status)
 	if (check_error(s, status) == ERROR)
 		return (NULL);
 	ss = _split(s, '|');
-	i = -1;
-	token = NULL;
 	result = NULL;
 	heredoc_idx = 0;
+	i = -1;
 	while (ss[++i] != NULL)
 	{
 		token = tokenize(ss[i]);
@@ -52,10 +50,11 @@ t_list	*parse(char *s, int *status)
 			*status = STATUS_SYNTAX_ERROR;
 			break ;
 		}
-		exec = make_exec(token, status, &heredoc_idx);
-		add_list_back(&result, create_list(exec));
+		add_list_back(&result, create_list(make_exec(token, &heredoc_idx)));
 		remove_all_list(&token, NULL);
 	}
 	_split_free(ss);
+	token = get_last_list(result);
+	((t_exec *)token->data)->pipe_exist = false;
 	return (result);
 }

@@ -1,28 +1,43 @@
-/*
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/18 20:47:18 by hena              #+#    #+#             */
+/*   Updated: 2022/05/18 20:47:19 by hena             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
 #include "minishell.h"
 #include "parse.h"
 
-extern t_minishell g_minishell;
+extern t_minishell	g_minishell;
+
+typedef struct s_heredoc {
+	char		*end_string;
+	char		*file_name;
+}				t_heredoc;
 
 void	here_doc(int index, int dup_fd)
 {
-	t_heredoc	*iter;
+	t_list		*iter;
+	t_heredoc	*h_iter;
 	int			fd;
 	int			i;
 
-	i = -1;
-	iter = (t_heredoc *)g_minishell.heredoc;
+	i = 0;
+	iter = g_minishell.heredoc;
 	while (++i < index)
 		iter = iter->next;
-	fd = open(iter->file_name, O_RDWR, 0644);
+	h_iter = (t_heredoc *)iter->data;
+	fd = open(h_iter->file_name, O_RDWR, 0644);
 	if (fd < 0)
 		exit(1);
 	dup2(fd, dup_fd);
 	close(fd);
 }
-*/

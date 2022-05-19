@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_logic.h                                       :+:      :+:    :+:   */
+/*   putstr_fd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/18 22:15:49 by hena              #+#    #+#             */
-/*   Updated: 2022/05/18 22:15:51 by hena             ###   ########.fr       */
+/*   Created: 2022/05/18 05:19:22 by hena              #+#    #+#             */
+/*   Updated: 2022/05/18 05:19:23 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_LOGIC_H
-# define MAIN_LOGIC_H
-# include "parse.h"
+#include <unistd.h>
+#include "util.h"
 
-int		main_logic(void);
-void	fork_pipe(t_list *link);
-void	tree_traversal(t_node *tree, t_exec *data, int type);
-
-#endif
+void	_putstr_fd(char const *s, int fd)
+{
+	write(fd, s, _strlen((char *)s));
+}
