@@ -62,12 +62,12 @@ void	non_using_environment_value(char *now)
 
 int	home_check(char *argv, char *now)
 {
-	if (!argv)
+	if (!argv || !_strcmp("--", argv))
 	{
 		using_environment_value(now);
 		return (TRUE);
 	}
-	else if (!_strncmp("~", argv, 1))
+	else if (!_strncmp("~", argv, 1)) // TODO:: test 필요
 	{
 		non_using_environment_value(now);
 		return (TRUE);
