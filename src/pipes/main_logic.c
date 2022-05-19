@@ -25,8 +25,8 @@ extern t_minishell	g_minishell;
 
 static void	start_setting(void)
 {
-	sig_cmd_int_handler(SIGQUIT);
-	sig_cmd_quit_handler(SIGQUIT);
+	signal(SIGINT, sig_cmd_int_handler);
+	signal(SIGQUIT, sig_cmd_quit_handler);
 	echoctl_on();
 	dup2(0, 254);
 	dup2(0, 255);
@@ -39,7 +39,7 @@ static void	end_setting(void)
 	close(254);
 	close(255);
 }
-
+#include <stdio.h>
 static void	pipe_logic(t_list *parse)
 {
 	t_exec	*execl;
@@ -47,18 +47,19 @@ static void	pipe_logic(t_list *parse)
 	execl = (t_exec *)parse->data;
 	if (!parse->next)
 		tree_traversal(execl->root, execl, 0);
-	else
-		fork_pipe(parse);
+	// else
+	// 	fork_pipe(parse);
 }
 
 int	main_logic(void)
 {
-	t_list	*heredoc;
+	// t_list	*heredoc;
 	t_list	*exec;
 
-	heredoc = g_minishell.heredoc;
-	if (!run_heredoc(heredoc))
-		return (FALSE);
+	// heredoc = g_minishell.heredoc;
+	// if (!run_heredoc(heredoc))
+	// 	return (FALSE);
+
 	start_setting();
 	exec = g_minishell.exec;
 	pipe_logic(exec);
