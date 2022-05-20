@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 20:47:18 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 00:26:25 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 10:03:39 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 extern t_minishell	g_minishell;
 
-void	here_doc(int index, int dup_fd)
+void	here_doc(int index, int dup_fd, t_list *heredoc)
 {
 	t_list		*iter;
 	t_heredoc	*h_iter;
@@ -26,7 +26,7 @@ void	here_doc(int index, int dup_fd)
 	int			i;
 
 	i = 0;
-	iter = g_minishell.heredoc;
+	iter = heredoc;
 	while (++i < index)
 		iter = iter->next;
 	h_iter = (t_heredoc *)iter->data;
