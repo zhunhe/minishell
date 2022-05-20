@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd_home.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/20 23:16:27 by hena              #+#    #+#             */
+/*   Updated: 2022/05/20 23:16:28 by hena             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
@@ -40,7 +52,8 @@ void	using_environment_home_value(char *now)
 	path = find_home_path(&flag);
 	if (!flag)
 	{
-		_putendl_fd("bash: cd: HOME not set\n", 2);
+		_putendl_fd("bash: cd: HOME not set", 2);
+		g_minishell.state = 1;
 		return ;
 	}
 	if (path == NULL || !_strcmp(path, ""))
@@ -53,12 +66,11 @@ void	using_environment_home_value(char *now)
 			change_values(now);
 	}
 }
-#include <stdio.h>
+
 int	go_home_dir(char *argv, char *now)
 {
 	if (!argv || !_strcmp("--", argv))
 	{
-		printf("hello\n");
 		using_environment_home_value(now);
 		return (TRUE);
 	}
