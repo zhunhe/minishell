@@ -17,8 +17,6 @@
 #include "parse.h"
 #include "main_logic.h"
 
-extern t_minishell	g_minishell;
-
 void	change_connection_pipe_parent(t_list *cmd, int *p)
 {
 	t_exec	*exec;

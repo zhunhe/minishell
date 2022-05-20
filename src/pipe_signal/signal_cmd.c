@@ -16,8 +16,6 @@
 #include "parse.h"
 #include "util.h"
 
-extern t_minishell	g_minishell;
-
 void	sig_cmd_int_handler(int signal)
 {
 	if (signal != SIGINT)

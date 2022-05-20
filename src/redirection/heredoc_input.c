@@ -27,8 +27,6 @@
 #define TRUE 1
 #define FALSE 0
 
-extern t_minishell	g_minishell;
-
 static void	heredoc_prompt(int fd, char *end)
 {
 	char	*str;

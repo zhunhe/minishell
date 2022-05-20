@@ -5,8 +5,6 @@
 #include "parse.h"
 #include "util.h"
 
-extern t_minishell g_minishell;
-
 void	print_error_cd(char *path)
 {
 	_putstr_fd("bash: cd: ", 2);

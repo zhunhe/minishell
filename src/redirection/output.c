@@ -17,10 +17,6 @@
 #include <fcntl.h>
 #include "util.h"
 
-/*
- * redirect > 
- */
-
 static void	print_error(char *filename)
 {
 	char	*err_message;
@@ -31,6 +27,10 @@ static void	print_error(char *filename)
 	_putstr_fd(": ", 2);
 	_putendl_fd(err_message, 2);
 }
+
+/*
+ * redirect > 
+ */
 
 void	output(char *filename, int dup_fd)
 {

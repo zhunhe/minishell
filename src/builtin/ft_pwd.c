@@ -15,10 +15,7 @@
 #include "minishell.h"
 #include "parse.h"
 #include "util.h"
-#define TRUE 1
-#define FALSE 0
-
-extern t_minishell	g_minishell;
+#include "built_in.h"
 
 static int	check_option(char *str)
 {
