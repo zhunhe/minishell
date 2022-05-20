@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 00:00:54 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/15 20:28:02 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 14:19:43 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,4 @@ bool	check_error(char *s, int *status)
 	if (check_double_pipe(s, status))
 		return (ERROR);
 	return (OK);
-}
-
-void	malloc_error(void)
-{
-	printf("Failed to allocate! Insufficient memory\n");
-	exit(1);
 }
