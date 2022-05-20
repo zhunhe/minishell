@@ -16,11 +16,7 @@
 #include "minishell.h"
 #include "parse.h"
 #include "util.h"
-
-#define TRUE 1
-#define FALSE 0
-
-extern t_minishell g_minishell;
+#include "built_in.h"
 
 void	free_list(t_list	*list)
 {

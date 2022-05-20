@@ -18,8 +18,6 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-extern t_minishell	g_minishell;
-
 void	sig_heredoc_handler(int signal)
 {
 	if (signal != SIGINT)

@@ -27,8 +27,6 @@
 #define TRUE 1
 #define FALSE 0
 
-extern t_minishell	g_minishell;
-
 static void	heredoc_prompt(int fd, char *end)
 {
 	char	*str;
@@ -70,6 +68,7 @@ int	run_heredoc(t_list *iter)
 	while (iter)
 	{
 		h_iter = (t_heredoc *)iter->data;
+		printf("[%s]\n", h_iter->file_name);
 		fd = open(h_iter->file_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
 		if (fd < 0)
 		{
@@ -77,6 +76,7 @@ int	run_heredoc(t_list *iter)
 			return (FALSE);
 		}
 		heredoc_prompt(fd, h_iter->end_string);
+		close(fd);
 		iter = iter->next;
 	}
 	return (TRUE);

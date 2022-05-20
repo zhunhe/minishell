@@ -13,6 +13,12 @@
 #ifndef BUILT_IN_H
 # define BUILT_IN_H
 
+# define TRUE 1
+# define FALSE 0
+
+# include "minishell.h"
+# include "parse.h"
+
 /*
  *  ft_pwd.c file
  */
@@ -52,6 +58,13 @@ void			ft_unset(t_exec *data, int pipe_flag);
  *  ft_export.c file
  */
 void			ft_export(t_exec *data, int pipe_flag);
+void			ft_print_export_error(char *argv);
+
+/*
+ *  ft_export_util.c file
+ */
+
+int				divide_argv(char **argv);
 
 /*
  *  ft_cd.c file
@@ -79,4 +92,14 @@ void			change_envp_oldpwd(void);
 void			change_values(char *now);
 void			change_to_old_path(char *now);
 
+/*
+ *  ft_cd_util.c
+ */
+
+t_list			*init_list(void);
+t_envp			*init_envp(char *key, char *value);
+char			*make_key(char *str, int len, int *i);
+char			*make_value(char *str, int len, int index, int *i);
+void			add_key_value(t_list *envpl, t_envp	*envp, char *key, \
+char *value);
 #endif

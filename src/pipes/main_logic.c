@@ -41,12 +41,10 @@ static void	pipe_logic(t_list *parse, t_list *heredoc)
 	t_exec	*execl;
 
 	execl = (t_exec *)parse->data;
+	dup2(0, 254);
+	dup2(1, 255);
 	if (!parse->next)
-	{
-		dup2(0, 254);
-		dup2(1, 255);
 		tree_traversal(execl->root, execl, 0, heredoc);
-	}
 	else
 		fork_pipe(parse, heredoc);
 }

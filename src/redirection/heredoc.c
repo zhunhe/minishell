@@ -16,8 +16,6 @@
 #include "minishell.h"
 #include "parse.h"
 
-extern t_minishell	g_minishell;
-
 void	here_doc(int index, int dup_fd, t_list *heredoc)
 {
 	t_list		*iter;
