@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 02:42:51 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 10:06:58 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 13:40:51 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	pipe_logic(t_list *parse, t_list *heredoc)
 		tree_traversal(execl->root, execl, 0, heredoc);
 	}
 	else
-		fork_pipe(parse);
+		fork_pipe(parse, heredoc);
 }
 
 int	main_logic(t_list *exec, t_list *heredoc)
