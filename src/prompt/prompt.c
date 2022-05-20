@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 00:34:41 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 10:09:00 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ void	print_prompt(void)
 				heredoc = get_heredoc(exec);
 			if (status == STATUS_OK)
 			{
-				g_minishell.exec = exec;
-				g_minishell.heredoc = heredoc;
 				add_history(str);
-				main_logic();
+				main_logic(exec, heredoc);
 			}
 			else
 				print_error_msg(status);

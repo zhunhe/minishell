@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 05:02:47 by hena              #+#    #+#             */
-/*   Updated: 2022/05/18 05:02:48 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/20 10:17:40 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	wait_all_child(t_list *head, int last_pid)
 	}
 }
 
-void	fork_pipe(t_list *link)
+void	fork_pipe(t_list *link, t_list *heredoc)
 {
 	int		p[2];
 	t_list	*head;
@@ -81,7 +81,7 @@ void	fork_pipe(t_list *link)
 		else
 		{
 			change_connection_pipe_child(link, p);
-			tree_traversal(exec->root, exec, 1);
+			tree_traversal(exec->root, exec, 1, heredoc);
 		}
 		if (link->next)
 			((t_exec *)link->next->data)->fd = 3;
