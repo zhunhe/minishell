@@ -6,12 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 09:19:35 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 14:20:44 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 15:17:07 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
-#include <minishell.h>
 
 static void	malloc_error(void)
 {

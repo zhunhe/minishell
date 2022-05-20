@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 10:01:54 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 15:16:48 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ char		*get_envp_value(char *key);
 ** error.c
 */
 bool		check_error(char *s, int *status);
-void		malloc_error(void);
 
 #endif
