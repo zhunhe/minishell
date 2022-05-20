@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 22:44:14 by hena              #+#    #+#             */
-/*   Updated: 2022/05/16 16:00:52 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 08:26:22 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "minishell.h"
 #include "parse.h"
 #include "util.h"
-#include "check_string_util.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -79,13 +78,12 @@ static void	find_and_erase_key(char *str)
 
 static int	is_valid_idenfier(char *str)
 {
-	if (!(is_small_alpha(*str) || is_big_alpha(*str) || *str == '_'))
+	if (!(_isalpha(*str) || *str == '_'))
 		return (FALSE);
 	str++;
 	while (*str)
 	{
-		if (!(is_small_alpha(*str) || is_big_alpha(*str) || \
-		is_digit(*str) || *str == '_'))
+		if (!(_isalnum(*str) || *str == '_'))
 			return (FALSE);
 		str++;
 	}

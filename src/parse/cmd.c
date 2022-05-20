@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 07:40:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/19 23:24:24 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 06:32:50 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static char	*get_cmd_path(char *cmd)
 	while (path_list[++i] != NULL)
 	{
 		path = _strdup(path_list[i]);
-		path = _strjoin_free(path, "/");
-		path = _strjoin_free(path, cmd);
+		path = _strjoin_free(path, "/", false);
+		path = _strjoin_free(path, cmd, false);
 		fd = open(path, O_RDONLY);
 		if (fd > 2)
 		{
@@ -57,6 +57,22 @@ static char	*get_cmd_path(char *cmd)
 		free(path);
 	}
 	return (NULL);
+}
+
+char	**get_cmd_argv(char **ss)
+{
+	char	**cmd_argv;
+	int		count;
+	int		i;
+
+	count = 0;
+	while (ss[count] != NULL)
+		++count;
+	cmd_argv = _calloc(count + 1, sizeof(char *));
+	i = -1;
+	while (++i < count)
+		cmd_argv[i] = interpret(ss[i]);
+	return (cmd_argv);
 }
 
 t_node	*set_cmd(t_exec *result, char *s)
@@ -73,8 +89,9 @@ t_node	*set_cmd(t_exec *result, char *s)
 		return (NULL);
 	}
 	cmd_node->type = TYPE_CMD;
-	result->cmd = _strdup(ss[0]);
-	result->cmd_path = get_cmd_path(ss[0]);
-	result->cmd_argv = ss;
+	result->cmd = interpret(ss[0]);
+	result->cmd_path = get_cmd_path(result->cmd);
+	result->cmd_argv = get_cmd_argv(ss);
+	_split_free(ss);
 	return (cmd_node);
 }

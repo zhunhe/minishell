@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 02:42:51 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 00:35:39 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 13:40:51 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	end_setting(void)
 	close(255);
 }
 
-static void	pipe_logic(t_list *parse)
+static void	pipe_logic(t_list *parse, t_list *heredoc)
 {
 	t_exec	*execl;
 
@@ -44,21 +44,16 @@ static void	pipe_logic(t_list *parse)
 	dup2(0, 254);
 	dup2(1, 255);
 	if (!parse->next)
-		tree_traversal(execl->root, execl, 0);
+		tree_traversal(execl->root, execl, 0, heredoc);
 	else
-		fork_pipe(parse);
+		fork_pipe(parse, heredoc);
 }
 
-int	main_logic(void)
+int	main_logic(t_list *exec, t_list *heredoc)
 {
-	t_list	*heredoc;
-	t_list	*exec;
-
-	heredoc = g_minishell.heredoc;
 	if (!run_heredoc(heredoc))
 		return (FALSE);
 	start_setting();
-	exec = g_minishell.exec;
-	pipe_logic(exec);
+	pipe_logic(exec, heredoc);
 	return (TRUE);
 }

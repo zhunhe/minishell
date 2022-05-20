@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/20 00:18:39 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/20 08:23:21 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ BUILTIN_SRCS = $(addprefix $(BUILTIN_DIR)/, \
 	ft_cd_util.c \
 	ft_cd_home.c \
 	ft_cd.c \
-	check_string_util.c \
 	ft_echo.c \
 	ft_exit_util.c \
 	ft_exit.c \
@@ -71,6 +70,7 @@ PARSE_SRCS = $(addprefix $(PARSE_DIR)/, \
 	error.c \
 	exec.c \
 	heredoc.c \
+	interpret.c \
 	parse.c \
 	tokenize.c \
 )
@@ -85,6 +85,7 @@ UTIL_DIR = $(SRC_DIR)/util
 UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
 	ast.c \
 	calloc.c \
+	isalnum.c \
 	itoa.c \
 	list.c \
 	split.c \

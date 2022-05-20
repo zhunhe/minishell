@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 00:25:46 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/20 10:01:54 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ typedef enum e_status
 typedef struct s_minishell
 {
 	t_list		*envp;
-	t_list		*exec;
-	t_list		*heredoc;
 	int			state;
 	char		*oldpwd;
 }	t_minishell;

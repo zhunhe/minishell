@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect.h                                         :+:      :+:    :+:   */
+/*   isalnum.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 05:00:52 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 10:04:03 by juhur            ###   ########.fr       */
+/*   Created: 2022/05/20 03:07:25 by juhur             #+#    #+#             */
+/*   Updated: 2022/05/20 08:26:03 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIRECT_H
-# define REDIRECT_H
-/*
- *  input.c		<
- */
+int	_isupper(char c)
+{
+	return ('A' <= c && c <= 'Z');
+}
 
-void	input(char *filename, int dup_fd);
+int	_islower(char c)
+{
+	return ('a' <= c && c <= 'z');
+}
 
-/*
- *  output.c	>, >>
- */
+int	_isalpha(char c)
+{
+	return (_isupper(c) || _islower(c));
+}
 
-void	output(char *filename, int dup_fd);
-void	output_append(char *filename, int dup_fd);
+int	_isdigit(char c)
+{
+	return ('0' <= c && c <= '9');
+}
 
-/*
- *  heredoc.c	<<
- */
-
-void	here_doc(int index, int dup_fd, t_list *heredoc);
-
-#endif
+int	_isalnum(char c)
+{
+	return (_isalpha(c) || _isdigit(c));
+}

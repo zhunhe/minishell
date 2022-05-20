@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alone_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 04:39:49 by hena              #+#    #+#             */
-/*   Updated: 2022/05/18 04:39:52 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/20 10:05:01 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,7 @@ static void	select_multiple_cmd(t_exec *data)
 			execve_error_print(data->cmd);
 }
 
-#include <stdio.h>
-void	tree_traversal(t_node *tree, t_exec *data, int pipe_exist)
+void	tree_traversal(t_node *tree, t_exec *data, int pipe_exist, t_list *heredoc)
 {
 	if (!tree)
 	{
@@ -112,7 +111,7 @@ void	tree_traversal(t_node *tree, t_exec *data, int pipe_exist)
 	else if (tree->type == TYPE_OUT_OVERWRITE)
 		output(tree->right->file_name, 1);
 	else if (tree->type == TYPE_HEREDOC)
-		here_doc(tree->right->heredoc_idx, 0);
+		here_doc(tree->right->heredoc_idx, 0, heredoc);
 	else if (tree->type == TYPE_OUT_APPEND)
 		output_append(tree->right->file_name, 1);
 	else if (tree->type == TYPE_CMD)
@@ -122,5 +121,5 @@ void	tree_traversal(t_node *tree, t_exec *data, int pipe_exist)
 		else
 			select_multiple_cmd(data);
 	}
-	tree_traversal(tree->left, data, pipe_exist);
+	tree_traversal(tree->left, data, pipe_exist, heredoc);
 }
