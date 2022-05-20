@@ -67,6 +67,17 @@ void			ft_print_export_error(char *argv);
 int				divide_argv(char **argv);
 
 /*
+ *  ft_export_util2.c
+ */
+
+t_list			*init_list(void);
+t_envp			*init_envp(char *key, char *value);
+char			*make_key(char *str, int len, int *i);
+char			*make_value(char *str, int len, int index, int *i);
+void			add_key_value(t_list *envpl, t_envp	*envp, char *key, \
+char *value);
+
+/*
  *  ft_cd.c file
  */
 
@@ -76,30 +87,28 @@ void			ft_cd(t_exec *data, int pipe_flag);
  *  ft_cd_home.c
  */
 
-char	*find_home_path(int *flag);
-void    using_environment_home_value(char *now);
-void	non_using_environment_value(char *now);
-int	go_home_dir(char *argv, char *now);
+char			*find_home_path(int *flag);
+void			using_environment_home_value(char *now);
+void			non_using_environment_value(char *now);
+int				go_home_dir(char *argv, char *now);
 
 /*
  *  ft_cd_util.c
  */
 
-void	        print_error_cd(char *path);
-void			change_global_oldpwd(char **prev);
+void			change_global_oldpwd(char *prev);
 void			change_envp_pwd(void);
 void			change_envp_oldpwd(void);
 void			change_values(char *now);
 void			change_to_old_path(char *now);
 
 /*
- *  ft_cd_util.c
+ *  ft_cd_util2.c
  */
+void			print_error_cd(char *path);
 
-t_list			*init_list(void);
-t_envp			*init_envp(char *key, char *value);
-char			*make_key(char *str, int len, int *i);
-char			*make_value(char *str, int len, int index, int *i);
-void			add_key_value(t_list *envpl, t_envp	*envp, char *key, \
-char *value);
+/*
+ *  ft_cd_tilde.c
+ */
+void			use_tilde(char *str, char *now);
 #endif

@@ -44,8 +44,13 @@ void	ft_cd(t_exec *data, int pipe_flag)
 		;
 	else if (!_strcmp(*argv, "-"))
 		change_to_old_path(now);
-	else if (chdir(*argv) == -1)
+	else if (!_strcmp(*argv, "~") || !_strncmp(*argv, "~/", 2))
+		use_tilde(*argv, now);
+	else if (!chdir(*argv))
+		change_values(now);
+	else
 		print_error_cd(*argv);
+	free(now);
 	if (pipe_flag)
 		exit(g_minishell.state);
 }
