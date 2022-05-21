@@ -117,4 +117,10 @@ void			use_tilde(char *str, char *now);
  */
 
 void			unlink_all(t_list *heredoc);
+
+/*
+ *  set_exit_status.c
+ */
+
+int				set_exit_status(int status);
 #endif
