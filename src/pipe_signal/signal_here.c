@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 02:25:15 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 19:09:07 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <signal.h>
 #include <stdlib.h>
 #include "minishell.h"
-#include "parse.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 

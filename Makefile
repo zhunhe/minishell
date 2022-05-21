@@ -45,6 +45,7 @@ BUILTIN_SRCS = $(addprefix $(BUILTIN_DIR)/, \
 	ft_pwd.c \
 	ft_unset.c \
 	ft_unlink.c \
+	set_exit_status.c \
 )
 
 PIPE_SIGNAL_DIR = $(SRC_DIR)/pipe_signal

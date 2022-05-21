@@ -6,14 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 02:22:45 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 19:10:32 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <signal.h>
 #include "minishell.h"
-#include "parse.h"
 #include "util.h"
 
 void	sig_cmd_int_handler(int signal)

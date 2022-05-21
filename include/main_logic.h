@@ -14,7 +14,7 @@
 # define MAIN_LOGIC_H
 # include "parse.h"
 
-int		main_logic(t_list *exec, t_list *heredoc);
+void	main_logic(t_list *exec, t_list *heredoc);
 void	fork_pipe(t_list *link, t_list *heredoc);
 void	tree_traversal(t_node *tree, t_exec *data, \
 int pipe_exist, t_list *heredoc);
