@@ -6,11 +6,10 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 00:24:27 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 17:19:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <minishell.h>
 #include <parse.h>
 #include <util.h>
@@ -75,7 +74,7 @@ t_list	*parse(char *s, int *status)
 		add_list_back(&result, create_list(make_exec(token, &heredoc_idx, status)));
 		remove_all_list(&token, NULL);
 	}
-	_split_free(ss);
+	_split_free(&ss);
 	token = get_last_list(result);
 	((t_exec *)token->data)->pipe_exist = false;
 	if (*status == STATUS_OK && check_syntax_error(result))

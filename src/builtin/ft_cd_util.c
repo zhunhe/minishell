@@ -93,7 +93,7 @@ void	change_to_old_path(char *now)
 			_putstr_fd("bash: cd: ", 2);
 			_putstr_fd(g_minishell.oldpwd, 2);
 			_putendl_fd(": No such file or directory", 2);
-			g_minishell.state = 1;
+			g_minishell.exit_status = 1;
 			return ;
 		}
 		_putendl_fd(g_minishell.oldpwd, 1);

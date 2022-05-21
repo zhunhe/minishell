@@ -6,13 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 07:40:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 06:32:50 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 17:17:45 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <minishell.h>
 #include <parse.h>
 #include <util.h>
@@ -54,7 +53,7 @@ static char	*get_cmd_path(char *cmd)
 			close(fd);
 			return (path);
 		}
-		free(path);
+		_free((void **)&path);
 	}
 	return (NULL);
 }
@@ -84,14 +83,14 @@ t_node	*set_cmd(t_exec *result, char *s)
 	cmd_node = create_node(_strdup(ss[0]));
 	if (cmd_node->type != TYPE_ETC)
 	{
-		_split_free(ss);
-		free(cmd_node);
+		_split_free(&ss);
+		_free((void **)&cmd_node);
 		return (NULL);
 	}
 	cmd_node->type = TYPE_CMD;
 	result->cmd = interpret(ss[0]);
 	result->cmd_path = get_cmd_path(result->cmd);
 	result->cmd_argv = get_cmd_argv(ss);
-	_split_free(ss);
+	_split_free(&ss);
 	return (cmd_node);
 }

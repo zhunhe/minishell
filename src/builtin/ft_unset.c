@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 22:44:14 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 08:26:22 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ void	ft_unset(t_exec	*data, int pipe_flag)
 			_putstr_fd("unset: `", 2);
 			_putstr_fd(*argv, 2);
 			_putendl_fd("': not a valid identifier", 2);
-			g_minishell.state = 1;
+			g_minishell.exit_status = 1;
 		}
 		else
 			find_and_erase_key(*argv);
 		argv++;
 	}
-	g_minishell.state = 0;
+	g_minishell.exit_status = 0;
 	if (pipe_flag)
 		exit(0);
 }

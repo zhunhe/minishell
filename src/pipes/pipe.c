@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 05:02:47 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 10:17:40 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 18:11:37 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void	change_connection_pipe_child(t_list *cmd, int *p)
 void	wait_all_child(t_list *head, int last_pid)
 {
 	int	pid;
-	int	state;
+	int	exit_status;
 
 	while (head)
 	{
-		pid = wait(&state);
+		pid = wait(&exit_status);
 		if (pid == last_pid)
-			g_minishell.state = state;
+			g_minishell.exit_status = exit_status;
 		head = head->next;
 	}
 }

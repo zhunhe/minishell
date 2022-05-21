@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 04:39:49 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 10:05:01 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 18:11:28 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	execve_error_print(char *str)
 static void	excute_alone_cmd(t_exec *data)
 {
 	int	pid;
-	int	state;
+	int	exit_status;
 
 	pid = fork();
 	if (pid < 0)
@@ -44,8 +44,8 @@ static void	excute_alone_cmd(t_exec *data)
 	}
 	else
 	{
-		wait(&state);
-		g_minishell.state = state;
+		wait(&exit_status);
+		g_minishell.exit_status = exit_status;
 	}
 }
 

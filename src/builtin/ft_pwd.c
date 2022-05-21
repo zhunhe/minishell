@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 03:30:30 by hena              #+#    #+#             */
-/*   Updated: 2022/05/17 03:30:31 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_pwd(t_exec *data, int pipe_flag)
 		exit(1);
 	}
 	_putendl_fd(now_path, 1);
-	g_minishell.state = 0;
+	g_minishell.exit_status = 0;
 	free(now_path);
 	if (pipe_flag)
 		exit(0);

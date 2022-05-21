@@ -6,12 +6,10 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 01:25:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 07:06:40 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdbool.h>
 #include <minishell.h>
 #include <util.h>
 
@@ -22,9 +20,9 @@ char	*ft_strjoin1(char *s1, char *s2, bool s2_free)
 	result = _calloc(_strlen(s1) + _strlen(s2) + 1, sizeof(char));
 	_strlcat(result, s1, _strlen(s1) + 1);
 	_strlcat(result, s2, _strlen(s1) + _strlen(s2) + 1);
-	free(s1);
+	_free((void **)&s1);
 	if (s2_free)
-		free(s2);
+		_free((void **)&s2);
 	return (result);
 }
 
@@ -36,7 +34,7 @@ int	find_var(char *str, char **result)
 	*str = '\0';
 	if (*(++str) == '?')
 	{
-		*result = _itoa(g_minishell.state / 256);
+		*result = _itoa(g_minishell.exit_status / 256);
 		return (1);
 	}
 	i = 0;
@@ -48,7 +46,7 @@ int	find_var(char *str, char **result)
 		*result = _strdup(get_envp_value(key));
 	else
 		*result = _strdup("");
-	free(key);
+	_free((void **)&key);
 	return (i);
 }
 
@@ -129,6 +127,6 @@ char	*interpret(char *line)
 		}
 	}
 	ret = ft_strjoin1(ret, str, false);
-	free(tmp);
+	_free((void **)&tmp);
 	return (ret);
 }

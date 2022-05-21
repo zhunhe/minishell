@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cd_util2.c                                      :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 03:54:06 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
+/*   Created: 2022/05/21 13:34:10 by juhur             #+#    #+#             */
+/*   Updated: 2022/05/21 14:27:32 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "util.h"
+#include <stdlib.h>
 
-void	print_error_cd(char *path)
+void	_free(void **target)
 {
-	_putstr_fd("bash: cd: ", 2);
-	_putstr_fd(path, 2);
-	_putendl_fd(": No such file or directory", 2);
-	g_minishell.exit_status = 1;
+	if (target == NULL || *target == NULL)
+		return ;
+	free(*target);
+	*target = NULL;
 }
