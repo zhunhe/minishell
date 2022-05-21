@@ -34,7 +34,7 @@ int	find_var(char *str, char **result)
 	*str = '\0';
 	if (*(++str) == '?')
 	{
-		*result = _itoa(g_minishell.exit_status / 256);
+		*result = _itoa(g_minishell.exit_status);
 		return (1);
 	}
 	i = 0;
