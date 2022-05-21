@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 17:14:22 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 21:48:22 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	print_prompt(void)
 			}
 			else
 				print_error_msg(status);
+			free_lists(&heredoc, &exec);
 		}
 		_free((void **)&str);
 	}

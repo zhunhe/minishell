@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:31:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 03:15:51 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 20:28:51 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,20 @@ t_node		*set_cmd(t_exec *result, char *s);
 t_list		*get_heredoc(t_list *exec);
 
 /*
+** free.c
+*/
+void		free_token(t_list **token);
+void		free_lists(t_list **heredoc, t_list **exec);
+
+/*
 ** interpret.c
 */
 char		*interpret(char *line);
+
+/*
+** remover.c
+*/
+void		data_remover(void *ptr);
+void		heredoc_remover(void *ptr);
+void		exec_remover(void *ptr);
 #endif
