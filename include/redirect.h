@@ -31,4 +31,10 @@ void	output_append(char *filename, int dup_fd);
 
 void	here_doc(int index, int dup_fd, t_list *heredoc);
 
+/*
+ *  heredoc_input.c
+ */
+
+int		run_heredoc(t_list *iter);
+
 #endif

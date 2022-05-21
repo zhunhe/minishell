@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNAL_H
-# define SIGNAL_H
+#ifndef PIPE_SIGNAL_H
+# define PIPE_SIGNAL_H
 
 void	sig_cmd_int_handler(int signal);
 void	sig_cmd_quit_handler(int signal);

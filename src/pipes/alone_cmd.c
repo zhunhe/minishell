@@ -99,7 +99,8 @@ static void	select_multiple_cmd(t_exec *data)
 			execve_error_print(data->cmd);
 }
 
-void	tree_traversal(t_node *tree, t_exec *data, int pipe_exist, t_list *heredoc)
+void	tree_traversal(t_node *tree, t_exec *data, \
+int pipe_exist, t_list *heredoc)
 {
 	if (!tree)
 	{

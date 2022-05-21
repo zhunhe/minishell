@@ -17,7 +17,7 @@
 #include <unistd.h>
 #include "main_logic.h"
 #include "pipe_signal.h"
-#include "heredoc_input.h"
+#include "redirect.h"
 #define TRUE 1
 #define FALSE 0
 
