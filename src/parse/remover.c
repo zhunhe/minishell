@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 18:33:40 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 21:49:17 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 22:01:15 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ static void	node_remover(void *ptr)
 {
 	t_node	*node;
 
-	if (node == NULL)
+	if (ptr == NULL)
 		return ;
-	node = ptr
+	node = ptr;
 	_free((void **)&node->file_name);
 	_free((void **)&node);
 }
