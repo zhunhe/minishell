@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 17:18:04 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 18:01:36 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,12 @@ char	**get_envp_double_pointer(void)
 	while (i < count)
 	{
 		e = list->data;
-		ss[i] = _calloc(_strlen(e->key) + _strlen(e->value) + 2, sizeof(char));
-		_strlcat(ss[i], e->key, _strlen(ss[i]) + _strlen(e->key) + 1);
-		_strlcat(ss[i], "=", _strlen(ss[i]) + 2);
-		_strlcat(ss[i], e->value, _strlen(ss[i]) + _strlen(e->value) + 1);
+		ss[i] = _strdup(e->key);
+		if (e->value != NULL)
+		{
+			ss[i] = _strjoin_free(ss[i], "=", false);
+			ss[i] = _strjoin_free(ss[i], e->value, false);
+		}
 		list = list->next;
 		++i;
 	}
