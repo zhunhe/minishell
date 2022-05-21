@@ -6,46 +6,49 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 04:39:49 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 18:11:28 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 19:19:52 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/wait.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include "minishell.h"
-#include "parse.h"
 #include "built_in.h"
 #include "redirect.h"
 #include "util.h"
 #include "main_logic.h"
 
-static void	execve_error_print(char *str)
+static void	execve_error_print(char *str, int pipe_exist, char **envp)
 {
 	_putstr_fd("bash: ", 2);
 	_putstr_fd(str, 2);
 	_putendl_fd(": command not found", 2);
-	exit (127);
+	envp = 0;	//TODO free넣어줘야할 부분
+	g_minishell.exit_status = 127;
+	if (pipe_exist)
+		exit (127);
 }
 
 static void	excute_alone_cmd(t_exec *data)
 {
-	int	pid;
-	int	exit_status;
+	char	**envp;
+	int		pid;
+	int		exit_status;
 
 	pid = fork();
 	if (pid < 0)
 		exit(1);
 	else if (pid == 0)
 	{
+		envp = get_envp_double_pointer();
 		if (execve(data->cmd_path, data->cmd_argv, \
-		get_envp_double_pointer()))
-			execve_error_print(data->cmd);
+		envp))
+			execve_error_print(data->cmd, 0, envp);
 	}
 	else
 	{
 		wait(&exit_status);
-		g_minishell.exit_status = exit_status;
+		g_minishell.exit_status = set_exit_status(exit_status);
 	}
 }
 
@@ -79,6 +82,8 @@ static void	select_cmd(t_exec *data)
 
 static void	select_multiple_cmd(t_exec *data)
 {
+	char	**envp;
+
 	if (!_strcmp(data->cmd, "pwd"))
 		ft_pwd(data, 1);
 	else if (!_strcmp(data->cmd, "exit"))
@@ -94,9 +99,12 @@ static void	select_multiple_cmd(t_exec *data)
 	else if (!_strcmp(data->cmd, "cd"))
 		ft_cd(data, 1);
 	else
+	{
+		envp = get_envp_double_pointer();
 		if (execve(data->cmd_path, data->cmd_argv, \
-		get_envp_double_pointer()))
-			execve_error_print(data->cmd);
+		envp))
+			execve_error_print(data->cmd, 1, envp);
+	}
 }
 
 void	tree_traversal(t_node *tree, t_exec *data, \
