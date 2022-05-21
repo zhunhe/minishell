@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 19:35:46 by hena              #+#    #+#             */
-/*   Updated: 2022/05/18 19:35:47 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_echo(t_exec *data, int pipe_flag)
 	print_echo(argv);
 	if (!opt_flag)
 		_putendl_fd("", 1);
-	g_minishell.state = 0;
+	g_minishell.exit_status = 0;
 	if (pipe_flag)
 		exit(0);
 }

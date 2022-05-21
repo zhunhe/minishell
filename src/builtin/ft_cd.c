@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:30:56 by hena              #+#    #+#             */
-/*   Updated: 2022/05/19 00:30:59 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_option(char *str)
 {
 	if (!_strncmp(str, "-", 1) && _strlen(str) > 1 && _strcmp(str, "--"))
 	{
-		g_minishell.state = 1;
+		g_minishell.exit_status = 1;
 		_putendl_fd("option T.T", 2);
 		return (TRUE);
 	}
@@ -34,7 +34,7 @@ void	ft_cd(t_exec *data, int pipe_flag)
 	char	**argv;
 	char	*now;
 
-	g_minishell.state = 0;
+	g_minishell.exit_status = 0;
 	now = getcwd(NULL, 256);
 	argv = data->cmd_argv;
 	argv++;
@@ -52,5 +52,5 @@ void	ft_cd(t_exec *data, int pipe_flag)
 		print_error_cd(*argv);
 	free(now);
 	if (pipe_flag)
-		exit(g_minishell.state);
+		exit(g_minishell.exit_status);
 }

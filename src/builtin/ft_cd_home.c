@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd_home.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 23:16:27 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 23:16:28 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	using_environment_home_value(char *now)
 	if (!flag)
 	{
 		_putendl_fd("bash: cd: HOME not set", 2);
-		g_minishell.state = 1;
+		g_minishell.exit_status = 1;
 		return ;
 	}
 	if (path == NULL || !_strcmp(path, ""))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd_tilde.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 04:33:59 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 04:34:00 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	use_tilde(char *str, char *now)
 		path[i + j] = str[j + 1];
 	path[len - 1] = 0;
 	if (chdir(path))
-		g_minishell.state = 1;
+		g_minishell.exit_status = 1;
 	else
 		change_values(now);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 18:52:03 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 18:52:04 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	show_export_list(int pipe_flag)
 		ft_print_export(envp->key, envp->value);
 		envpl = envpl->next;
 	}
-	g_minishell.state = 0;
+	g_minishell.exit_status = 0;
 	if (pipe_flag)
 		exit(0);
 }
@@ -69,7 +69,7 @@ void	ft_export(t_exec *data, int pipe_flag)
 		show_export_list(pipe_flag);
 	else
 		ret = divide_argv(argv);
-	g_minishell.state = ret;
+	g_minishell.exit_status = ret;
 	if (pipe_flag)
 		exit(ret);
 }

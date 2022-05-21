@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 01:25:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 17:15:39 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	find_var(char *str, char **result)
 	*str = '\0';
 	if (*(++str) == '?')
 	{
-		*result = _itoa(g_minishell.state / 256);
+		*result = _itoa(g_minishell.exit_status / 256);
 		return (1);
 	}
 	i = 0;
