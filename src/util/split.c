@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:34:12 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 13:15:47 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 15:10:59 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,8 @@ void	_split_free(char ***ss)
 		return ;
 	i = -1;
 	while ((*ss)[++i] != NULL)
-	{
-		free((*ss)[i]);
-		(*ss)[i] = NULL;
-	}
-	free(*ss);
-	*ss = NULL;
+		_free((void **)&(*ss)[i]);
+	_free((void **)&(*ss));
 }
 
 char	**_split(const char *s, const char c)

@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:59:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 13:14:14 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 13:55:26 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stddef.h>
 
 void	*_calloc(size_t count, size_t size);
+void	_free(void **target);
 int		_isupper(char c);
 int		_islower(char c);
 int		_isalpha(char c);

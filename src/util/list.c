@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:02:31 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/12 16:21:46 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 15:05:14 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	remove_all_list(t_list **list, void (*remove)(void *))
 		next = cur->next;
 		if (remove != NULL)
 			remove(cur->data);
-		free(cur);
+		_free((void **)&cur);
 		cur = next;
 	}
 	*list = NULL;

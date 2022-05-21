@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 07:40:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 13:14:55 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 15:05:58 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*get_cmd_path(char *cmd)
 			close(fd);
 			return (path);
 		}
-		free(path);
+		_free((void **)&path);
 	}
 	return (NULL);
 }
@@ -85,7 +85,7 @@ t_node	*set_cmd(t_exec *result, char *s)
 	if (cmd_node->type != TYPE_ETC)
 	{
 		_split_free(&ss);
-		free(cmd_node);
+		_free((void **)&cmd_node);
 		return (NULL);
 	}
 	cmd_node->type = TYPE_CMD;

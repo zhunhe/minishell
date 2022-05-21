@@ -6,7 +6,7 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/20 08:23:21 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/21 13:55:41 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ UTIL_DIR = $(SRC_DIR)/util
 UTIL_SRCS = $(addprefix $(UTIL_DIR)/, \
 	ast.c \
 	calloc.c \
+	free.c \
 	isalnum.c \
 	itoa.c \
 	list.c \
