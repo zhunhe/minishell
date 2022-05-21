@@ -138,31 +138,3 @@ $(NAME) : $(OBJS) $(MINISHELL_INC)
 	$(CC) $(CFLAGS) $(READLINE) -I$(MINISHELL_INC_DIR) $(OBJS) -o $@
 
 .PHONY : all, clean, fclean, re
-
-SRC = \
-	$(BUILTIN_SRCS) \
-	$(PIPE_SIGNAL_SRCS) \
-	$(PIPES_SRCS) \
-	$(REDIRECTION_SRCS) \
-	$(PARSE_SRCS) \
-	$(PROMPT_SRCS) \
-	$(UTIL_SRCS)
-
-TESTOBJS = $(SRC:.c=.o)
-TESTNAME = a.out
-test: $(TESTNAME)
-$(TESTNAME) : $(TESTOBJS) $(MINISHELL_INC)
-	$(CC) $(CFLAGS) $(READLINE) -I$(MINISHELL_INC_DIR) $(TESTOBJS) -o $@
-TESTS = \
-	$(BUILTIN_SRCS) \
-	$(PIPE_SIGNAL_SRCS) \
-	$(PIPES_SRCS) \
-	$(REDIRECTION_SRCS) \
-	$(PARSE_SRCS) \
-	$(PROMPT_SRCS) \
-	$(UTIL_SRCS)
-
-testc:
-	rm -rf $(TESTOBJS)
-testf: clean
-	rm -rf $(TESTNAME)
