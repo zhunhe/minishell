@@ -6,12 +6,10 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:34:12 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 15:10:59 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 17:13:35 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <minishell.h>
 #include <util.h>
 
 static int	count_word(const char *s, const char c)

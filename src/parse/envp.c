@@ -6,11 +6,10 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 13:14:25 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 17:18:04 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <minishell.h>
 #include <util.h>
 

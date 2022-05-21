@@ -6,11 +6,10 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:40:04 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 15:06:55 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 17:13:02 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <util.h>
 
 char	*_strjoin_free(char *old, char *s, bool s_free)

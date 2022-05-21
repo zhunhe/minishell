@@ -6,11 +6,10 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:12:33 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 13:14:59 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 17:18:15 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <minishell.h>
 #include <list.h>
 #include <parse.h>
@@ -19,6 +18,7 @@
 #define PRINT		0
 
 #if PRINT
+#include <stdio.h>
 void	print_ast(t_node *root) {
 	t_node	*cur = root;
 

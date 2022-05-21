@@ -6,15 +6,13 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 23:52:49 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 06:33:01 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 17:18:32 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <list.h>
 #include <parse.h>
 #include <util.h>
-
-#include <stdio.h>
 
 static t_heredoc	*make_heredoc(t_node *node)
 {

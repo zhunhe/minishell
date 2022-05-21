@@ -6,13 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 07:40:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 15:05:58 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 17:17:45 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <minishell.h>
 #include <parse.h>
 #include <util.h>

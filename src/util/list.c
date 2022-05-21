@@ -6,12 +6,10 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:02:31 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 15:05:14 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 17:14:05 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <list.h>
 #include <util.h>
 
