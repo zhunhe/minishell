@@ -111,4 +111,10 @@ void			print_error_cd(char *path);
  *  ft_cd_tilde.c
  */
 void			use_tilde(char *str, char *now);
+
+/*
+ *  unlink.c
+ */
+
+void			unlink_all(t_list *heredoc);
 #endif

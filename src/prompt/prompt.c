@@ -21,6 +21,7 @@
 #include <list.h>
 #include <util.h>
 #include "main_logic.h"
+#include "built_in.h"
 
 static void	sig_handler(int signal)
 {
@@ -83,6 +84,7 @@ void	print_prompt(void)
 			{
 				add_history(str);
 				main_logic(exec, heredoc);
+				unlink_all(heredoc);
 			}
 			else
 				print_error_msg(status);
