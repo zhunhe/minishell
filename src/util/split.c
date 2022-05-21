@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:34:12 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 17:13:35 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 19:24:41 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,6 @@ static void	make_array(char **ret, char *s, char c, int word_cnt)
 		make_word(len, ret, s);
 		++ret;
 	}
-}
-
-void	_split_free(char ***ss)
-{
-	int	i;
-
-	if (ss == NULL || *ss == NULL)
-		return ;
-	i = -1;
-	while ((*ss)[++i] != NULL)
-		_free((void **)&(*ss)[i]);
-	_free((void **)&(*ss));
 }
 
 char	**_split(const char *s, const char c)
