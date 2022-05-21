@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 22:37:07 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 02:19:06 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,6 @@ t_list	*parse(char *s, int *status)
 
 	if (check_error(s, status) == ERROR)
 		return (NULL);
-	_strskip(&s, " ");
-	if (*s == '\0')
-	{
-		*status = STATUS_NONE;
-		return (NULL);
-	}
 	ss = _split(s, '|');
 	result = NULL;
 	heredoc_idx = 0;
@@ -75,7 +69,8 @@ t_list	*parse(char *s, int *status)
 		if (token == NULL)
 		{
 			*status = STATUS_SYNTAX_ERROR;
-			break ;
+			_free_double_pointer((void ***)&ss);
+			return (NULL);
 		}
 		add_list_back(&result, create_list(make_exec(token, &heredoc_idx, status)));
 		free_token(&token);
