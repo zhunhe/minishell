@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 05:02:47 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 18:11:37 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 20:27:11 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
 #include "minishell.h"
 #include "parse.h"
 #include "main_logic.h"
+#include "built_in.h"
 
 void	change_connection_pipe_parent(t_list *cmd, int *p)
 {
@@ -55,7 +55,7 @@ void	wait_all_child(t_list *head, int last_pid)
 	{
 		pid = wait(&exit_status);
 		if (pid == last_pid)
-			g_minishell.exit_status = exit_status;
+			g_minishell.exit_status = set_exit_status(exit_status);
 		head = head->next;
 	}
 }
