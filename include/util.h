@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:59:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 08:26:13 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 13:14:14 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*_itoa(int n);
 void	_putendl_fd(char const *s, int fd);
 void	_putstr_fd(char const *s, int fd);
 char	**_split(const char *s, const char c);
-void	_split_free(char **ss);
+void	_split_free(char ***ss);
 char	*_strcharset(const char *s1, char *charset);
 char	*_strchr(const char *s, int c);
 int		_strcmp(char *s1, char *s2);

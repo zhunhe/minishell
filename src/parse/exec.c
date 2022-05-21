@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:12:33 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/20 00:26:38 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 13:14:59 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_exec	*make_exec(t_list *token, int *heredoc_idx, int *status)
 		ss = _split((char *)token->data, ' ');
 		set_ast(result, ss[0]);
 		token = token->next;
-		_split_free(ss);
+		_split_free(&ss);
 	}
 	set_data(result, heredoc_idx, cmd_node, status);
 #if PRINT

@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/19 19:42:39 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 13:14:25 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_envp	*s_to_key_value(char *s)
 	ss = _split(s, '=');
 	envp->key = _strdup(ss[KEY]);
 	envp->value = _strdup(ss[VALUE]);
-	_split_free(ss);
+	_split_free(&ss);
 	return (envp);
 }
 
