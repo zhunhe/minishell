@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main_logic.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 02:42:51 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 13:40:51 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/21 20:26:58 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "parse.h"
-#include "redirect.h"
-#include <signal.h>
 #include <unistd.h>
+#include <signal.h>
+#include "minishell.h"
+#include "redirect.h"
 #include "main_logic.h"
 #include "pipe_signal.h"
-#include "redirect.h"
 #define TRUE 1
 #define FALSE 0
 
@@ -49,11 +47,10 @@ static void	pipe_logic(t_list *parse, t_list *heredoc)
 		fork_pipe(parse, heredoc);
 }
 
-int	main_logic(t_list *exec, t_list *heredoc)
+void	main_logic(t_list *exec, t_list *heredoc)
 {
 	if (!run_heredoc(heredoc))
-		return (FALSE);
+		return ;
 	start_setting();
 	pipe_logic(exec, heredoc);
-	return (TRUE);
 }
