@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 20:54:20 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 00:26:16 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 12:34:48 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	heredoc_prompt(int fd, char *end)
 	while (1)
 	{
 		str = readline(">");
+		dup2(200, 0);
 		if (str == NULL)
 		{
 			close(fd);
@@ -65,7 +66,7 @@ int	run_heredoc(t_list *iter)
 	int			fd;
 
 	change_prompt_to_heredoc_option();
-	while (iter)
+	while (iter && g_minishell.signal != 1)
 	{
 		h_iter = (t_heredoc *)iter->data;
 		printf("[%s]\n", h_iter->file_name);

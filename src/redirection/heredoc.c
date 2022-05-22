@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 20:47:18 by hena              #+#    #+#             */
-/*   Updated: 2022/05/20 10:03:39 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 12:33:32 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	here_doc(int index, int dup_fd, t_list *heredoc)
 	h_iter = (t_heredoc *)iter->data;
 	fd = open(h_iter->file_name, O_RDWR, 0644);
 	if (fd < 0)
-		exit(1);
+		return ;
 	dup2(fd, dup_fd);
 	close(fd);
 }

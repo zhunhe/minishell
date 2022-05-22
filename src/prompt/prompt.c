@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 17:14:22 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 12:39:42 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	sig_handler(int signal)
 {
 	if (signal != SIGINT)
 		return ;
+	g_minishell.exit_status = 1;
 	printf("%s\n", MINISHELL);
 	if (rl_on_new_line() == -1)
 		exit(1);
@@ -79,12 +80,13 @@ void	print_prompt(void)
 		{
 			exec = parse(str, &status);
 			if (status == STATUS_OK)
-				heredoc = get_heredoc(exec);
+				heredoc = get_heredoc(exec);	
 			if (status == STATUS_OK)
 			{
 				add_history(str);
 				main_logic(exec, heredoc);
 				unlink_all(heredoc);
+				g_minishell.signal = 0;
 			}
 			else
 				print_error_msg(status);
