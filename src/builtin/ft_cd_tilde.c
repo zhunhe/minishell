@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 04:33:59 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 18:30:59 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	use_tilde(char *str, char *now)
 		g_minishell.exit_status = 1;
 	else
 		change_values(now);
+	_free((void **)&path);
 }
