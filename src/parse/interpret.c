@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 01:25:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 14:03:05 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 16:43:01 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ static char	*interpret_main(char *s)
 	len = -1;
 	while (s[++len] != '\0')
 	{
-		if (_strchr("\'\"", s[len]) || \
+		if (s[len] == '$' && (s[len + 1] == '\0' || _strchr(" \t", s[len + 1])))
+			;
+		else if (_strchr("\'\"", s[len]) || \
 		(s[len] == '$' && (_isalnum(s[len + 1]) || _strchr("_?", s[len + 1]))))
 		{
 			jump = change_line(s + len, &result);
