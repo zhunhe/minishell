@@ -6,14 +6,14 @@
 #    By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/05 15:57:32 by juhur             #+#    #+#              #
-#    Updated: 2022/05/22 15:34:50 by juhur            ###   ########.fr        #
+#    Updated: 2022/05/22 15:43:58 by juhur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 READLINE_DIR = $(shell brew --prefix readline)
 READLINE_AR = $(READLINE_DIR)/lib
