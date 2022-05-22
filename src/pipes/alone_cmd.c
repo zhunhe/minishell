@@ -6,7 +6,7 @@
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 04:39:49 by hena              #+#    #+#             */
-/*   Updated: 2022/05/22 12:41:59 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 13:06:52 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ static void	execve_error_print(char *str, char **envp)
 	_putstr_fd("bash: ", 2);
 	_putstr_fd(str, 2);
 	_putendl_fd(": command not found", 2);
-	envp = 0;	//TODO free넣어줘야할 부분
+	_free_double_pointer((void ***)&envp);
 	g_minishell.exit_status = 127;
 	exit (127);
 }
+
 static void	excute_alone_cmd(t_exec *data)
 {
 	char	**envp;
