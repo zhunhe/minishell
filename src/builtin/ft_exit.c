@@ -6,7 +6,7 @@
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 21:43:49 by hena              #+#    #+#             */
-/*   Updated: 2022/05/19 21:43:57 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 12:56:59 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_exit(t_exec *data, int pipe_flag)
 	if (*argv == NULL)
 	{
 		if (!pipe_flag)
-			_putstr_fd("exit", 1);
+			_putendl_fd("exit", 1);
 		exit(0);
 	}
 	else

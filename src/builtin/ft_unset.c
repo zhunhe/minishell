@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 22:44:14 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 13:17:02 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	ft_unset(t_exec	*data, int pipe_flag)
 
 	argv = data->cmd_argv;
 	argv++;
+	g_minishell.exit_status = 0;
 	while (*argv)
 	{
 		if (!is_valid_idenfier(*argv))
@@ -105,7 +106,6 @@ void	ft_unset(t_exec	*data, int pipe_flag)
 			find_and_erase_key(*argv);
 		argv++;
 	}
-	g_minishell.exit_status = 0;
 	if (pipe_flag)
-		exit(0);
+		exit(g_minishell.exit_status);
 }

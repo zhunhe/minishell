@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 07:40:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 12:47:22 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 14:25:52 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*get_cmd_path(char *cmd)
 		_free((void **)&path);
 	}
 	_free_double_pointer((void ***)&path_list);
-	return (NULL);
+	return (_strdup(cmd));
 }
 
 char	**get_cmd_argv(char **ss)

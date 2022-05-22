@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alone_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 04:39:49 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 19:19:52 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 13:06:52 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@
 #include "util.h"
 #include "main_logic.h"
 
-static void	execve_error_print(char *str, int pipe_exist, char **envp)
+static void	execve_error_print(char *str, char **envp)
 {
 	_putstr_fd("bash: ", 2);
 	_putstr_fd(str, 2);
 	_putendl_fd(": command not found", 2);
-	envp = 0;	//TODO free넣어줘야할 부분
+	_free_double_pointer((void ***)&envp);
 	g_minishell.exit_status = 127;
-	if (pipe_exist)
-		exit (127);
+	exit (127);
 }
 
 static void	excute_alone_cmd(t_exec *data)
@@ -43,12 +42,14 @@ static void	excute_alone_cmd(t_exec *data)
 		envp = get_envp_double_pointer();
 		if (execve(data->cmd_path, data->cmd_argv, \
 		envp))
-			execve_error_print(data->cmd, 0, envp);
+			execve_error_print(data->cmd, envp);
 	}
 	else
 	{
 		wait(&exit_status);
 		g_minishell.exit_status = set_exit_status(exit_status);
+		if (g_minishell.signal)
+			g_minishell.exit_status = g_minishell.signal;
 	}
 }
 
@@ -103,7 +104,7 @@ static void	select_multiple_cmd(t_exec *data)
 		envp = get_envp_double_pointer();
 		if (execve(data->cmd_path, data->cmd_argv, \
 		envp))
-			execve_error_print(data->cmd, 1, envp);
+			execve_error_print(data->cmd, envp);
 	}
 }
 

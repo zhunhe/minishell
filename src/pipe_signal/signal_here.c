@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signal_here.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 02:25:15 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 19:09:07 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 13:09:25 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
@@ -21,10 +22,8 @@ void	sig_heredoc_handler(int signal)
 {
 	if (signal != SIGINT)
 		return ;
-	printf(">");
-	if (rl_on_new_line() == -1)
-		exit(1);
-	rl_replace_line("", 1);
-	rl_redisplay();
+	dup2(0, 200);
+	close(0);
 	g_minishell.exit_status = 1;
+	g_minishell.signal = 1;
 }

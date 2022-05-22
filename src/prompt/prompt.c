@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 13:14:13 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 14:26:00 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	sig_handler(int signal)
 {
 	if (signal != SIGINT)
 		return ;
+	g_minishell.exit_status = 1;
 	printf("%s\n", MINISHELL);
 	if (rl_on_new_line() == -1)
 		exit(1);
@@ -57,6 +58,7 @@ static void	init_prompt(int *status, t_list **exec, t_list **heredoc)
 	*status = STATUS_OK;
 	*exec = NULL;
 	*heredoc = NULL;
+	g_minishell.signal = 0;
 }
 
 bool	print_prompt(void)
