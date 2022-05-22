@@ -6,7 +6,7 @@
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 22:57:34 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 12:34:59 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_minishell
 	t_list		*envp;
 	int			exit_status;
 	char		*oldpwd;
-	int			github_test;
+	int			signal;
 }	t_minishell;
 
 t_minishell	g_minishell;
