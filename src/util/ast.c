@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:22:10 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/18 14:37:12 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 13:03:07 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@ t_node	*create_node(char *data)
 	new->file_name = data;
 	new->type = get_type(data);
 	return (new);
+}
+
+void	remove_ast(t_node *node)
+{
+	t_node	*next;
+
+	while (node != NULL)
+	{
+		next = node->left;
+		node_remover((void *)node->right);
+		node_remover((void *)node);
+		node = next;
+	}
 }
 
 t_node	*get_left_leaf_node(t_node *root)

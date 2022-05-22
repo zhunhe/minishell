@@ -6,25 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 01:25:52 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 18:10:08 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 14:03:05 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 #include <util.h>
-
-char	*ft_strjoin1(char *s1, char *s2, bool s2_free)
-{
-	char	*result;
-
-	result = _calloc(_strlen(s1) + _strlen(s2) + 1, sizeof(char));
-	_strlcat(result, s1, _strlen(s1) + 1);
-	_strlcat(result, s2, _strlen(s1) + _strlen(s2) + 1);
-	_free((void **)&s1);
-	if (s2_free)
-		_free((void **)&s2);
-	return (result);
-}
 
 int	find_var(char *str, char **result)
 {
@@ -62,11 +49,12 @@ int	find_dquote(char *str, char **result)
 	len = -1;
 	while (str[++len] != '\"')
 	{
-		if (str[len] == '$'&& (_isalnum(str[len + 1]) || _strchr("?_", str[len + 1])))
+		if (str[len] == '$' && \
+		(_isalnum(str[len + 1]) || _strchr("?_", str[len + 1])))
 		{
 			jump = find_var(str + len, &re);
-			*result = ft_strjoin1(*result, str, false);
-			*result = ft_strjoin1(*result, re, true);
+			*result = _strjoin_free(*result, str, false);
+			*result = _strjoin_free(*result, re, true);
 			str += len + jump + 1;
 			i += len + jump + 1;
 			len = -1;
@@ -74,7 +62,7 @@ int	find_dquote(char *str, char **result)
 	}
 	str[len] = '\0';
 	i += len;
-	*result = ft_strjoin1(*result, str, false);
+	*result = _strjoin_free(*result, str, false);
 	return (i + 1);
 }
 
@@ -102,31 +90,38 @@ int	change_line(char *str, char **result)
 	return (0);
 }
 
-char	*interpret(char *line)
+static char	*interpret_main(char *s)
 {
 	char	*ret;
-	char	*str;
 	char	*result;
 	int		len;
 	int		jump;
-	char	*tmp;
 
-	str = _strdup(line);
-	tmp = str;
 	ret = _strdup("");
 	len = -1;
-	while (str[++len] != '\0')
+	while (s[++len] != '\0')
 	{
-		if (_strchr("\'\"", str[len]) || (str[len] == '$' && (_isalnum(str[len + 1]) || _strchr("_?", str[len + 1]))))
+		if (_strchr("\'\"", s[len]) || \
+		(s[len] == '$' && (_isalnum(s[len + 1]) || _strchr("_?", s[len + 1]))))
 		{
-			jump = change_line(str + len, &result);
-			ret = ft_strjoin1(ret, str, false);
-			ret = ft_strjoin1(ret, result, true);
-			str += len + jump + 1;
+			jump = change_line(s + len, &result);
+			ret = _strjoin_free(ret, s, false);
+			ret = _strjoin_free(ret, result, true);
+			s += len + jump + 1;
 			len = -1;
 		}
 	}
-	ret = ft_strjoin1(ret, str, false);
-	_free((void **)&tmp);
+	ret = _strjoin_free(ret, s, false);
+	return (ret);
+}
+
+char	*interpret(char *line)
+{
+	char	*s;
+	char	*ret;
+
+	s = _strdup(line);
+	ret = interpret_main(s);
+	_free((void **)&s);
 	return (ret);
 }

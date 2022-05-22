@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 18:33:40 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 22:01:15 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 13:03:48 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	heredoc_remover(void *ptr)
 	_free((void **)&heredoc);
 }
 
-static void	node_remover(void *ptr)
+void	node_remover(void *ptr)
 {
 	t_node	*node;
 
@@ -57,19 +57,6 @@ static void	node_remover(void *ptr)
 	node = ptr;
 	_free((void **)&node->file_name);
 	_free((void **)&node);
-}
-
-static void	remove_ast(t_node *node)
-{
-	t_node	*next;
-
-	while (node != NULL)
-	{
-		next = node->left;
-		node_remover((void *)node->right);
-		node_remover((void *)node);
-		node = next;
-	}
 }
 
 void	exec_remover(void *ptr)

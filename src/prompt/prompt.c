@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 22:39:47 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 13:14:13 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,6 @@ static void	print_error_msg(t_status status)
 		printf("%s", msg[status]);
 }
 
-static void	exit_minishell(void)
-{
-	printf("\e[1A\e[10C exit\n");
-	exit(0);
-}
-
 static void	init_prompt(int *status, t_list **exec, t_list **heredoc)
 {
 	echoctl_off();
@@ -65,33 +59,31 @@ static void	init_prompt(int *status, t_list **exec, t_list **heredoc)
 	*heredoc = NULL;
 }
 
-void	print_prompt(void)
+bool	print_prompt(void)
 {
 	char		*str;
 	int			status;
 	t_list		*exec;
 	t_list		*heredoc;
 
-	while (1)
+	init_prompt(&status, &exec, &heredoc);
+	str = readline(MINISHELL);
+	if (str == NULL)
+		return (false);
+	else if (*str != '\0')
 	{
-		init_prompt(&status, &exec, &heredoc);
-		str = readline(MINISHELL);
-		if (str == NULL)
-			exit_minishell();
-		else if (*str != '\0')
+		exec = parse(str, &status);
+		if (status == STATUS_OK)
 		{
-			exec = parse(str, &status);
-			if (status == STATUS_OK)
-			{
-				heredoc = get_heredoc(exec);
-				add_history(str);
-				main_logic(exec, heredoc);
-				unlink_all(heredoc);
-			}
-			else
-				print_error_msg(status);
-			free_lists(&heredoc, &exec);
+			heredoc = get_heredoc(exec);
+			add_history(str);
+			main_logic(exec, heredoc);
+			unlink_all(heredoc);
 		}
-		_free((void **)&str);
+		else
+			print_error_msg(status);
+		free_lists(&heredoc, &exec);
 	}
+	_free((void **)&str);
+	return (true);
 }

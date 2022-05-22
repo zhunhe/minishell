@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:31:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 20:28:51 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 14:22:06 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_list		*tokenize(char *s);
 ** ast.c
 */
 t_node		*create_node(char *data);
+void		remove_ast(t_node *node);
 void		add_left_leaf_to_child(t_node **root, t_node *child, bool left);
 
 /*
@@ -100,5 +101,6 @@ char		*interpret(char *line);
 */
 void		data_remover(void *ptr);
 void		heredoc_remover(void *ptr);
+void		node_remover(void *ptr);
 void		exec_remover(void *ptr);
 #endif

@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 07:40:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 20:33:43 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 12:47:22 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static char	*get_cmd_path(char *cmd)
 	char	**path_list;
 	int		i;
 
-	if (is_builtin(cmd))
-		return (NULL);
 	path_list = _split(get_envp_value("PATH"), ':');
 	if (path_list == NULL)
 		return (NULL);
@@ -91,7 +89,8 @@ t_node	*set_cmd(t_exec *result, char *s)
 	}
 	cmd_node->type = TYPE_CMD;
 	result->cmd = interpret(ss[0]);
-	result->cmd_path = get_cmd_path(result->cmd);
+	if (!is_builtin(result->cmd))
+		result->cmd_path = get_cmd_path(result->cmd);
 	result->cmd_argv = get_cmd_argv(ss);
 	_free_double_pointer((void ***)&ss);
 	return (cmd_node);

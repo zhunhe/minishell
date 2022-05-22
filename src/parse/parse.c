@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:25:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 02:19:06 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 14:22:31 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,31 @@ t_node_type	get_type(char *str)
 	return (TYPE_ETC);
 }
 
-static bool	check_syntax_error(t_list *result)
+static bool	is_redirection(t_node_type type)
+{
+	if (type == TYPE_IN_OVERWRITE)
+		return (true);
+	if (type == TYPE_OUT_OVERWRITE)
+		return (true);
+	if (type == TYPE_HEREDOC)
+		return (true);
+	if (type == TYPE_OUT_APPEND)
+		return (true);
+	return (false);
+}
+
+static bool	check_syntax_error(t_list *exec)
 {
 	t_list	*list;
 	t_node	*ast;
 
-	list = result;
+	list = exec;
 	while (list != NULL)
 	{
 		ast = ((t_exec *)list->data)->root;
 		while (ast != NULL)
 		{
-			if (ast->type < TYPE_CMD && ast->right == NULL)
+			if (is_redirection(ast->type) && ast->right == NULL)
 				return (true);
 			if (ast->type == TYPE_HEREDOC && ast->right->heredoc_idx == 0)
 				return (true);
@@ -49,18 +62,14 @@ static bool	check_syntax_error(t_list *result)
 	return (false);
 }
 
-t_list	*parse(char *s, int *status)
+static t_list	*parse_main(char **ss, int *status)
 {
 	t_list	*token;
-	t_list	*result;
-	char	**ss;
-	int		i;
+	t_list	*exec;
 	int		heredoc_idx;
+	int		i;
 
-	if (check_error(s, status) == ERROR)
-		return (NULL);
-	ss = _split(s, '|');
-	result = NULL;
+	exec = NULL;
 	heredoc_idx = 0;
 	i = -1;
 	while (ss[++i] != NULL)
@@ -69,16 +78,30 @@ t_list	*parse(char *s, int *status)
 		if (token == NULL)
 		{
 			*status = STATUS_SYNTAX_ERROR;
-			_free_double_pointer((void ***)&ss);
-			return (NULL);
+			break ;
 		}
-		add_list_back(&result, create_list(make_exec(token, &heredoc_idx, status)));
+		add_list_back(&exec, \
+			create_list(make_exec(token, &heredoc_idx, status)));
 		free_token(&token);
 	}
+	return (exec);
+}
+
+t_list	*parse(char *s, int *status)
+{
+	t_list	*exec;
+	char	**ss;
+
+	if (check_error(s, status) == ERROR)
+		return (NULL);
+	ss = _split(s, '|');
+	exec = parse_main(ss, status);
 	_free_double_pointer((void ***)&ss);
-	token = get_last_list(result);
-	((t_exec *)token->data)->pipe_exist = false;
-	if (*status == STATUS_OK && check_syntax_error(result))
-		*status = STATUS_SYNTAX_ERROR;
-	return (result);
+	if (*status == STATUS_OK)
+	{
+		((t_exec *)get_last_list(exec)->data)->pipe_exist = false;
+		if (check_syntax_error(exec))
+			*status = STATUS_SYNTAX_ERROR;
+	}
+	return (exec);
 }

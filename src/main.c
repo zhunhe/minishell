@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:58:28 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/13 05:19:39 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 13:14:02 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1)
 		return (error_arg(argv[1]));
 	set_envp(envp);
-	print_prompt();
+	while (1)
+		if (!print_prompt())
+			break ;
+	printf("\e[1A\e[10C exit\n");
 	return (0);
 }

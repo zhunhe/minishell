@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:02:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 17:15:54 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 14:21:56 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,60 +15,42 @@
 #include <parse.h>
 #include <minishell.h>
 
-#define PRINT	0
-
-#if PRINT
-#include <stdio.h>
-void	print_token(t_list *head)
+static char	*make_token(char **s)
 {
-	t_list	*cur;
+	t_node_type	type;
+	char		*data;
+	size_t		len;
 
-	cur = head;
-	while (cur != NULL)
+	type = get_type(*s);
+	if (type == TYPE_OUT_APPEND || type == TYPE_HEREDOC)
 	{
-		printf("data[%s]\n", cur->data);
-		cur = cur->next;
+		data = _strndup(*s, 2);
+		*s += 2;
 	}
+	else if (type == TYPE_IN_OVERWRITE || type == TYPE_OUT_OVERWRITE)
+	{
+		data = _strndup(*s, 1);
+		++(*s);
+	}
+	else
+	{
+		len = _strcharset(*s, "<>") - *s;
+		data = _strndup(*s, len);
+		*s += len;
+	}
+	return (data);
 }
-#endif
 
 t_list	*tokenize(char *s)
 {
 	t_list		*head;
-	t_list		*cur;
-	char		*data;
-	size_t		len;
 
 	_strskip(&s, " ");
 	head = NULL;
 	while (*s != '\0')
 	{
-		cur = _calloc(1, sizeof(t_list));
-		switch (get_type(s))
-		{
-			case TYPE_OUT_APPEND:
-			case TYPE_HEREDOC:
-				data = _strndup(s, 2);
-				s += 2;
-				break;
-			case TYPE_IN_OVERWRITE:
-			case TYPE_OUT_OVERWRITE:
-				data = _strndup(s, 1);
-				++s;
-				break;
-			default:
-				len = _strcharset(s, "<>") - s;
-				data = _strndup(s, len);
-				s += len;
-				break;
-		}
-		cur->data = data;
-		add_list_back(&head, cur);
+		add_list_back(&head, create_list(make_token(&s)));
 		_strskip(&s, " ");
 	}
-#if PRINT
-	print_token(head);
-	printf("------------------\n");
-#endif
 	return (head);
 }

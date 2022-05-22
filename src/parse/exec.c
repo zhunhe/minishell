@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:12:33 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 19:33:30 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 12:40:55 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,12 @@
 #include <parse.h>
 #include <util.h>
 
-#define PRINT		0
-
-#if PRINT
-#include <stdio.h>
-void	print_ast(t_node *root) {
-	t_node	*cur = root;
-
-	printf("%s %d\n", __func__, __LINE__);
-	while (cur != NULL)
-	{
-		printf("cur [%s] [%d]\n", cur->file_name, cur->type);
-		if (cur->right)
-			printf("right [%s] [%d]\n", cur->right->file_name, cur->right->type);
-		cur = cur->left;
-	}
-}
-#endif
-
 void	set_ast(t_exec *result, char *s)
 {
 	if (get_type(s) == TYPE_ETC)
 		add_left_leaf_to_child(&result->root, create_node(_strdup(s)), false);
 	else
 		add_left_leaf_to_child(&result->root, create_node(_strdup(s)), true);
-
 }
 
 void	set_data(t_exec *exec, int *heredoc_idx, t_node *cmd_node, int *status)
@@ -82,9 +63,5 @@ t_exec	*make_exec(t_list *token, int *heredoc_idx, int *status)
 		_free_double_pointer((void ***)&ss);
 	}
 	set_data(result, heredoc_idx, cmd_node, status);
-#if PRINT
-	print_ast(result->root);
-	printf("*************************\n");
-#endif
 	return (result);
 }

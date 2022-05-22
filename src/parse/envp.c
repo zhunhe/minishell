@@ -6,30 +6,12 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:23:55 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 19:33:23 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 12:40:21 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 #include <util.h>
-
-#define PRINT	0
-
-#if PRINT
-void	print_envp_list(void)
-{
-	t_list	*tmp;
-	t_envp	*envp;
-
-	tmp = g_minishell.envp;
-	while (tmp)
-	{
-		envp = (t_envp *)tmp->data;
-		printf("%s=%s\n", envp->key, envp->value);
-		tmp = tmp->next;
-	}
-}
-#endif
 
 t_envp	*s_to_key_value(char *s)
 {
@@ -51,9 +33,6 @@ void	set_envp(char **ss)
 	i = -1;
 	while (ss[++i] != NULL)
 		add_list_back(&g_minishell.envp, create_list(s_to_key_value(ss[i])));
-#if PRINT
-	print_envp_list();
-#endif
 }
 
 char	**get_envp_double_pointer(void)
