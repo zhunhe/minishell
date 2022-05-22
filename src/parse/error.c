@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 00:00:54 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 02:15:55 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 15:46:31 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static bool	check_double_pipe(char *s, int *status)
 
 static bool	check_none(char *s, int *status)
 {
-	_strskip(&s, " ");
+	_strskip(&s, " \t");
 	if (*s == '\0')
 	{
 		*status = STATUS_NONE;

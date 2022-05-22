@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:02:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 15:34:15 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 15:47:30 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ t_list	*tokenize(char *s)
 {
 	t_list		*head;
 
-	_strskip(&s, " ");
+	_strskip(&s, " \t");
 	head = NULL;
 	while (*s != '\0')
 	{
 		add_list_back(&head, create_list(make_token(&s)));
-		_strskip(&s, " ");
+		_strskip(&s, " \t");
 	}
 	return (head);
 }
