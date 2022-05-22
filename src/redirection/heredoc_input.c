@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 20:54:20 by hena              #+#    #+#             */
-/*   Updated: 2022/05/22 12:34:48 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 15:39:18 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	run_heredoc(t_list *iter)
 	while (iter && g_minishell.signal != 1)
 	{
 		h_iter = (t_heredoc *)iter->data;
-		printf("[%s]\n", h_iter->file_name);
 		fd = open(h_iter->file_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
 		if (fd < 0)
 		{
