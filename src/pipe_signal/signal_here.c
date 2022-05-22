@@ -6,7 +6,7 @@
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 02:25:15 by hena              #+#    #+#             */
-/*   Updated: 2022/05/22 12:42:52 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 13:09:25 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "minishell.h"
 #include <readline/readline.h>
 #include <readline/history.h>
-
 
 void	sig_heredoc_handler(int signal)
 {
