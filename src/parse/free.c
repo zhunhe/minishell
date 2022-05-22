@@ -5,29 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 13:34:10 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 21:47:49 by juhur            ###   ########.fr       */
+/*   Created: 2022/05/21 19:53:20 by juhur             #+#    #+#             */
+/*   Updated: 2022/05/21 20:29:44 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <parse.h>
+#include <list.h>
+#include <util.h>
 
-void	_free(void **target)
+void	free_token(t_list **token)
 {
-	if (target == NULL || *target == NULL)
-		return ;
-	free(*target);
-	*target = NULL;
+	void	(*remover)(void *);
+
+	if (token != NULL && *token != NULL)
+	{
+		remover = data_remover;
+		remove_all_list(token, remover);
+	}
 }
 
-void	_free_double_pointer(void ***target)
+void	free_lists(t_list **heredoc, t_list **exec)
 {
-	int		i;
+	void	(*remover)(void *);
 
-	if (target == NULL || *target == NULL)
-		return ;
-	i = -1;
-	while ((*target)[++i] != NULL)
-		_free((void **)&(*target)[i]);
-	_free((void **)&(*target));
+	if (heredoc != NULL && *heredoc != NULL)
+	{
+		remover = heredoc_remover;
+		remove_all_list(heredoc, remover);
+	}
+	if (exec != NULL && *exec != NULL)
+	{
+		remover = exec_remover;
+		remove_all_list(exec, remover);
+	}
 }

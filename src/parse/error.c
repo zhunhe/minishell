@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 00:00:54 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/21 17:15:11 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 02:15:55 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,17 @@ static bool	check_double_pipe(char *s, int *status)
 	return (OK);
 }
 
+static bool	check_none(char *s, int *status)
+{
+	_strskip(&s, " ");
+	if (*s == '\0')
+	{
+		*status = STATUS_NONE;
+		return (ERROR);
+	}
+	return (OK);
+}
+
 bool	check_error(char *s, int *status)
 {
 	if (check_invalid_char(s, status))
@@ -79,6 +90,8 @@ bool	check_error(char *s, int *status)
 	if (check_quotes_closed(s, status))
 		return (ERROR);
 	if (check_double_pipe(s, status))
+		return (ERROR);
+	if (check_none(s, status))
 		return (ERROR);
 	return (OK);
 }

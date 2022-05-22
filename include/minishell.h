@@ -6,7 +6,7 @@
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:32:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 12:34:59 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 12:51:42 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_envp
 typedef enum e_status
 {
 	STATUS_OK,
+	STATUS_NONE,
 	STATUS_ERROR_INVALID_CHAR,
 	STATUS_ERROR_QUOTES_OPENED,
 	STATUS_SYNTAX_ERROR,

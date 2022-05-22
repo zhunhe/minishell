@@ -6,7 +6,7 @@
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 07:40:02 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 04:25:32 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 12:52:19 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ static char	*get_cmd_path(char *cmd)
 		if (fd > 2)
 		{
 			close(fd);
+			_free_double_pointer((void ***)&path_list);
 			return (path);
 		}
 		_free((void **)&path);
 	}
+	_free_double_pointer((void ***)&path_list);
 	return (_strdup(cmd));
 }
 
@@ -83,7 +85,7 @@ t_node	*set_cmd(t_exec *result, char *s)
 	cmd_node = create_node(_strdup(ss[0]));
 	if (cmd_node->type != TYPE_ETC)
 	{
-		_split_free(&ss);
+		_free_double_pointer((void ***)&ss);
 		_free((void **)&cmd_node);
 		return (NULL);
 	}
@@ -91,6 +93,6 @@ t_node	*set_cmd(t_exec *result, char *s)
 	result->cmd = interpret(ss[0]);
 	result->cmd_path = get_cmd_path(result->cmd);
 	result->cmd_argv = get_cmd_argv(ss);
-	_split_free(&ss);
+	_free_double_pointer((void ***)&ss);
 	return (cmd_node);
 }

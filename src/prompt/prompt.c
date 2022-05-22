@@ -6,7 +6,7 @@
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 12:39:42 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 12:51:13 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	print_error_msg(t_status status)
 {
 	const char	*msg[STATUS_MAX] = {
 		"",
+		"",
 		"Error! There is invalid char '\\' or ';'\n",
 		"Error! Quotes is not closed\n",
 		"minishell: syntax error near unexpected token\n",
@@ -55,12 +56,15 @@ static void	exit_minishell(void)
 	exit(0);
 }
 
-static void	init_prompt(int *status)
+static void	init_prompt(int *status, t_list **exec, t_list **heredoc)
 {
 	echoctl_off();
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
 	*status = STATUS_OK;
+	*exec = NULL;
+	*heredoc = NULL;
+	g_minishell.signal = 0;
 }
 
 void	print_prompt(void)
@@ -72,7 +76,7 @@ void	print_prompt(void)
 
 	while (1)
 	{
-		init_prompt(&status);
+		init_prompt(&status, &exec, &heredoc);
 		str = readline(MINISHELL);
 		if (str == NULL)
 			exit_minishell();
@@ -80,16 +84,15 @@ void	print_prompt(void)
 		{
 			exec = parse(str, &status);
 			if (status == STATUS_OK)
-				heredoc = get_heredoc(exec);	
-			if (status == STATUS_OK)
 			{
+				heredoc = get_heredoc(exec);
 				add_history(str);
 				main_logic(exec, heredoc);
 				unlink_all(heredoc);
-				g_minishell.signal = 0;
 			}
 			else
 				print_error_msg(status);
+			free_lists(&heredoc, &exec);
 		}
 		_free((void **)&str);
 	}
