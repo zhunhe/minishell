@@ -6,7 +6,7 @@
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 05:02:47 by hena              #+#    #+#             */
-/*   Updated: 2022/05/21 20:27:11 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 15:34:44 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ void	wait_all_child(t_list *head, int last_pid)
 	{
 		pid = wait(&exit_status);
 		if (pid == last_pid)
+		{
 			g_minishell.exit_status = set_exit_status(exit_status);
+			if (g_minishell.signal)
+				g_minishell.exit_status = g_minishell.signal;
+		}
 		head = head->next;
 	}
 }
