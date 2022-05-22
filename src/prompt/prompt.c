@@ -6,7 +6,7 @@
 /*   By: hena <hena@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 09:52:03 by hena             ###   ########.fr       */
+/*   Updated: 2022/05/22 12:39:42 by hena             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void	print_error_msg(t_status status)
 static void	exit_minishell(void)
 {
 	printf("\e[1A\e[10C exit\n");
-	printf("[%s %d]\n", __FUNCTION__, __LINE__);
 	exit(0);
 }
 
@@ -74,24 +73,18 @@ void	print_prompt(void)
 	while (1)
 	{
 		init_prompt(&status);
-		printf("[%s %d]\n", __FUNCTION__, __LINE__);
 		str = readline(MINISHELL);
-		printf("[%s %d]\n", __FUNCTION__, __LINE__);
 		if (str == NULL)
 			exit_minishell();
 		else if (*str != '\0')
 		{
 			exec = parse(str, &status);
 			if (status == STATUS_OK)
-			{	
 				heredoc = get_heredoc(exec);	
-			}
 			if (status == STATUS_OK)
 			{
 				add_history(str);
-				// printf("[%s %d]\n", __FUNCTION__, __LINE__);
 				main_logic(exec, heredoc);
-				printf("[%s %d]\n", __FUNCTION__, __LINE__);
 				unlink_all(heredoc);
 				g_minishell.signal = 0;
 			}
