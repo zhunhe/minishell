@@ -6,7 +6,7 @@
 /*   By: juhur <juhur@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 20:48:20 by juhur             #+#    #+#             */
-/*   Updated: 2022/05/22 14:26:00 by juhur            ###   ########.fr       */
+/*   Updated: 2022/05/22 16:16:30 by juhur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static void	print_error_msg(t_status status)
 
 	if (status != STATUS_OK)
 		printf("%s", msg[status]);
+	if (status == STATUS_HEREDOC_COUNT_ERROR)
+		exit(2);
 }
 
 static void	init_prompt(int *status, t_list **exec, t_list **heredoc)
